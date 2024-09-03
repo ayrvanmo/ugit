@@ -1,5 +1,5 @@
 # ugit
-
+*Iván Mansilla y Ayrton Morrison*
 #### Cosas por hacer:
 * inicializar repositorio
 * agregar archivos a este
