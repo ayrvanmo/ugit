@@ -54,9 +54,8 @@ int main(int argc, char** argv){
 					printf("Repositorio inicializado exitosamente\n");
 				}
 
-				// DEPURACION
 				else{
-					printf("ERROR: No se pudo inicializar uGit\n");
+					printf("ERROR: No se pudo inicializar el repositorio\n");
 				}
 			}
 
@@ -73,7 +72,7 @@ int main(int argc, char** argv){
 	
 	//EN EL CASO DE QUE UGIT SEA EJECUTADO SIN NINGUN ARGUMENTO
     else { 
-		printf("No ingreso nignun comando'\n'ugit help' para ver la lista de comandos disponibles\n");		
+		printf("Uso: 'ugit [comando]'\n'ugit help' para ver la lista de comandos disponibles\n");		
     }
 
   return 0;
