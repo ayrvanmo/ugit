@@ -2,4 +2,4 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-bool isinitialized();
+bool is_initialized();
