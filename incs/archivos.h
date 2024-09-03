@@ -2,4 +2,4 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-bool is_initialized();
+bool is_initialized(char file_name[]);
