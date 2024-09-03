@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-bool isinitialized(){ // función para  verificar si ugit está inicializado o no
+bool is_initialized(){ // función para  verificar si ugit está inicializado o no
 
     FILE *ugit=fopen(".ugit","r");
 
