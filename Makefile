@@ -6,7 +6,7 @@ NTAR=2
 
 SRC_DIR=src
 OBJ_DIR=obj
-SRC_FILES=main.c
+SRC_FILES=$(SRC_DIR)/main.c $(SRC_DIR)/archivos.c
 OBJ_FILES=$(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 INCLUDE=-I./incs/
 LIBS=
