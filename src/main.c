@@ -40,7 +40,7 @@ int main(int argc, char** argv){
 		else if(strcmp(argv[1],"init")==0){
 			
 			// EN EL CASO DE ESTAR INICIALIZADO AVISAR QUE YA LO ESTA
-			if(is_initialized()){
+			if(is_initialized(".ugit")){
 				printf("uGit ya se encuentra inicializado en el directorio\n");
 			}
 
@@ -50,7 +50,7 @@ int main(int argc, char** argv){
 				system("touch .ugit");
 
 				// ALERTA INICIACION EXITOSA
-				if(is_initialized()){
+				if(is_initialized(".ugit")){
 					printf("Repositorio inicializado exitosamente\n");
 				}
 
