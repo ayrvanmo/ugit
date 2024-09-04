@@ -106,8 +106,6 @@ int main(int argc, char** argv){
     else { 
 
 		printf("No ingreso nignun comando'\n'ugit help' para ver la lista de comandos disponibles\n");		
-
-		printf("Uso: 'ugit [comando]'\n'ugit help' para ver la lista de comandos disponibles\n");		
     }
 
   return 0;
