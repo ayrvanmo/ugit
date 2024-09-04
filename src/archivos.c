@@ -20,3 +20,10 @@ bool is_initialized(char file_name[]){
 
     }
 }
+
+void write_on_file(char text[]){
+
+
+
+
+}

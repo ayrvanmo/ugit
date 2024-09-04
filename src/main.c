@@ -25,6 +25,7 @@
 
 int main(int argc, char** argv){
 
+
 	// EN EL CASO DE QUE SE INGRESE UN COMANDO
     if(argc>1){ 
 
@@ -46,21 +47,49 @@ int main(int argc, char** argv){
 
 			// INICIALIZAR EL REPOSITORIO
           	else{ 
-
 				system("touch .ugit");
 
 				// ALERTA INICIACION EXITOSA
 				if(is_initialized(".ugit")){
 					printf("Repositorio inicializado exitosamente\n");
 				}
-
-				// DEPURACION
+				// ERROR SI NO SE PUEDE INICIALIZAR
 				else{
-					printf("ERROR: No se pudo inicializar uGit\n");
+					printf("ERROR: No se pudo inicializar el repositorio\n");
 				}
 			}
 
         }
+
+		/*COMANDO PARA AGREGAR ARCHIVOS AL REPOSITORIO*/
+		else if(strcmp(argv[1],"add")==0){
+
+			if(is_initialized(".ugit")){ //verificar primero si se hizo ugit init
+
+				if(argc>2){ // verificar si se colocaron más argumentos
+
+					for(int i=2;i<argc;i++){ // recorrer los argumentos puestos
+						if(is_initialized(argv[i])){ // verificar si el archivo existe
+							printf("'%s' fue añadido exitosamente", argv[i]);
+
+						}
+
+						else{ // sino, mostrar mensaje de error
+							printf("ERROR: El archivo '%s' no existe\n",argv[i]);
+						}
+					}
+
+				}
+				else{ // sino, mostrar mensaje de error
+					printf("ERROR: No se especifico el(los) archivo(s) a agregar. Uso: 'ugit add [archivo1] [archivo2]...'\n");
+				}
+
+			} // si no está inicializado,  mostrar mensaje de error
+			else{
+				printf("ERROR: No se ha inicializado el repositorio.  Utilice 'ugit init'\n");
+			}
+		}
+		/*END*/
       
 
 		// EN EL CASO DE COLOCAR UN COMANDO NO VALIDO
@@ -78,6 +107,7 @@ int main(int argc, char** argv){
 
 		printf("No ingreso nignun comando'\n'ugit help' para ver la lista de comandos disponibles\n");		
 
+		printf("Uso: 'ugit [comando]'\n'ugit help' para ver la lista de comandos disponibles\n");		
     }
 
   return 0;

@@ -1,7 +1,7 @@
 # ugit
 *Iván Mansilla y Ayrton Morrison*
 #### Cosas por hacer:
-* inicializar repositorio
+* ~~inicializar repositorio~~
 * agregar archivos a este
 * crear commits (guardar versiones anteriores)
 * historial de versiones
