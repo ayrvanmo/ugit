@@ -7,9 +7,9 @@
 // FUNCION PARA VERIFICAR LA INICIALIZACION DE UN ARCHIVO
 bool is_initialized(char file_name[]){ 
 
-    FILE *ugit=fopen(file_name,"r");
+    FILE *file=fopen(file_name,"r");
 
-    if(ugit!=NULL){
+    if(file!=NULL){
 
         return true;
 

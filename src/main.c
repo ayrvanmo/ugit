@@ -65,7 +65,9 @@ int main(int argc, char** argv){
 
 		// EN EL CASO DE COLOCAR UN COMANDO NO VALIDO
 		else{ 
+			
 			printf("Comando invalido\n'ugit help' para ver la lista de comandos disponibles\n");
+			
 		}
 
 
@@ -73,7 +75,9 @@ int main(int argc, char** argv){
 	
 	//EN EL CASO DE QUE UGIT SEA EJECUTADO SIN NINGUN ARGUMENTO
     else { 
+
 		printf("No ingreso nignun comando'\n'ugit help' para ver la lista de comandos disponibles\n");		
+
     }
 
   return 0;
