@@ -70,7 +70,10 @@ int main(int argc, char** argv){
 
 					for(int i=2;i<argc;i++){ // recorrer los argumentos puestos
 						if(is_initialized(argv[i])){ // verificar si el archivo existe
-							printf("'%s' fue añadido exitosamente", argv[i]);
+
+							write_on_file(".ugit", argv[i]);
+
+							printf("'%s' fue añadido exitosamente\n", argv[i]);
 
 						}
 

@@ -21,9 +21,24 @@ bool is_initialized(char file_name[]){
     }
 }
 
-void write_on_file(char text[]){
+void write_on_file(char file_name[], char text[] ){
+
+    FILE *file = fopen(file_name, "a");
+
+    if (file != NULL)
+    {
+        fprintf(file, "%s HASHCODE\n", text); // EN ESTa MISMA LINEA INTRODUCIR UN EL CODIGO HASH AL LADO
+        
 
 
+    }
+    else{
 
+        printf("No se ha podido abrir el archivete");
+
+    }
+    
+    
+    return ;
 
 }
