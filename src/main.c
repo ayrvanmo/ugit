@@ -12,6 +12,9 @@
 #include <string.h>
 #include <unistd.h>
 #include "archivos.h"
+#include "busqueda.h"
+#define TABLE_SIZE 100
+
 
 
 
@@ -23,7 +26,28 @@
  * 
  */
 
+
+	
+
 int main(int argc, char** argv){
+
+	input * hash_table[TABLE_SIZE];
+
+	init_hash_table(hash_table);
+
+	insert(hash_table, "hola");
+	insert(hash_table, "adios");
+	insert(hash_table, "michael");
+	insert(hash_table, "josesitolevel");
+
+
+	print_table(hash_table);
+
+	
+
+	//insert(hash_table, "adios");
+	//insert(hash_table, "holasteee");
+
 
 
 	// EN EL CASO DE QUE SE INGRESE UN COMANDO
@@ -113,3 +137,4 @@ int main(int argc, char** argv){
 
   return 0;
 }
+

@@ -1,7 +1,4 @@
 #include "archivos.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 
 
 // FUNCION PARA VERIFICAR LA INICIALIZACION DE UN ARCHIVO
@@ -11,22 +8,30 @@ bool is_initialized(char file_name[]){
 
     if(file!=NULL){
 
+        fclose(file);
         return true;
 
     }
     else{
 
+        fclose(file);
         return false;
 
     }
+
+    
 }
 
+
+//FUNCION EN PAUSA
 void write_on_file(char file_name[], char text[] ){
 
     FILE *file = fopen(file_name, "a");
 
     if (file != NULL)
     {
+
+
         fprintf(file, "%s HASHCODE\n", text); // EN ESTa MISMA LINEA INTRODUCIR UN EL CODIGO HASH AL LADO
         
 
@@ -38,7 +43,7 @@ void write_on_file(char file_name[], char text[] ){
 
     }
     
-    
+    fclose(file);
     return ;
 
 }
