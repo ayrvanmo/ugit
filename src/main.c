@@ -31,8 +31,8 @@
 	
 
 int main(int argc, char** argv){
-
-	input * hash_table[TABLE_SIZE];
+	
+	printf("su hash es: %u\n", jenkins_hash("buenaayrtonsoygay3924"));
 
 
 	// EN EL CASO DE QUE SE INGRESE UN COMANDO

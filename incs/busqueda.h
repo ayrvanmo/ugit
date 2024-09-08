@@ -7,12 +7,6 @@
 #define TABLE_SIZE 100
 
 
-typedef struct {
-    char *name;
-    //para hacer una mini lista enlazada
-    struct input *next;
-    //cosas que se vayan a anhadir
-} input;
 
 
 typedef struct {
@@ -23,9 +17,5 @@ typedef struct {
 
 } commit;
 
-
-
-unsigned int hash(char name[]);
-void init_hash_table(input * hash_table[TABLE_SIZE]);
-void print_table(input * hash_table[TABLE_SIZE]);
-void insert(input * hash_table[TABLE_SIZE], char name[]);
+unsigned int jenkins_hash(char* key);
+//void init_hash_table(input * hash_table[TABLE_SIZE]);

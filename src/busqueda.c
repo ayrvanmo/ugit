@@ -1,26 +1,36 @@
 #include "busqueda.h"
 
 #define NAME_MAX 100
-#define phi 1.618033988749895
 #define TABLE_SIZE 100
 
-unsigned int hash(char name[]){
+unsigned int jenkins_hash(char* key){
 
-    int lenght = strnlen(name, NAME_MAX);
+   unsigned int hash = 0;
+   
 
-    unsigned int hash_value = 0;
+   while (*key) {
 
-    for (int i = 0; i < lenght; i++)
-    {
-        hash_value += name[i];
-        hash_value = (hash_value * name[i] * phi ) ;
+      hash += (unsigned char)(*key);
+      hash += (hash << 10);     
+      hash ^= (hash >> 6);
+       
+      key++;
+		
+   }
 
-        return hash_value % TABLE_SIZE;
+   hash += (hash << 3);
+   
+   hash ^= (hash >> 11);
+   
+   hash += (hash << 15);
+   
 
-    }
-    
+
+   return hash % TABLE_SIZE;
+
 }
 
+/*
 void init_hash_table(input * hash_table[TABLE_SIZE]){
 
     for (int i = 0; i < TABLE_SIZE; i++)
@@ -29,7 +39,10 @@ void init_hash_table(input * hash_table[TABLE_SIZE]){
     }
     
 }
+*/
 
+
+/*
 void print_table(input * hash_table[TABLE_SIZE]){
 
     for (int i = 0; i < TABLE_SIZE; i++)
@@ -47,21 +60,5 @@ void print_table(input * hash_table[TABLE_SIZE]){
     
 }
 
-void insert(input * hash_table[TABLE_SIZE], char *name, input *next){
 
-     int index = hash(name);
-
-
-    if (hash_table[index] == NULL)
-    {
-        hash_table[index] = (input *)malloc(sizeof(input));
-        hash_table[index]->name = name;
-        next= hash_table[index];     
-
-    }
-    else
-    {
-        printf("Colision en el indice %d\n", index);
-    }
-    
-}
+*/
