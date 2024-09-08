@@ -33,22 +33,6 @@ int main(int argc, char** argv){
 
 	input * hash_table[TABLE_SIZE];
 
-	init_hash_table(hash_table);
-
-	insert(hash_table, "hola");
-	insert(hash_table, "adios");
-	insert(hash_table, "michael");
-	insert(hash_table, "josesitolevel");
-
-
-	print_table(hash_table);
-
-	
-
-	//insert(hash_table, "adios");
-	//insert(hash_table, "holasteee");
-
-
 
 	// EN EL CASO DE QUE SE INGRESE UN COMANDO
     if(argc>1){ 
@@ -117,6 +101,22 @@ int main(int argc, char** argv){
 			}
 		}
 		/*END*/
+
+		/*COMANDO PARA CREAR COMMITS*/
+		else if(strcmp(argv[1],"add")==0){
+
+			//verificar primero si ugit está inicializado
+			if(is_initialized(".ugit")){
+
+				
+
+
+			}
+			//sino, mostrar mensaje de error
+			else {
+				printf("ERROR: No se ha inicializado el repositorio.  Utilice 'ugit init'\n");
+			}
+		}
       
 
 		// EN EL CASO DE COLOCAR UN COMANDO NO VALIDO

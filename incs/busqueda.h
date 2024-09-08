@@ -11,11 +11,18 @@ typedef struct {
     char *name;
     //para hacer una mini lista enlazada
     struct input *next;
+    //cosas que se vayan a anhadir
+} input;
+
+
+typedef struct {
+    // metadatos
+    char *author;
     
 
-    //cosas que se vayan a anhadir
-    
-} input;
+
+} commit;
+
 
 
 unsigned int hash(char name[]);
