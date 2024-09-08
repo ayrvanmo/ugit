@@ -13,37 +13,27 @@ bool is_initialized(char file_name[]){
 
     }
     else{
-
-        fclose(file);
         return false;
-
     }
 
-    
 }
 
 
-//FUNCION EN PAUSA
-void write_on_file(char file_name[], char text[] ){
+void write_on_file(char file_name[], char text[], char mode[]){
 
-    FILE *file = fopen(file_name, "a");
+    FILE *file = fopen(file_name, mode);
 
     if (file != NULL)
     {
-
-
-        fprintf(file, "%s HASHCODE\n", text); // EN ESTa MISMA LINEA INTRODUCIR UN EL CODIGO HASH AL LADO
-        
-
-
+        fprintf(file, "%s\n", text);
+        fclose(file);        
     }
     else{
-
-        printf("No se ha podido abrir el archivete");
-
+        printf("ERROR: uGit no tiene los permisos necesarios");
+        exit(1);
     }
-    
-    fclose(file);
-    return ;
+
+    return;
 
 }
+

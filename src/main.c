@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/stat.h>
 #include "archivos.h"
 #include "busqueda.h"
 #define TABLE_SIZE 100
@@ -55,7 +56,9 @@ int main(int argc, char** argv){
 
 			// INICIALIZAR EL REPOSITORIO
           	else{ 
-				system("touch .ugit");
+				system("mkdir .ugit .ugit/commits .ugit/objects");
+				system("touch .ugit/COMMIT_MSG .ugit/log .ugit/userinfo");
+				
 
 				// ALERTA INICIACION EXITOSA
 				if(is_initialized(".ugit")){
@@ -79,7 +82,7 @@ int main(int argc, char** argv){
 					for(int i=2;i<argc;i++){ // recorrer los argumentos puestos
 						if(is_initialized(argv[i])){ // verificar si el archivo existe
 
-							write_on_file(".ugit", argv[i]);
+							
 
 							printf("'%s' fue añadido exitosamente\n", argv[i]);
 
@@ -102,13 +105,47 @@ int main(int argc, char** argv){
 		}
 		/*END*/
 
+
+
+
+
 		/*COMANDO PARA CREAR COMMITS*/
-		else if(strcmp(argv[1],"add")==0){
+		else if(strcmp(argv[1],"commit")==0){
 
 			//verificar primero si ugit está inicializado
 			if(is_initialized(".ugit")){
 
-				
+				//verificar si se colocó el mensaje de commit
+				if(argc==3){
+
+					
+
+
+
+
+
+
+
+
+					write_on_file(".ugit/COMMIT_MSG",argv[2],"w");
+					printf("Se ha creado un commit con el mensaje: '%s'\n",argv[2]);
+
+				}
+
+				// si se colocaron más argumentos de los correctos, mostrar error
+				else if(argc>3){
+
+					printf("ERROR: ");
+					for(int i=3;i<argc;i++){
+						printf("'%s' ", argv[i]);
+					}
+					printf("no son argumentos validos. Uso: 'ugit commit [mensaje]'\n ");
+				}
+
+				//  si no se colocó el mensaje de commit, mostrar error
+				else {
+					printf("ERROR: No se especificó el mensaje del commit. Uso: 'ugit commit [mensaje]'\n");
+				}		
 
 
 			}
@@ -117,8 +154,12 @@ int main(int argc, char** argv){
 				printf("ERROR: No se ha inicializado el repositorio.  Utilice 'ugit init'\n");
 			}
 		}
-      
+		/*END*/
 
+
+
+
+      
 		// EN EL CASO DE COLOCAR UN COMANDO NO VALIDO
 		else{ 
 			
