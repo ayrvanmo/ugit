@@ -31,8 +31,8 @@
 	
 
 int main(int argc, char** argv){
-
-	input * hash_table[TABLE_SIZE];
+	
+	printf("su hash es: %u\n", jenkins_hash("buenaayrtonsoygay3924"));
 
 
 	// EN EL CASO DE QUE SE INGRESE UN COMANDO
@@ -173,7 +173,7 @@ int main(int argc, char** argv){
 	//EN EL CASO DE QUE UGIT SEA EJECUTADO SIN NINGUN ARGUMENTO
     else { 
 
-		printf("No ingreso nignun comando'\n'ugit help' para ver la lista de comandos disponibles\n");		
+		printf("No ingreso ningun comando'\n'ugit help' para ver la lista de comandos disponibles\n");		
     }
 
   return 0;
