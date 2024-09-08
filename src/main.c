@@ -84,7 +84,16 @@ int main(int argc, char** argv){
 
 							
 
+
+
 							printf("'%s' fue añadido exitosamente\n", argv[i]);
+
+
+
+
+
+
+
 
 						}
 
@@ -118,17 +127,17 @@ int main(int argc, char** argv){
 				//verificar si se colocó el mensaje de commit
 				if(argc==3){
 
-					
+					//verificar si existe la carpeta objects
+					if(is_initialized(".ugit/objects")){
 
+						write_on_file(".ugit/COMMIT_MSG",argv[2],"w");
+						printf("Se ha creado un commit con el mensaje: '%s'\n",argv[2]);
 
-
-
-
-
-
-
-					write_on_file(".ugit/COMMIT_MSG",argv[2],"w");
-					printf("Se ha creado un commit con el mensaje: '%s'\n",argv[2]);
+					}
+					//sino, tirar error
+					else{
+						printf("ERROR: No existe la carpeta '.ugit/objects'.");
+					}
 
 				}
 
@@ -173,7 +182,7 @@ int main(int argc, char** argv){
 	//EN EL CASO DE QUE UGIT SEA EJECUTADO SIN NINGUN ARGUMENTO
     else { 
 
-		printf("No ingreso nignun comando'\n'ugit help' para ver la lista de comandos disponibles\n");		
+		printf("No ingreso ningun comando'\n'ugit help' para ver la lista de comandos disponibles\n");		
     }
 
   return 0;
