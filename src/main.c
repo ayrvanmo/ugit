@@ -11,7 +11,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <sys/stat.h>
 #include "archivos.h"
 #include "busqueda.h"
 #define TABLE_SIZE 100
@@ -32,6 +31,8 @@
 
 int main(int argc, char** argv){
 
+
+	
 
 	// EN EL CASO DE QUE SE INGRESE UN COMANDO
     if(argc>1){ 
@@ -54,6 +55,7 @@ int main(int argc, char** argv){
 
 			// INICIALIZAR EL REPOSITORIO
           	else{ 
+
 				system("mkdir .ugit .ugit/commits .ugit/objects");
 				system("touch .ugit/COMMIT_MSG .ugit/log .ugit/userinfo .ugit/index");
 				
