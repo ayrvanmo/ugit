@@ -31,8 +31,6 @@
 	
 
 int main(int argc, char** argv){
-	
-	printf("su hash es: %u\n", jenkins_hash("buenaayrtonsoygay3924"));
 
 
 	// EN EL CASO DE QUE SE INGRESE UN COMANDO
@@ -57,7 +55,7 @@ int main(int argc, char** argv){
 			// INICIALIZAR EL REPOSITORIO
           	else{ 
 				system("mkdir .ugit .ugit/commits .ugit/objects");
-				system("touch .ugit/COMMIT_MSG .ugit/log .ugit/userinfo");
+				system("touch .ugit/COMMIT_MSG .ugit/log .ugit/userinfo .ugit/index");
 				
 
 				// ALERTA INICIACION EXITOSA
@@ -72,6 +70,11 @@ int main(int argc, char** argv){
 
         }
 
+
+
+
+
+
 		/*COMANDO PARA AGREGAR ARCHIVOS AL REPOSITORIO*/
 		else if(strcmp(argv[1],"add")==0){
 
@@ -82,18 +85,12 @@ int main(int argc, char** argv){
 					for(int i=2;i<argc;i++){ // recorrer los argumentos puestos
 						if(is_initialized(argv[i])){ // verificar si el archivo existe
 
-							
+
+							/*POR HACER: QUE NO SE COLOQUE EL MISMO ARCHIVO VARIAS VECES*/
 
 
-
-							printf("'%s' fue añadido exitosamente\n", argv[i]);
-
-
-
-
-
-
-
+							write_on_file(".ugit/index",argv[i],"a");
+							printf("El archivo '%s' fue añadido con exito\n", argv[i]);
 
 						}
 
@@ -130,13 +127,21 @@ int main(int argc, char** argv){
 					//verificar si existe la carpeta objects
 					if(is_initialized(".ugit/objects")){
 
+
+						
+
+
+
+
+
+
 						write_on_file(".ugit/COMMIT_MSG",argv[2],"w");
 						printf("Se ha creado un commit con el mensaje: '%s'\n",argv[2]);
 
 					}
 					//sino, tirar error
 					else{
-						printf("ERROR: No existe la carpeta '.ugit/objects'.");
+						printf("ERROR: No se encontro la carpeta '.ugit/objects'.");
 					}
 
 				}
