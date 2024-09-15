@@ -1,4 +1,5 @@
 #include "archivos.h"
+#include "busqueda.h"
 
 
 // FUNCION PARA VERIFICAR LA INICIALIZACION DE UN ARCHIVO
@@ -34,6 +35,25 @@ void write_on_file(char file_name[], char text[], char mode[]){
     }
 
     return;
+
+}
+
+void copy_and_paste (char* file_name, char* destination){
+
+
+      char comando[1024];
+
+
+
+      sprintf(comando, "cp %s %s", file_name, destination);
+
+      if(!system(comando)){
+        printf("'%s' ha sido agregado para el proximo commit exitosamente",  file_name);
+      }
+      else {
+        printf("ERROR: '%s' no pudo ser agregado para el proximo commit",  file_name);
+
+      }
 
 }
 
