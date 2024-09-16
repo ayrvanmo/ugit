@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
 #include "archivos.h"
 #include "busqueda.h"
 #define TABLE_SIZE 100
@@ -168,24 +169,51 @@ int main(int argc, char** argv){
 				//verificar si se colocó el mensaje de commit
 				if(argc==3){
 
-					//verificar si existe la carpeta objects
-					if(is_initialized(".ugit/objects")){
+					//verificar si existe la carpeta objects, commits e index
+					if(is_initialized(".ugit/objects")&&is_initialized(".ugit/index")&&is_initialized(".ugit/commits")){
 
-						
-						
-						
-
+						// verifica si hay archivos en el staging area
+						if(!is_folder_empty(".ugit/index")){
 
 
+							//crear hash del commit con el tiempo de la máquina
+							time_t user_time=time(NULL);
+							char *user_time_str=ctime(&user_time);
+
+							char command[1024];
+							sprintf(command,sizeof(command), "touch .ugit/commits/%i",jenkins_hash(user_time_str));
+
+							// crear archivo del commit (donde irán los hash de sus archivos correspondientes)
+							if(system(command)){
+								printf("ERROR: no se pudo crear el commit\n");
+								exit(1);
+							}
+
+							
 
 
-						write_on_file(".ugit/COMMIT_MSG",argv[2],"w");
-						printf("Se ha creado un commit con el mensaje: '%s'\n",argv[2]);
+							
+
+
+
+
+
+
+						//write_on_file(".ugit/COMMIT_MSG",argv[2],"w");
+						//printf("Se ha creado un commit con el mensaje: '%s'\n",argv[2]);
+
+
+
+						}
+						// sino, avisa que no se ha hecho add
+						else {
+							printf("ERROR: no se han agregado archivos al staging area. Utilice 'ugit add [archivo1] [archivo2]...'\n");
+						}
 
 					}
 					//sino, tirar error
 					else{
-						printf("ERROR: No se encontro la carpeta '.ugit/objects'.");
+						printf("ERROR: No se encontraron los archivos necesarios para que uGit funcione");
 					}
 
 				}
@@ -197,7 +225,7 @@ int main(int argc, char** argv){
 					for(int i=3;i<argc;i++){
 						printf("'%s' ", argv[i]);
 					}
-					printf("no son argumentos validos. Uso: 'ugit commit [mensaje]'\n ");
+					printf("no son argumentos validos. Uso: 'ugit commit '[mensaje]' '\n ");
 				}
 
 				//  si no se colocó el mensaje de commit, mostrar error
