@@ -6,7 +6,7 @@
 #define NAME_MAX 100
 #define TABLE_SIZE 100
 #define COLITION_SIZE 10
-
+#define MAX_CHAR 30
 
 
 
@@ -21,7 +21,7 @@ typedef struct {
 
 typedef struct{
 
-    char *key;
+    char key[MAX_CHAR];
     int value;
     bool is_occupied;
 

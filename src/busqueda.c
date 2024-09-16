@@ -3,6 +3,8 @@
 #define NAME_MAX 100
 #define TABLE_SIZE 100
 #define COLITION_SIZE 10
+#define MAX_CHAR 30
+
 
 //FUNCION HASH PARA CARACTERES ESTATICOS
 unsigned int jenkins_hash(char* key){
@@ -93,16 +95,19 @@ void init_table(HashTable *hashtable){
 
     for (int i = 0; i < TABLE_SIZE; i++)
     {
-        for (int j = 0; i < COLITION_SIZE; j++)
+        
+        for (int j = 0; j < COLITION_SIZE; j++)
         {
+          
+            
+
             hashtable->table[i][j].is_occupied = false;
+            
             hashtable->table[i][j].value = 0;
-            strcpy(hashtable->table[i][j].key, "");
+            
+            sprintf(hashtable->table[i][j].key, "VACIO");
 
-        }
-        
-
-        
+        }    
 
     }
     
@@ -122,7 +127,7 @@ void insert_hash(HashTable * hashtable, char* key, int value){
         if(hashtable->table[index][i].is_occupied == false)
         {
 
-            strcpy(hashtable->table[index][i].key, key);
+            sprintf(hashtable->table[index][i].key, key);
             hashtable->table[index][i].value = value;
             hashtable->table[index][i].is_occupied = true;
             
@@ -153,7 +158,8 @@ void insert_hash(HashTable * hashtable, char* key, int value){
                     if(hashtable->table[new_index][j].is_occupied == false)
                     {
 
-                        strcpy(hashtable->table[new_index][i].key, key);
+
+                        sprintf(hashtable->table[index][i].key, key);
                         hashtable->table[new_index][i].value = value;
                         hashtable->table[new_index][i].is_occupied = true;
             
@@ -180,7 +186,7 @@ void insert_hash(HashTable * hashtable, char* key, int value){
                     if(hashtable->table[new_index][j].is_occupied == false)
                     {
 
-                        strcpy(hashtable->table[new_index][i].key, key);
+                        sprintf(hashtable->table[index][i].key, key);
                         hashtable->table[new_index][i].value = value;
                         hashtable->table[new_index][i].is_occupied = true;
             
@@ -221,7 +227,7 @@ void insert_hashfile(HashTable * hashtable, const char * filename, int value){
         if(hashtable->table[index][i].is_occupied == false)
         {
 
-            strcpy(hashtable->table[index][i].key, filename);
+            sprintf(hashtable->table[index][i].key, filename);
             hashtable->table[index][i].value = value;
             hashtable->table[index][i].is_occupied = true;
             
@@ -252,7 +258,7 @@ void insert_hashfile(HashTable * hashtable, const char * filename, int value){
                     if(hashtable->table[new_index][j].is_occupied == false)
                     {
 
-                        strcpy(hashtable->table[new_index][i].key, filename);
+                        sprintf(hashtable->table[new_index][i].key, filename);
                         hashtable->table[new_index][i].value = value;
                         hashtable->table[new_index][i].is_occupied = true;
             
@@ -279,7 +285,7 @@ void insert_hashfile(HashTable * hashtable, const char * filename, int value){
                     if(hashtable->table[new_index][j].is_occupied == false)
                     {
 
-                        strcpy(hashtable->table[new_index][i].key, filename);
+                        sprintf(hashtable->table[new_index][i].key, filename);
                         hashtable->table[new_index][i].value = value;
                         hashtable->table[new_index][i].is_occupied = true;
             
@@ -361,7 +367,7 @@ void delete_element(HashTable * hashtable, char * key){
         {
 
             hashtable->table[index][i].is_occupied = false;
-            strcpy(hashtable->table[index][i].key, "");
+            sprintf(hashtable->table[index][i].key, "VACIO");
             hashtable->table[index][i].value = 0;
             return;
 
@@ -384,7 +390,8 @@ void delete_elementfile(HashTable * hashtable, const char * filename){
         {
 
             hashtable->table[index][i].is_occupied = false;
-            strcpy(hashtable->table[index][i].key, "");
+            //strcpy(hashtable->table[index][i].key, "VACIO");
+            sprintf(hashtable->table[index][i].key, "VACIO");
             hashtable->table[index][i].value = 0;
             return;
 
@@ -399,17 +406,18 @@ void delete_elementfile(HashTable * hashtable, const char * filename){
 //FUNCION PARA IMPRIMIR LA TABLA
 void print_table(HashTable* hashtable) {
 
-    for (int i = 0; i < TABLE_SIZE; i++) {
+    for (int i = 0; i < TABLE_SIZE ; i++) {
 
-        printf("Index %d:\n", i);
+        printf("Index %d:", i);
 
         for (int j = 0; j < COLITION_SIZE; j++) {
 
             if (hashtable->table[i][j].is_occupied) {
 
-                printf("  [%d][%d] Key: %s, Value: %d\n", i, j, hashtable->table[i][j].key, hashtable->table[i][j].value);
+                printf("[%d][%d] Key: %s, Value: %d ", i, j, hashtable->table[i][j].key, hashtable->table[i][j].value);
 
             }
         }
+        printf("\n");
     }
 }
