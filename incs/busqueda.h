@@ -47,5 +47,6 @@ int search_tablefile(HashTable * hashtable, const char * filename);
 void delete_element(HashTable * hashtable, char * key);
 void delete_elementfile(HashTable * hashtable, const char * filename);
 void print_table(HashTable* hashtable);
-
+void print_tablefile(HashTable* hashtable, const char * filename);
+void save_table(HashTable* hashtable, const char * filename);
 

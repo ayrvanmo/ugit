@@ -5,6 +5,7 @@
 #define MAX_CHAR 30
 
 
+
 //FUNCION HASH PARA CARACTERES ESTATICOS
 unsigned int jenkins_hash(char* key){
 
@@ -50,7 +51,7 @@ unsigned int Dinamic_jenkins ( unsigned char * key , size_t lenght ) {
 }
 
 // FUNCION HASH PARA EL CONTENIDO DE UN ARCHIVO
-unsigned int hashFile ( const char * filename ) {
+unsigned int hashFile(const char * filename ) {
 
     FILE * file = fopen ( filename , "rb" ); // Abrir el archivo en modo binario
 
@@ -123,7 +124,7 @@ void insert_hash(HashTable * hashtable, char* key, int value){
 
 
         //PARA INSERTAR EL VALOR
-        if(hashtable->table[index][i].is_occupied == false)
+        if(hashtable->table[index][i].is_occupied == false && strlen(key) < MAX_CHAR)
         {
 
             sprintf(hashtable->table[index][i].key, key);
@@ -143,66 +144,39 @@ void insert_hash(HashTable * hashtable, char* key, int value){
 
         }
 
+        //EN EL CASO DE QUE SEA MUY LARGO EL NOMBRE
+        else if(strlen(key) > MAX_CHAR)
+        {
+
+            printf("La key es muy larga\n");
+            return;
+
+        }
+
         //EN EL CASO DE QUE EXISTA UNA COLICION
         else
         {
+        int j = i;
+
+        while (hashtable->table[index][j].is_occupied == true && j < COLITION_SIZE )
+        {
+            j++;
+        }
+
+        if (hashtable->table[index][j].is_occupied == false) { 
+
+            sprintf(hashtable->table[index][j].key, key);
+            hashtable->table[index][j].value = value;
+            hashtable->table[index][j].is_occupied = true;
             
-            //VERIFICAR QUE NO ESTE EN EL LIMITE DEL ARRAY
-            if (index != TABLE_SIZE){
+            return;
+        }
 
-                unsigned int new_index = index + 1;
+        else
+        {
 
-                for(int j = 0; j < COLITION_SIZE; j++){
-
-                    if(hashtable->table[new_index][j].is_occupied == false)
-                    {
-
-
-                        sprintf(hashtable->table[index][i].key, key);
-                        hashtable->table[new_index][i].value = value;
-                        hashtable->table[new_index][i].is_occupied = true;
-            
-                        return;
-
-
-                    }
-                  
-
-                }
-
-                printf("No se ha encontrado espacio para insertar un nuevo elemento \n ");
-
-            }
-
-            else
-            {
-
-
-                unsigned int new_index = index - 1;
-
-                for(int j = 0; j < COLITION_SIZE; j++){
-
-                    if(hashtable->table[new_index][j].is_occupied == false)
-                    {
-
-                        sprintf(hashtable->table[index][i].key, key);
-                        hashtable->table[new_index][i].value = value;
-                        hashtable->table[new_index][i].is_occupied = true;
-            
-                        return;
-
-
-                    }
-                  
-
-                }
-
-                printf("No se ha encontrado espacio para insertar un nuevo elemento \n ");
-
-
-
-            }
-
+        }
+        
         }
 
         printf("No se ha encontrado espacio para insertar un nuevo elemento \n "); 
@@ -243,68 +217,43 @@ void insert_hashfile(HashTable * hashtable, const char * filename, int value){
 
         }
 
-        //EN EL CASO DE QUE EXISTA UNA COLICION
-        else
+         //EN EL CASO DE QUE SEA MUY LARGO EL NOMBRE
+        else if(strlen(filename) > MAX_CHAR)
         {
-            
-            //VERIFICAR QUE NO ESTE EN EL LIMITE DEL ARRAY
-            if (index != TABLE_SIZE){
 
-                unsigned int new_index = index + 1;
-
-                for(int j = 0; j < COLITION_SIZE; j++){
-
-                    if(hashtable->table[new_index][j].is_occupied == false)
-                    {
-
-                        sprintf(hashtable->table[new_index][i].key, filename);
-                        hashtable->table[new_index][i].value = value;
-                        hashtable->table[new_index][i].is_occupied = true;
-            
-                        return;
-
-
-                    }
-                  
-
-                }
-
-                printf("No se ha encontrado espacio para insertar un nuevo elemento \n ");
-
-            }
-
-            else
-            {
-
-
-                unsigned int new_index = index - 1;
-
-                for(int j = 0; j < COLITION_SIZE; j++){
-
-                    if(hashtable->table[new_index][j].is_occupied == false)
-                    {
-
-                        sprintf(hashtable->table[new_index][i].key, filename);
-                        hashtable->table[new_index][i].value = value;
-                        hashtable->table[new_index][i].is_occupied = true;
-            
-                        return;
-
-
-                    }
-                  
-
-                }
-
-                printf("No se ha encontrado espacio para insertar un nuevo elemento \n ");
-
-
-
-            }
+            printf("La key es muy larga\n");
+            return;
 
         }
 
+        //EN EL CASO DE QUE EXISTA UNA COLICION
+        else
+        {
+        int j = i;
+
+        while (hashtable->table[index][j].is_occupied == true && j < COLITION_SIZE)
+        {
+            j++;
+        }
+
+        if (hashtable->table[index][j].is_occupied == false) { 
+
+            sprintf(hashtable->table[index][j].key, filename);
+            hashtable->table[index][j].value = value;
+            hashtable->table[index][j].is_occupied = true;
+            
+            return;
+        }
+
+        else
+        {
+
+        }
+        
+        }
+
         printf("No se ha encontrado espacio para insertar un nuevo elemento \n "); 
+
 
 
     }
@@ -323,6 +272,24 @@ int search_table(HashTable * hashtable, char * key){
 
             return hashtable->table[index][i].value;
 
+        }
+        
+         //EN EL CASO DE QUE EXISTA UNA COLICION
+        else
+        {
+        int j = i;
+
+        while (hashtable->table[index][j].is_occupied == false && j < COLITION_SIZE )
+        {
+            j++;
+        }
+
+        if (hashtable->table[index][j].is_occupied == true) { 
+
+            return hashtable->table[index][i].value;
+
+        }
+  
         }
 
     }
@@ -344,6 +311,24 @@ int search_tablefile(HashTable * hashtable, const char * filename){
 
             return hashtable->table[index][i].value;
 
+        }
+
+         //EN EL CASO DE QUE EXISTA UNA COLICION
+        else
+        {
+        int j = i;
+
+        while (hashtable->table[index][j].is_occupied == false && j < COLITION_SIZE )
+        {
+            j++;
+        }
+
+        if (hashtable->table[index][j].is_occupied == true) { 
+
+            return hashtable->table[index][i].value;
+
+        }
+  
         }
 
     }
@@ -372,6 +357,28 @@ void delete_element(HashTable * hashtable, char * key){
 
         }
 
+        //EN EL CASO DE QUE EXISTA UNA COLICION
+
+        else
+        {
+        int j = i;
+
+        while (hashtable->table[index][j].is_occupied == false && j < COLITION_SIZE )
+        {
+            j++;
+        }
+
+        if (hashtable->table[index][j].is_occupied == true) { 
+
+            hashtable->table[index][i].is_occupied = false;
+            sprintf(hashtable->table[index][i].key, "VACIO");
+            hashtable->table[index][i].value = 0;
+            return;
+
+        }
+  
+        }
+
     }
 
     printf("No se encontro el elemento buscado!!\n");
@@ -389,12 +396,33 @@ void delete_elementfile(HashTable * hashtable, const char * filename){
         {
 
             hashtable->table[index][i].is_occupied = false;
-            //strcpy(hashtable->table[index][i].key, "VACIO");
             sprintf(hashtable->table[index][i].key, "VACIO");
             hashtable->table[index][i].value = 0;
             return;
 
         }
+        //EN EL CASO DE QUE EXISTA UNA COLICION
+
+        else
+        {
+        int j = i;
+
+        while (hashtable->table[index][j].is_occupied == false && j < COLITION_SIZE )
+        {
+            j++;
+        }
+
+        if (hashtable->table[index][j].is_occupied == true) { 
+
+            hashtable->table[index][i].is_occupied = false;
+            sprintf(hashtable->table[index][i].key, "VACIO");
+            hashtable->table[index][i].value = 0;
+            return;
+
+        }
+  
+        }
+    
 
     }
 
@@ -420,3 +448,65 @@ void print_table(HashTable* hashtable) {
         printf("\n");
     }
 }
+
+//FUNCION PARA IMPRIMRI UNA TABLA HASH EN UN ARCHIVO
+void print_tablefile(HashTable* hashtable, const char * filename) {
+
+    FILE * file = fopen ( filename , "w");
+
+    if (! file ) {
+
+        perror ( "No se puede abrir el archivo" );
+        exit ( EXIT_FAILURE );
+
+    }
+
+    for (int i = 0; i < TABLE_SIZE ; i++) {
+        
+
+
+        for (int j = 0; j < COLITION_SIZE; j++) {
+   
+            fprintf(file, "%s %d %d ", hashtable->table[i][j].key, hashtable->table[i][j].value, hashtable->table[i][j].is_occupied);
+            
+        }
+
+        fprintf(file, "\n");
+    }
+
+    fclose(file);
+
+}
+
+//FUNCION PARA GUARDAR UNA TABLA HASH DESDE UN ARCHIVO
+void save_table(HashTable* hashtable, const char * filename) {
+
+    FILE * file = fopen ( filename , "r");
+
+    if (! file ) {
+
+        perror ( "No se puede abrir el archivo" );
+        exit ( EXIT_FAILURE );
+
+   }
+    
+    for(int i = 0 ; i < TABLE_SIZE; i++){
+
+        
+
+
+        for (int j= 0; j < COLITION_SIZE; j++){
+
+            
+
+            fscanf(file, "%s %d %d", hashtable->table[i][j].key, &hashtable->table[i][j].value, (int*)&hashtable->table[i][j].is_occupied);
+            
+
+        }
+
+    }
+    
+    
+    
+}
+

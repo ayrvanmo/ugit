@@ -32,6 +32,7 @@
 
 int main(int argc, char** argv){
 
+
 	// EN EL CASO DE QUE SE INGRESE UN COMANDO
     if(argc>1){ 
 
@@ -124,7 +125,7 @@ int main(int argc, char** argv){
 
 					for(int i=2;i<argc;i++){ // recorrer los argumentos puestos
 
-						snprintf(file_rm_directory,sizeof(file_rm_directory),".ugit/index/%d",jenkins_hash(argv[i]));
+						snprintf(file_rm_directory ,sizeof(file_rm_directory),".ugit/index/%d",jenkins_hash(argv[i]));
 						if(is_initialized(file_rm_directory)){ // verificar si el archivo existe
 
 							snprintf(file_rm_directory,sizeof(file_rm_directory),"rm .ugit/index/%d",jenkins_hash(argv[i]));
@@ -178,7 +179,7 @@ int main(int argc, char** argv){
 							char *user_time_str=ctime(&user_time);
 
 							char command[1024];
-							sprintf(command,sizeof(command), "touch .ugit/commits/%i",jenkins_hash(user_time_str));
+							sprintf(command, "touch .ugit/commits/%i",jenkins_hash(user_time_str));
 
 							// crear archivo del commit (donde irán los hash de sus archivos correspondientes)
 							if(system(command)){
