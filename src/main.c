@@ -168,10 +168,12 @@ int main(int argc, char** argv){
 				if(argc==3){
 
 					//verificar si existe la carpeta objects, commits e index
-					if(is_initialized(".ugit/objects")&&is_initialized(".ugit/index")&&is_initialized(".ugit/commits")){
+					if(is_initialized(".ugit/objects")&&is_initialized(".ugit/index")&&is_initialized(".ugit/commits"))
+					{
 
 						// verifica si hay archivos en el staging area
-						if(!is_folder_empty(".ugit/index")){
+						if(!is_folder_empty(".ugit/index"))
+						{
 
 
 							//crear hash del commit con el tiempo de la máquina
@@ -179,14 +181,7 @@ int main(int argc, char** argv){
 							char *user_time_str=ctime(&user_time);
 
 							char command[1024];
-<<<<<<< HEAD
 							sprintf(command, "touch .ugit/commits/%i",jenkins_hash(user_time_str));
-=======
-
-							int commit_hash=jenkins_hash(user_time_str);
-
-							sprintf(command, "touch .ugit/commits/%d",commit_hash);
->>>>>>> e5037b8f8ad59ba5a19b7ea62effbaa97b6b6f7a
 
 							// crear archivo del commit (donde irán los hash de sus archivos correspondientes)
 							if(system(command)){
@@ -222,24 +217,24 @@ int main(int argc, char** argv){
 
 
 							// agregar los hash de los archivos al commit
-							    sprintf(command,".ugit/commits/%d",commit_hash);
+							sprintf(command,".ugit/commits/%d",commit_hash); //QUE HACE ESTA VARIABLE???
 
-								char auxchar[100];
+							char auxchar[100];
 								
 
-								FILE *archivo =fopen(command, "a");
+							FILE *archivo =fopen(command, "a");
 
-								for(int j=0;j<i;j++){
+							for(int j=0;j<i;j++){
 
 									sprintf(auxchar,".ugit/index/%s",file_names[j]);
 									fprintf(archivo, "%d\n", hashFile(auxchar));
 
 								}
 
-								fclose(archivo);
+							fclose(archivo);
 
-								// mover los archivos a carpeta objects
-								for(int j=0;j<i;j++){
+							// mover los archivos a carpeta objects
+							for(int j=0;j<i;j++){
 									sprintf(auxchar,".ugit/index/%s",file_names[j]);
 									sprintf(command,"cp .ugit/index/%s .ugit/objects/%d", file_names[j], hashFile(auxchar));
 
@@ -251,17 +246,18 @@ int main(int argc, char** argv){
 
 							
 
-								// registrar commit en el log
-								FILE *log_file=fopen(".ugit/log","a");
-									fprintf(log_file,"\033[36m %s\033[0m\n '%s' | HASH: %d\n\n",user_time_str, argv[2],  commit_hash);
-								fclose(log_file);
+							// registrar commit en el log
+							FILE *log_file=fopen(".ugit/log","a");
+							fprintf(log_file,"\033[36m %s\033[0m\n '%s' | HASH: %d\n\n",user_time_str, argv[2],  commit_hash);
+							fclose(log_file);
 
 
-						printf("Se ha creado un commit con el mensaje: '%s'\n",argv[2]);
+							printf("Se ha creado un commit con el mensaje: '%s'\n",argv[2]);
 
 						}
 						// sino, avisa que no se ha hecho add
-						else {
+						else 
+						{
 							printf("ERROR: no se han agregado archivos al staging area. Utilice 'ugit add [archivo1] [archivo2]...'\n");
 						}
 
