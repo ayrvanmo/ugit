@@ -1,5 +1,4 @@
 #include "busqueda.h"
-
 #define NAME_MAX 100
 #define TABLE_SIZE 100
 #define COLITION_SIZE 10
@@ -11,19 +10,25 @@ unsigned int jenkins_hash(char* key){
 
    unsigned int hash = 0;
    
+
    while (*key) {
 
       hash += (unsigned char)(*key);
       hash += (hash << 10);     
-      hash ^= (hash >> 6);    
+      hash ^= (hash >> 6);
+       
       key++;
 		
    }
 
    hash += (hash << 3);
+   
    hash ^= (hash >> 11);
+   
    hash += (hash << 15);
    
+
+
    return hash % TABLE_SIZE;
 
 }
@@ -43,7 +48,6 @@ unsigned int Dinamic_jenkins ( unsigned char * key , size_t lenght ) {
 
     return hash ;
 }
-
 
 // FUNCION HASH PARA EL CONTENIDO DE UN ARCHIVO
 unsigned int hashFile ( const char * filename ) {
@@ -85,7 +89,6 @@ unsigned int hashFile ( const char * filename ) {
 
 }
 
-
 // FUNCION PARA INICIALIZAR LA TABLA HASH
 void init_table(HashTable *hashtable){
 
@@ -106,9 +109,8 @@ void init_table(HashTable *hashtable){
         }    
 
     }
+    
 }
-
-
 
 // FUNCION PARA INSERTAR UN HASH DENTRO DE UNA TABLA
 void insert_hash(HashTable * hashtable, char* key, int value){
@@ -241,7 +243,7 @@ void insert_hashfile(HashTable * hashtable, const char * filename, int value){
 
         }
 
-        //EN EL CASO DE QUE EXISTA UNA COLISION
+        //EN EL CASO DE QUE EXISTA UNA COLICION
         else
         {
             
@@ -399,7 +401,6 @@ void delete_elementfile(HashTable * hashtable, const char * filename){
     printf("No se encontro el elemento buscado!!\n");
 
 }
-
 
 //FUNCION PARA IMPRIMIR LA TABLA
 void print_table(HashTable* hashtable) {
