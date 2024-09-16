@@ -179,9 +179,10 @@ int main(int argc, char** argv){
 							//crear hash del commit con el tiempo de la máquina
 							time_t user_time=time(NULL);
 							char *user_time_str=ctime(&user_time);
+							int commit_hash=jenkins_hash(user_time_str);
 
 							char command[1024];
-							sprintf(command, "touch .ugit/commits/%i",jenkins_hash(user_time_str));
+							sprintf(command, "touch .ugit/commits/%d",commit_hash);
 
 							// crear archivo del commit (donde irán los hash de sus archivos correspondientes)
 							if(system(command)){
@@ -324,6 +325,23 @@ int main(int argc, char** argv){
 		}
 		/*END*/
 
+
+
+
+		/*COMANDO PARA VOLVER A VERSIONES ANTERIORES*/
+			else if(!strcmp(argv[1],"checkout")){
+
+				if(is_initialized(".ugit")){
+
+					
+
+
+
+				}
+				else {
+					printf("ERROR:  No se ha inicializado el repositorio. Utilice 'ugit init'\n");
+				}
+			}
 
 
 
