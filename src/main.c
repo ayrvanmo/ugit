@@ -333,10 +333,34 @@ int main(int argc, char** argv){
 
 				if(is_initialized(".ugit")){
 
-					
+					//verificar si se han hecho commits
+					if(!is_folder_empty(".ugit/commits")){
+
+						//verificar que se colocó la cantidad de argumentos adecuada
+						if(argc==3){
+
+							
 
 
 
+
+							
+
+
+
+
+
+
+
+						} //sino, tirar mensaje de error.
+						else {
+							printf("ERROR:  comando invalido. Uso: 'ugit checkout [commit_hash]'. Utilice 'ugit log' para  ver el historial de commits\n");
+						}
+
+					} //sino, tirar mensaje de error
+					else{
+						printf("ERROR: No hay commits para acceder. Utilice 'ugit add' y 'ugit commit'\n");
+					}
 				}
 				else {
 					printf("ERROR:  No se ha inicializado el repositorio. Utilice 'ugit init'\n");
