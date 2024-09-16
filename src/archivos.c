@@ -24,8 +24,7 @@ void write_on_file(char file_name[], char text[], char mode[]){
 
     FILE *file = fopen(file_name, mode);
 
-    if (file != NULL)
-    {
+    if (file != NULL){
         fprintf(file, "%s\n", text);
         fclose(file);        
     }
@@ -33,9 +32,7 @@ void write_on_file(char file_name[], char text[], char mode[]){
         printf("ERROR: uGit no tiene los permisos necesarios");
         exit(1);
     }
-
     return;
-
 }
 
 void copy_and_paste (char* file_name, char* destination){
@@ -46,10 +43,10 @@ void copy_and_paste (char* file_name, char* destination){
       sprintf(comando, "cp %s %s", file_name, destination);
 
       if(!system(comando)){
-        printf("'%s' ha sido agregado exitosamente",  file_name);
+        printf("'%s' ha sido agregado exitosamente\n",  file_name);
       }
       else {
-        printf("ERROR: '%s' no pudo ser agregado",  file_name);
+        printf("ERROR: '%s' no pudo ser agregado\n",  file_name);
 
       }
 

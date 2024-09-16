@@ -56,7 +56,7 @@ int main(int argc, char** argv){
           	else{ 
 
 				system("mkdir .ugit .ugit/commits .ugit/objects .ugit/index");
-				system("touch .ugit/COMMIT_MSG .ugit/log .ugit/userinfo .ugit/index");
+				system(".ugit/log .ugit/userinfo .ugit/index");
 				
 
 				// ALERTA INICIACION EXITOSA
@@ -130,10 +130,10 @@ int main(int argc, char** argv){
 
 							snprintf(file_rm_directory,sizeof(file_rm_directory),"rm .ugit/index/%d",jenkins_hash(argv[i]));
 							if(!system(file_rm_directory)){ // eliminar archivo del staging area
-								printf("'%s' se ha eliminado con exito del staging area", argv[i]);
+								printf("'%s' se ha eliminado con exito del staging area\n", argv[i]);
 							}
 							else {
-								printf("ERROR: '%s' no pudo ser eliminado del staging area", argv[i]);
+								printf("ERROR: '%s' no pudo ser eliminado del staging area\n", argv[i]);
 							}
 						}
 
@@ -179,7 +179,14 @@ int main(int argc, char** argv){
 							char *user_time_str=ctime(&user_time);
 
 							char command[1024];
+<<<<<<< HEAD
 							sprintf(command, "touch .ugit/commits/%i",jenkins_hash(user_time_str));
+=======
+
+							int commit_hash=jenkins_hash(user_time_str);
+
+							sprintf(command, "touch .ugit/commits/%d",commit_hash);
+>>>>>>> e5037b8f8ad59ba5a19b7ea62effbaa97b6b6f7a
 
 							// crear archivo del commit (donde irán los hash de sus archivos correspondientes)
 							if(system(command)){
@@ -187,20 +194,70 @@ int main(int argc, char** argv){
 								exit(1);
 							}
 
+
+
+							//lectura y conversión de los archivos del staging area a hash
+							int i=0;
+							char *file_names[TABLE_SIZE];
+
+							sprintf(command, "ls -A .ugit/index");
+
+							FILE *f=popen(command, "r");
+    						if (!f) {
+        						perror("ERROR: no se pudo crear el commit");
+        						exit(1);
+  							}
+
+							// obtener los nombres de los archivos en la carpeta index
+							//CAMBIAR ESTO DESPUES
+							while(i<TABLE_SIZE){
+								file_names[i]=malloc(NAME_MAX);
+								if(fscanf(f, "%s", file_names[i])==EOF){
+									break;
+								}
+								i++;
+							}
+							pclose(f);
+
+
+
+							// agregar los hash de los archivos al commit
+							    sprintf(command,".ugit/commits/%d",commit_hash);
+
+								char auxchar[100];
+								
+
+								FILE *archivo =fopen(command, "a");
+
+								for(int j=0;j<i;j++){
+
+									sprintf(auxchar,".ugit/index/%s",file_names[j]);
+									fprintf(archivo, "%d\n", hashFile(auxchar));
+
+								}
+
+								fclose(archivo);
+
+								// mover los archivos a carpeta objects
+								for(int j=0;j<i;j++){
+									sprintf(auxchar,".ugit/index/%s",file_names[j]);
+									sprintf(command,"cp .ugit/index/%s .ugit/objects/%d", file_names[j], hashFile(auxchar));
+
+									system(command);
+
+									sprintf(command,"rm .ugit/index/%s", file_names[j]);
+									system(command);
+								}
+
 							
 
-
-							
-
-
-
-
+								// registrar commit en el log
+								FILE *log_file=fopen(".ugit/log","a");
+									fprintf(log_file,"\033[36m %s\033[0m\n '%s' | HASH: %d\n\n",user_time_str, argv[2],  commit_hash);
+								fclose(log_file);
 
 
-						//write_on_file(".ugit/COMMIT_MSG",argv[2],"w");
-						//printf("Se ha creado un commit con el mensaje: '%s'\n",argv[2]);
-
-
+						printf("Se ha creado un commit con el mensaje: '%s'\n",argv[2]);
 
 						}
 						// sino, avisa que no se ha hecho add
@@ -211,7 +268,7 @@ int main(int argc, char** argv){
 					}
 					//sino, tirar error
 					else{
-						printf("ERROR: No se encontraron los archivos necesarios para que uGit funcione");
+						printf("ERROR: No se encontraron los archivos necesarios para que uGit funcione\n");
 					}
 
 				}
@@ -231,7 +288,6 @@ int main(int argc, char** argv){
 					printf("ERROR: No se especificó el mensaje del commit. Uso: 'ugit commit [mensaje]'\n");
 				}		
 
-
 			}
 			//sino, mostrar mensaje de error
 			else {
@@ -239,6 +295,39 @@ int main(int argc, char** argv){
 			}
 		}
 		/*END*/
+
+
+
+
+
+		/*REVISAR EL HISTORIAL DE COMMITS*/
+		else if(!strcmp(argv[1],"log")){
+
+			if(is_initialized(".ugit")){ 
+
+				if(argc<3){
+
+					if(is_initialized(".ugit/log")){
+
+						system("cat .ugit/log");
+
+					}
+					else {
+						printf("ERROR: No se pudo encontrar el historial de commits");
+					}
+				}
+				else {
+					printf("ERROR: comando invalido. Uso: 'ugit log'\n");
+				}
+
+			}
+			else{
+				printf("ERROR: No se ha inicializado el repositorio. Utilice 'ugit init'\n");
+			}
+
+		}
+		/*END*/
+
 
 
 
