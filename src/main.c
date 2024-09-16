@@ -178,7 +178,10 @@ int main(int argc, char** argv){
 							char *user_time_str=ctime(&user_time);
 
 							char command[1024];
-							sprintf(command,sizeof(command), "touch .ugit/commits/%i",jenkins_hash(user_time_str));
+
+							int commit_hash=jenkins_hash(user_time_str);
+
+							sprintf(command, "touch .ugit/commits/%d",commit_hash);
 
 							// crear archivo del commit (donde irán los hash de sus archivos correspondientes)
 							if(system(command)){
@@ -186,7 +189,45 @@ int main(int argc, char** argv){
 								exit(1);
 							}
 
+
+
+							//lectura y conversión de los archivos del staging area a hash
+							int i=0;
+							char *file_names[TABLE_SIZE];
+
+							sprintf(command, "ls -A .ugit/index");
+
+							FILE *f=popen(command, "r");
+    						if (!f) {
+        						perror("ERROR: no se pudo crear el commit");
+        						exit(1);
+  							}
+
+							// obtener los nombres de los archivos en la carpeta index
+							while(i<TABLE_SIZE){
+								file_names[i]=malloc(NAME_MAX);
+								if(fscanf(f, "%s", file_names[i])==EOF){
+									break;
+								}
+								i++;
+							}
+							pclose(f);
+
+
+
+							// agregar los hash de los archivos al commit
+							    sprintf(command,".ugit/commits/prueba",commit_hash);
+								printf("%s", command);
+								char auxhash[MAX_CHAR];
+								
+								for(int j=0;j<i;j++){
+									sprintf(auxhash,"%d",hashFile(file_names[j]));
+
+									write_on_file(command,auxhash,"w");
+								}
+
 							
+
 
 
 							
