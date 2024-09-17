@@ -56,7 +56,7 @@ int main(int argc, char** argv){
           	else{ 
 
 				system("mkdir .ugit .ugit/commits .ugit/objects .ugit/index");
-				system(".ugit/log .ugit/userinfo .ugit/index");
+				system("touch .ugit/log .ugit/userinfo .ugit/index");
 				
 
 				// ALERTA INICIACION EXITOSA
@@ -87,9 +87,9 @@ int main(int argc, char** argv){
 						if(is_initialized(argv[i])){ // verificar si el archivo existe
 
 							char file_add_directory[1024]; //  crear un string para el path del archivo
-							snprintf(file_add_directory,sizeof(file_add_directory),".ugit/index/%d",jenkins_hash(argv[i]));
+							snprintf(file_add_directory,sizeof(file_add_directory),".ugit/index/%s",argv[i]);
 
-							// copiar archivo en carpeta index (staging area) y le pone de nombre hash de su titulo
+							// copiar archivo en carpeta index (staging area)
 							copy_and_paste(argv[i],file_add_directory);
 
 						}
@@ -125,10 +125,10 @@ int main(int argc, char** argv){
 
 					for(int i=2;i<argc;i++){ // recorrer los argumentos puestos
 
-						snprintf(file_rm_directory ,sizeof(file_rm_directory),".ugit/index/%d",jenkins_hash(argv[i]));
+						snprintf(file_rm_directory ,sizeof(file_rm_directory),".ugit/index/%s",argv[i]);
 						if(is_initialized(file_rm_directory)){ // verificar si el archivo existe
 
-							snprintf(file_rm_directory,sizeof(file_rm_directory),"rm .ugit/index/%d",jenkins_hash(argv[i]));
+							snprintf(file_rm_directory,sizeof(file_rm_directory),"rm .ugit/index/%s",argv[i]);
 							if(!system(file_rm_directory)){ // eliminar archivo del staging area
 								printf("'%s' se ha eliminado con exito del staging area\n", argv[i]);
 							}
@@ -182,14 +182,13 @@ int main(int argc, char** argv){
 							int commit_hash=jenkins_hash(user_time_str);
 
 							char command[1024];
-							sprintf(command, "touch .ugit/commits/%d",commit_hash);
+							sprintf(command, "touch .ugit/commits/%u",commit_hash);
 
 							// crear archivo del commit (donde irán los hash de sus archivos correspondientes)
 							if(system(command)){
 								printf("ERROR: no se pudo crear el commit\n");
 								exit(1);
 							}
-
 
 
 							//lectura y conversión de los archivos del staging area a hash
@@ -205,8 +204,7 @@ int main(int argc, char** argv){
   							}
 
 							// obtener los nombres de los archivos en la carpeta index
-							//CAMBIAR ESTO DESPUES
-							while(i<TABLE_SIZE){
+							while(i<TABLE_SIZE * COLITION_SIZE){
 								file_names[i]=malloc(NAME_MAX);
 								if(fscanf(f, "%s", file_names[i])==EOF){
 									break;
@@ -216,28 +214,27 @@ int main(int argc, char** argv){
 							pclose(f);
 
 
-
+							//CAMBIAR ESTO DESPUES
 							// agregar los hash de los archivos al commit
-							sprintf(command,".ugit/commits/%d",commit_hash); //QUE HACE ESTA VARIABLE???
+							sprintf(command,".ugit/commits/%u",commit_hash); //QUE HACE ESTA VARIABLE???
 
-							char auxchar[100];
-								
+							char auxchar[100];							
 
 							FILE *archivo =fopen(command, "a");
 
 							for(int j=0;j<i;j++){
 
 									sprintf(auxchar,".ugit/index/%s",file_names[j]);
-									fprintf(archivo, "%d\n", hashFile(auxchar));
+									fprintf(archivo, "%s %u\n", file_names[j], hashFile(auxchar));
 
-								}
+							}
 
 							fclose(archivo);
 
 							// mover los archivos a carpeta objects
 							for(int j=0;j<i;j++){
 									sprintf(auxchar,".ugit/index/%s",file_names[j]);
-									sprintf(command,"cp .ugit/index/%s .ugit/objects/%d", file_names[j], hashFile(auxchar));
+									sprintf(command,"cp .ugit/index/%s .ugit/objects/%u", file_names[j], hashFile(auxchar));
 
 									system(command);
 
@@ -249,7 +246,7 @@ int main(int argc, char** argv){
 
 							// registrar commit en el log
 							FILE *log_file=fopen(".ugit/log","a");
-							fprintf(log_file,"\033[36m %s\033[0m\n '%s' | HASH: %d\n\n",user_time_str, argv[2],  commit_hash);
+							fprintf(log_file,"\033[36m %s\033[0m\n '%s' | HASH: %u\n\n",user_time_str, argv[2],  commit_hash);
 							fclose(log_file);
 
 
@@ -339,18 +336,88 @@ int main(int argc, char** argv){
 						//verificar que se colocó la cantidad de argumentos adecuada
 						if(argc==3){
 
-							
+							char command[100];
+							char *file_names[TABLE_SIZE];
+							int i=0;
+							sprintf(command,".ugit/commits/%s",argv[2]);
+
+							//verificar si el commit existe
+							if(is_initialized(command)){
 
 
+								
+								//leer el commit
+								FILE *commit_file=fopen(command,"r");
+								for(int i=0;i<TABLE_SIZE * COLITION_SIZE;i++){
+									int file_hash;
+									char *file_name[NAME_MAX];
+									fscanf(commit_file,"%s %u\n",file_name,&file_hash);
+
+									//mover los archivos a la carpeta principal
+									sprintf(command,"cp .ugit/objects/%u ./%s",file_hash,file_name);
+									system(command);			
+								}
+
+								//leer archivos en la carpeta principal
+								 FILE *f = popen("ls -A", "r");
+        						if (!f) {
+            						perror("ERROR: no se pudieron listar los archivos");
+            						exit(1);
+        							}
+
+        						i = 0;
+        						while (i < TABLE_SIZE * COLITION_SIZE) {
+            						file_names[i] = malloc(NAME_MAX);
+
+            						if (fscanf(f, "%s", file_names[i]) == EOF) {
+                						free(file_names[i]); // Liberar memoria si no se usará
+                						break;
+            						}
+
+            					i++;
+        						}
+								
+        						
+				
+
+								 // Eliminar archivos que no están incluidos en el commit
+        						for (int j = 0; j < i; j++) {
+
+									int encontrado = 0;
+									char commit_file_name[NAME_MAX];
+									int file_hash;
+
+									while (fscanf(commit_file, "%s %u\n", commit_file_name, &file_hash) != EOF) {
+
+										if (strcmp(commit_file_name, file_names[j]) == 0) {
+											encontrado = 1;  // El archivo está incluido en el commit
+											break;
+											}
+											
+											else {
+												if ((file_names[j], ".ugit") && strcmp(file_names[j], ".") && strcmp(file_names[j], "..") && strcmp(file_names[j], "ugit")) {
+                									sprintf(command, "rm %s", file_names[j]);
+                									system(command);
+            									}
+											}
+
+										}
+
+            						
+            						
+
+        						}
+								fclose(commit_file);
+								pclose(f);
+								
+								
 
 
-							
-
-
-
-
-
-
+							}
+							//tirar error
+							else {
+								printf("ERROR: El commit '%s' no existe. Utilice 'ugit log' para ver el historial de commits\n",argv[2]);
+							}
 
 						} //sino, tirar mensaje de error.
 						else {
