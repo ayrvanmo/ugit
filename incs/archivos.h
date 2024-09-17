@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include <sys/stat.h>
+#include <dirent.h>
 
 bool is_initialized(char file_name[]);
 void write_on_file(char file_name[], char text[], char mode[]);

@@ -54,25 +54,27 @@ void copy_and_paste (char* file_name, char* destination){
 
 
 bool is_folder_empty(char* folder){
-    char command[1024];
     
-    snprintf(command, sizeof(command), "ls -A %s | wc -l", folder);
+    DIR *folder_dir;
+    folder_dir=opendir(folder);
+    struct dirent *file_on_folder;
+    int count;
 
-    FILE* f=popen(command, "r");
-    if (f==NULL) {
-        perror("Error al verificar  si el directorio esta vacio");
-        return -1;
-    }
+	if(folder_dir){
+        
+        while ((file_on_folder = readdir(folder_dir)) != NULL) {
+            if (file_on_folder->d_name[0] != '.') {
+            count++;
+            }
+        }
 
-    int cantidad_archivos;
-    fscanf(f, "%d", &cantidad_archivos);
-    pclose(f);
+        if(count){
+            return false;
+        }
 
-    if(cantidad_archivos==0){
         return true;
-    }
-    else {
-        return false;
-    }
+	}
 
+    printf("ERROR:  No se pudo abrir el directorio '%s'\n", folder);
+    exit(1);
 }
