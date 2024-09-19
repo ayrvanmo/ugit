@@ -1,5 +1,6 @@
 <h1><p align="center">  μGit  </p></h1>
 <b><p align="center">Sistema de control de archivos local para GNU/Linux</p></b>
+<p align="center">Proyecto para el curso de Estructura de Datos 2024</p>
 
 ## Funciones
 * Gestionar versiones de archivos
@@ -23,6 +24,10 @@ Todos los comandos deben ejecutarse con el sintax `./ugit [comando] [argumento]`
 - `checkout [commit_hash]`: Para cambiar entre versiones
 - `set.name [nombre]`: Para establecer un nombre de usuario
 
+## Notas
+- μGit NO funciona correctamente con carpetas, solo con archivos que estén en el mismo directorio
+
+
 ## Créditos
-Iván Mansilla y Ayrton Morrison. Proyecto para el curso de Estructura de Datos.
+Iván Mansilla y Ayrton Morrison.
 
