@@ -1,7 +1,6 @@
 #include "busqueda.h"
 #define TABLE_SIZE 100
 #define COLITION_SIZE 10
-#define MAX_CHAR 100
 
 
 

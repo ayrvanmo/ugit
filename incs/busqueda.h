@@ -3,10 +3,9 @@
 #include <stdbool.h>
 #include <string.h>
 
-#define NAME_MAX 100
 #define TABLE_SIZE 100
 #define COLITION_SIZE 10
-#define MAX_CHAR 30
+#define MAX_CHAR 255
 
 
 
@@ -20,7 +19,6 @@ typedef struct {
 } commit;
 
 typedef struct{
-
     char key[MAX_CHAR];
     int value;
     bool is_occupied;
@@ -47,6 +45,6 @@ int search_tablefile(HashTable * hashtable, const char * filename);
 void delete_element(HashTable * hashtable, char * key);
 void delete_elementfile(HashTable * hashtable, const char * filename);
 void print_table(HashTable* hashtable);
-void print_tablefile(HashTable* hashtable, const char * filename);
+void print_tablefile(HashTable* hashtable, const char *filename);
 void save_table(HashTable* hashtable, const char * filename);
 
