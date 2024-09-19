@@ -1,95 +1,89 @@
 #include "busqueda.h"
-#define TABLE_SIZE 100
-#define COLITION_SIZE 10
 
 
 
 //FUNCION HASH PARA CARACTERES ESTATICOS
-unsigned int jenkins_hash(char* key){
-
+unsigned int jenkins_hash(char* key)
+{
    unsigned int hash = 0;
    
-
-   while (*key) {
-
+   while (*key){
       hash += (unsigned char)(*key);
       hash += (hash << 10);     
       hash ^= (hash >> 6);
        
       key++;
-		
    }
 
    hash += (hash << 3);
-   
    hash ^= (hash >> 11);
-   
    hash += (hash << 15);
    
-
-
    return hash % TABLE_SIZE;
-
 }
 
-//FUNCION HASH PARA CARACTERES DINAMICOS
-unsigned int Dinamic_jenkins ( unsigned char * key , size_t lenght ) {
+
+/*FUNCION HASH PARA CARACTERES DINAMICOS*/
+unsigned int Dinamic_jenkins (unsigned char *key, size_t lenght)
+{
 
     unsigned int hash = 0;
-    for ( size_t i = 0; i < lenght ; i ++) {
+    for (size_t i = 0; i < lenght ; i++){
         hash += key [ i ];
         hash += ( hash << 10);
         hash ^= ( hash >> 6);
     }
-    hash += ( hash << 3);
-    hash ^= ( hash >> 11);
-    hash += ( hash << 15);
-
-    return hash ;
-}
-
-// FUNCION HASH PARA EL CONTENIDO DE UN ARCHIVO
-unsigned int hashFile(const char * filename ) {
-
-    FILE * file = fopen ( filename , "rb" ); // Abrir el archivo en modo binario
-
-    if (! file ) {
-
-        perror ( " No se puede abrir el archivo " );
-        exit ( EXIT_FAILURE );
-
-    }
-
-// Determinar el tamanho del archivo
-    fseek ( file , 0 , SEEK_END );
-
-    long fileSize = ftell ( file );
-
-    fseek ( file , 0 , SEEK_SET );
-// Leer el contenido del archivo
-    unsigned char * buffer = ( unsigned char *) malloc ( fileSize * sizeof ( unsigned char ));
-
-    if (! buffer ) {
-
-        perror ( " No se puede asignar memoria " );
-        fclose ( file );
-        exit ( EXIT_FAILURE );
-}
-    fread ( buffer , sizeof ( unsigned char ) , fileSize , file );
-    fclose ( file );
-
-// Calcular el hash del contenido
-    unsigned int hash = Dinamic_jenkins( buffer , fileSize );
-
-// Liberar la memoria del buffer
-    free ( buffer );
+    hash += (hash << 3);
+    hash ^= (hash >> 11);
+    hash += (hash << 15);
 
     return hash;
-
 }
 
+
+// FUNCION HASH PARA EL CONTENIDO DE UN ARCHIVO
+unsigned int hashFile(const char *filename)
+{
+
+    FILE *file = fopen (filename, "rb"); // Abrir el archivo en modo binario
+
+    if (!file){
+        perror("No se puede abrir el archivo");
+        exit(EXIT_FAILURE);
+    }
+
+// Determinar el tamaño del archivo
+    fseek (file, 0, SEEK_END);
+    long fileSize = ftell (file);
+    fseek (file, 0, SEEK_SET);
+
+// Leer el contenido del archivo
+    unsigned char* buffer = (unsigned char*) malloc(fileSize* sizeof(unsigned char));
+
+    if (!buffer){
+        perror ("No se puede asignar memoria");
+        fclose (file);
+        exit (EXIT_FAILURE);
+    }
+
+    fread (buffer , sizeof(unsigned char), fileSize, file);
+    fclose (file);
+
+// Calcular el hash del contenido
+    unsigned int hash = Dinamic_jenkins(buffer , fileSize);
+
+// Liberar la memoria del buffer
+    free (buffer);
+
+    return hash;
+}
+
+
+
+
 // FUNCION PARA INICIALIZAR LA TABLA HASH
-void init_table(HashTable *hashtable){
+void init_table(HashTable *hashtable)
+{
 
     for (int i = 0; i < TABLE_SIZE; i++)
     {
@@ -154,11 +148,11 @@ void insert_hash(HashTable * hashtable, char* key, int value, int * columns){
         }
 
         //EN EL CASO DE QUE EXISTA UNA COLICION
-        else
-        {
+        else {
+
         int j = i;
 
-        while (hashtable->table[index][j].is_occupied == true && j < COLITION_SIZE )
+        while (hashtable->table[index][j].is_occupied == true && j < COLITION_SIZE)
         {
             j++;
             *columns = *columns + 1;
@@ -487,7 +481,7 @@ void save_table(HashTable* hashtable, const char * filename) {
 
     FILE * file = fopen ( filename , "r");
 
-    if (! file ) {
+    if (!file ) {
 
         perror ( "No se puede abrir el archivo" );
         exit ( EXIT_FAILURE );
@@ -509,8 +503,6 @@ void save_table(HashTable* hashtable, const char * filename) {
         }
 
     }
-    
-    
     
 }
 
