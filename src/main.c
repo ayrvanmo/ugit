@@ -106,25 +106,40 @@ int main(int argc, char** argv){
 			/*AGREGAR ARCHIVOS AL STAGING AREA*/
 			if(!strcmp(argv[1],"add")){
 
-				if(argc>2){ // verificar si se colocaron argumentos
-
+				if(argc>2){ // verificar si se colocaron argumentos					
 					for(int i=2;i<argc;i++){ // recorrer los argumentos puestos
-						if(is_initialized(argv[i])){ // verificar si el archivo existe
-
+						if(strcmp(argv[i], ".") == 0 ){ // En el caso de insertar "." se anhadira todo el directorio
+							DIR *dir;
+							struct dirent *entry;
+							dir = opendir(".");
+							if (dir != NULL) {
+								while ((entry = readdir(dir)) != NULL) {
+									if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0 && strcmp(entry->d_name, "ugit") != 0 &&strcmp(entry->d_name, ".ugit") != 0) {
+										char file_add_directory[1024];
+										snprintf(file_add_directory, sizeof(file_add_directory), ".ugit/index/%s", entry->d_name);
+										// copiar archivo en carpeta index (staging area)
+										copy_and_paste(entry->d_name, file_add_directory);
+									}
+								}
+								closedir(dir);
+								} 
+							else{
+								perror("ERROR: No se pudo abrir el directorio 'build'");
+							}
+						}
+						else if(is_initialized(argv[i])){ // Si no, verificar si el archivo existe
 							char file_add_directory[1024]; //  crear un string para el path del archivo
 							snprintf(file_add_directory,sizeof(file_add_directory),".ugit/index/%s",argv[i]);
-
 							// copiar archivo en carpeta index (staging area)
 							copy_and_paste(argv[i],file_add_directory);
-
 						}
-
-						else{ // sino, mostrar mensaje de error
+						else{ // Mostrar mensaje de error
 							printf("ERROR: El archivo '%s' no existe\n",argv[i]);
 						}
 					}
+					
 				}
-				else{ // sino, mostrar mensaje de error
+				else{ // Mostrar mensaje de error
 					printf("ERROR: No se especifico el(los) archivo(s) a agregar. Uso: 'ugit add [archivo1] [archivo2]...'\n");
 				}
 			}
@@ -349,9 +364,6 @@ int main(int argc, char** argv){
 							//verificar si el commit ingresado existe
 							sprintf(command,".ugit/commits/%s",argv[2]);
 							if(is_initialized(command)){
-								
-
-
 								//borrar los archivos en la carpeta principal (excepto .ugit y ugit)
 								DIR *root_directory;
 								root_directory = opendir("."); //abrir carpeta donde ugit está siendo ejecutado
@@ -361,7 +373,6 @@ int main(int argc, char** argv){
    									while ((directory_files = readdir(root_directory)) != NULL) {
         								// Excluir .ugit y ugit
         								if (strcmp(directory_files->d_name, ".ugit") !=0 && strcmp(directory_files->d_name, "ugit")!=0&&strcmp(directory_files->d_name, ".")!=0&&strcmp(directory_files->d_name, "..")!=0) {
-            								
 											sprintf(command,"rm %s",directory_files->d_name);
 											system(command);
         								}
@@ -383,21 +394,16 @@ int main(int argc, char** argv){
 									long file_hash;
 									char file_name[MAX_CHAR];
 
-									if((fscanf(commit_file,"%s %ld",file_name,&file_hash))==EOF){
+									if((fscanf(commit_file,"%s %ld",file_name,&file_hash))==EOF)
 										break;
-									}
-
+									
 									//mover los archivos a la carpeta principal
 									sprintf(command,"cp .ugit/objects/%ld %s",file_hash,file_name);
 									system(command);			
 								}
 
-
 								fclose(commit_file);
-								
-								
-
-
+															
 							}
 							//tirar error si el commit ingresado no existe
 							else {
@@ -424,20 +430,20 @@ int main(int argc, char** argv){
 		} // si no está inicializado el repositorio
 		else {
 			//avisar que el comando no existe si es asi
-			if(strcmp(argv[1],"add")!=0&&strcmp(argv[1],"rm")!=0&&strcmp(argv[1],"commit")!=0&&strcmp(argv[1],"log")!=0&&strcmp(argv[1],"checkout")!=0&&strcmp(argv[1],"set.name")!=0){
+			if(strcmp(argv[1],"add")!=0&&strcmp(argv[1],"rm")!=0&&strcmp(argv[1],"commit")!=0&&strcmp(argv[1],"log")!=0&&strcmp(argv[1],"checkout")!=0&&strcmp(argv[1],"set.name")!=0)
 					printf("ERROR: Comando invalido. Utilice 'ugit help' para ver la lista de comandos");
-			}
+			
 			//sino, avisar que no se puede ejecutar ese comando
 			else {
-			printf("ERROR: No se ha inicializado el repositorio.  Utilice 'ugit init'\n");
+			printf("ERROR: No es un repositorio de git, ni un derivado de este.\nUtilice 'ugit init' para inicializar un repositorio\n");
 			}
 		}
 
 	}
 		//EN EL CASO DE QUE UGIT SEA EJECUTADO SIN NINGUN ARGUMENTO
-    else { 
+    else  
 		printf("No se ingreso ningun comando \n'ugit help' para ver la lista de comandos disponibles\n");		
-    }
+    
 
   	return 0;
 }
