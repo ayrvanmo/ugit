@@ -1,7 +1,7 @@
 #include "busqueda.h"
 #define TABLE_SIZE 100
 #define COLITION_SIZE 10
-#define MAX_CHAR 30
+#define MAX_CHAR 100
 
 
 
@@ -113,10 +113,12 @@ void init_table(HashTable *hashtable){
 }
 
 // FUNCION PARA INSERTAR UN HASH DENTRO DE UNA TABLA
-void insert_hash(HashTable * hashtable, char* key, int value){
+void insert_hash(HashTable * hashtable, char* key, int value, int * columns){
 
     
     unsigned int index = jenkins_hash(key);
+    *columns = 0;
+
 
 
     for (int i = 0; i < COLITION_SIZE; i++){
@@ -160,6 +162,8 @@ void insert_hash(HashTable * hashtable, char* key, int value){
         while (hashtable->table[index][j].is_occupied == true && j < COLITION_SIZE )
         {
             j++;
+            *columns = *columns + 1;
+
         }
 
         if (hashtable->table[index][j].is_occupied == false) { 
@@ -186,10 +190,11 @@ void insert_hash(HashTable * hashtable, char* key, int value){
 }
 
 //FUNCION PARA INSERTAR EL HASH DE UN ARCHIVO
-void insert_hashfile(HashTable * hashtable, const char * filename, int value){
+void insert_hashfile(HashTable * hashtable, const char * filename, int value, int * columns){
 
     
     unsigned int index = hashFile(filename);
+    *columns = 0;
 
 
     for (int i = 0; i < COLITION_SIZE; i++){
@@ -233,6 +238,7 @@ void insert_hashfile(HashTable * hashtable, const char * filename, int value){
         while (hashtable->table[index][j].is_occupied == true && j < COLITION_SIZE)
         {
             j++;
+            *columns = *columns + 1;
         }
 
         if (hashtable->table[index][j].is_occupied == false) { 

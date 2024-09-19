@@ -18,8 +18,7 @@ bool is_initialized(char file_name[]){
     }
 
 }
-
-
+// FUNCION PARA ESCRIBIR EN UN ARCHIVO
 void write_on_file(char file_name[], char text[], char mode[]){
 
     FILE *file = fopen(file_name, mode);
@@ -34,7 +33,7 @@ void write_on_file(char file_name[], char text[], char mode[]){
     }
     return;
 }
-
+// FUNCION PARA COPIAR Y PEGAR UN ARCHIVO EN UNA CIERTA DIRECCION
 void copy_and_paste (char* file_name, char* destination){
 
 
@@ -51,8 +50,7 @@ void copy_and_paste (char* file_name, char* destination){
       }
 
 }
-
-
+// FUNCION PARA VERIFICAR SI UNA CARPETA ESTA VACIA
 bool is_folder_empty(char* folder){
     
     DIR *folder_dir;

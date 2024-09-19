@@ -34,6 +34,8 @@
 int main(int argc, char** argv){
 
 
+
+
 	// EN EL CASO DE QUE SE INGRESE UN COMANDO
     if(argc>1){ 
 
@@ -57,7 +59,7 @@ int main(int argc, char** argv){
           	else{ 
 
 				system("mkdir .ugit .ugit/commits .ugit/objects .ugit/index");
-				system("touch .ugit/log .ugit/userinfo .ugit/index");
+				system("touch .ugit/log .ugit/userinfo .ugit/index .ugit/commits/committs_table");
 				
 
 				// ALERTA INICIACION EXITOSA
@@ -169,7 +171,7 @@ int main(int argc, char** argv){
 				if(argc==3){
 
 					//verificar si existe la carpeta objects, commits e index
-					if(is_initialized(".ugit/objects")&&is_initialized(".ugit/index")&&is_initialized(".ugit/commits"))
+					if(is_initialized(".ugit/objects")&&is_initialized(".ugit/index")&&is_initialized(".ugit/commits")&&is_initialized(".ugit/commits/committs_table"))
 					{
 
 						// verifica si hay archivos en el staging area
@@ -180,10 +182,22 @@ int main(int argc, char** argv){
 							//crear hash del commit con el tiempo de la máquina
 							time_t user_time=time(NULL);
 							char *user_time_str=ctime(&user_time);
-							int commit_hash=jenkins_hash(user_time_str);
+							unsigned int commit_hash=jenkins_hash(user_time_str);
+							int columns = 0;
+
+							//TABLA HASH DE COMMITS
+							HashTable commits_table;
+							init_table(&commits_table);
+							save_table(&commits_table,".ugit/commits/committs_table");
+
+							//insertar el commit en la tabla hash
+							insert_hash(&commits_table,user_time_str,(int)commit_hash, &columns);
+
+							print_tablefile(&commits_table,".ugit/commits/committs_table");
+
 
 							char command[1024];
-							sprintf(command, "touch .ugit/commits/%u",commit_hash);
+							sprintf(command, "touch .ugit/commits/%u%d",commit_hash, columns);
 
 							// crear archivo del commit (donde irán los hash de sus archivos correspondientes)
 							if(system(command)){
@@ -199,7 +213,7 @@ int main(int argc, char** argv){
 							DIR *staging_area;
 							staging_area=opendir(".ugit/index");
 							struct dirent *file_for_commit;
-							sprintf(command,".ugit/commits/%u",commit_hash);
+							sprintf(command,".ugit/commits/%u%d",commit_hash, columns);
 
 								if(staging_area){
 
@@ -243,7 +257,7 @@ int main(int argc, char** argv){
 
 									// registrar commit en el log
 									FILE *log_file=fopen(".ugit/log","a");
-									fprintf(log_file,"\033[36m %s\033[0m\n '%s' | HASH: %u\n\n",user_time_str, argv[2],  commit_hash);
+									fprintf(log_file,"\033[36m %s\033[0m\n '%s' | HASH: %u%d\n\n",user_time_str, argv[2],  commit_hash, columns);
 									fclose(log_file);
 
 
