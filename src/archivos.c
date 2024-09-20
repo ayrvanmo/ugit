@@ -1,7 +1,22 @@
+/**
+ * @file archivos.c
+ * @author Mansilla-Morrison
+ * @brief Funciones relacionadas a archivos
+ * @version 1.0
+ * 
+ * 
+ */
 #include "archivos.h"
 
 
-// FUNCION PARA VERIFICAR SI UN ARCHIVO EXISTE
+/**
+ * @brief Verifica si un archivo o directorio existe
+ * 
+ * @param file_name  Nombre de la ruta del archivo
+
+ * @return true 
+ * @return false 
+ */
 bool is_initialized(char file_name[])
 { 
     FILE *file = fopen(file_name,"r");
@@ -16,10 +31,18 @@ bool is_initialized(char file_name[])
 }
 
 
-// FUNCION PARA COPIAR Y PEGAR UN ARCHIVO EN UNA CIERTA DIRECCION
+/**
+ * @brief Copia y pega un archivo en otro directorio
+ * 
+ * @param file_name Archivo
+ * @param destination Ruta de destino
+ * 
+ * @note La función no funciona si se quiere copiar y pegar un directorio
+ */
+
 void copy_and_paste (char* file_name, char* destination)
 {
-    char comando[1024];
+    char comando[1024]; 
 
     sprintf(comando, "cp %s %s", file_name, destination);
 
@@ -28,7 +51,13 @@ void copy_and_paste (char* file_name, char* destination)
 }
 
 
-// FUNCION PARA VERIFICAR SI UNA CARPETA ESTA VACIA
+/**
+ * @brief Verifica si una carpeta se encuentra vacía
+ * 
+ * @param folder Ruta  de la carpeta
+ * @return true 
+ * @return false 
+ */
 bool is_folder_empty(char* folder)
 {
     DIR* folder_dir;

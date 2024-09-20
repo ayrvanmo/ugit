@@ -1,0 +1,28 @@
+\chapter{Lista de Comandos}
+\hypertarget{comandos}{}\label{comandos}\index{Lista de Comandos@{Lista de Comandos}}
+Todos los comandos deben de ejecutarse con el sintax\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./ugit\ <comando>\ <argumento>}
+
+\end{DoxyCode}
+ \hypertarget{comandos_commands_sec}{}\doxysection{\texorpdfstring{Comandos}{Comandos}}\label{comandos_commands_sec}
+
+\begin{DoxyItemize}
+\item {\ttfamily help}\+: Muestra la lista de comandos de μ\+Git disponibles
+\item {\ttfamily init}\+: Para inicializar el repositorio
+\item {\ttfamily add \mbox{[}archivo1\mbox{]} \mbox{[}archivo2\mbox{]} ...}\+: Para agregar archivos en el {\itshape staging area}
+\item {\ttfamily add .}\+: Agrega todos los archivos en el directorio
+\item {\ttfamily rm \mbox{[}archivo1\mbox{]} \mbox{[}archivo2\mbox{]} ...}\+: Para eliminar archivos del {\itshape staging area}
+\item {\ttfamily commit \mbox{[}mensaje\mbox{]}}\+: Para crear un commit
+\item {\ttfamily log}\+: Para ver el historial de commits
+\item {\ttfamily checkout \mbox{[}commit\+\_\+hash\mbox{]}}\+: Para cambiar entre versiones
+\item {\ttfamily set.\+name \mbox{[}nombre\mbox{]}}\+: Para establecer un nombre de usuario
+\end{DoxyItemize}\hypertarget{comandos_usage_sec}{}\doxysection{\texorpdfstring{Ejemplos de Uso}{Ejemplos de Uso}}\label{comandos_usage_sec}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./ugit\ log}
+\DoxyCodeLine{./ugit\ commit\ \textcolor{stringliteral}{"{}Hola\ mundo"{}}}
+\DoxyCodeLine{./ugit\ add\ archivo1\ archivo2\ archivo3}
+
+\end{DoxyCode}
+ 

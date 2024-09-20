@@ -1,41 +1,34 @@
 /**
  * @file main.c
- * @author mansilla-morrison
- * @brief 
- * @version 0.2
- * @date 2024-09-02
+ * @author Mansilla-Morrison
+ * @brief Código principal del programa
+ * @version 1.0
  * 
  * 
  */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+
 #include <time.h>
-#include <dirent.h>
 #include "archivos.h"
 #include "busqueda.h"
-#define TABLE_SIZE 100
-#define COLITION_SIZE 10
 
 
 
 /**
- * @brief 
  * 
- * @param argc numero de argumentos ingresados en el terminal. Empieza del 1, ya que el primer argumento es el nombre del programa
- * @param argv argumentos ingresados en el terminal. argv[1] es el primero que se ingresa, argv[2] el segundo, y así
+ * @brief  Función principal del programa
+ * 
+ * Punto de inicio del programa,  donde se ejecutan las diferentes funciones
+ * @param argc Número de argumentos ingresados en el terminal
+ * @param argv Argumentos ingresados en el terminal
+ * 
+ * @note Esta función requiere de argumentos ingresados, por lo que es importante ejecutarla desde el terminal
  * 
  */
-
-
-	
 
 int main(int argc, char** argv){
 
 
-
-	// EN EL CASO DE QUE SE INGRESE UN COMANDO
+	/* EN EL CASO DE QUE SE INGRESE UN COMANDO*/
     if(argc>1){ 
 
 		// COMANDO PARA MOSTRAR LOS COMANDOS DISPONIBLES
@@ -46,7 +39,7 @@ int main(int argc, char** argv){
 		
 
 
-      /*COMANDO PARA INICIALIZAR REPOSITORIO*/
+      /*>COMANDO PARA INICIALIZAR REPOSITORIO*/
 		else if(!strcmp(argv[1],"init")){
 			
 			// EN EL CASO DE ESTAR INICIALIZADO AVISAR QUE YA LO ESTA
@@ -61,14 +54,15 @@ int main(int argc, char** argv){
 				system("touch .ugit/log .ugit/userinfo .ugit/index .ugit/commits/commits_table");
 				
 
-				// ALERTA INICIACION EXITOSA
+				// Si la inicialización es exitosa
 				if(is_initialized(".ugit")){
+					// inicializar tabla hash de los commits
 					HashTable commits_table;
 					init_table(&commits_table);
 					print_tablefile(&commits_table,".ugit/commits/commits_table");
 					printf("Repositorio inicializado exitosamente\n");
 				}
-				// ERROR SI NO SE PUEDE INICIALIZAR
+				// Si no se pudo inicializar, tirar error
 				else{
 					printf("ERROR: No se pudo inicializar el repositorio\n");
 				}
@@ -80,7 +74,7 @@ int main(int argc, char** argv){
 
 
 
-		// los siguientes comandos solo se podrán utilizar si ya se ha inicializado el repositorio
+		/*los siguientes comandos solo se podrán utilizar si ya se ha inicializado el repositorio*/
 		if(is_initialized(".ugit")){
 
 
@@ -108,11 +102,14 @@ int main(int argc, char** argv){
 
 				if(argc>2){ // verificar si se colocaron argumentos					
 					for(int i=2;i<argc;i++){ // recorrer los argumentos puestos
-						if(strcmp(argv[i], ".") == 0 ){ // En el caso de insertar "." se anhadira todo el directorio
+
+						if(strcmp(argv[i], ".") == 0 ){ // En el caso de insertar "." se añadira todo el directorio
+
 							DIR *dir;
 							struct dirent *entry;
 							dir = opendir(".");
-							if (dir != NULL) {
+
+							if (dir != NULL) { //si se pudo abrir el directorio
 								while ((entry = readdir(dir)) != NULL) {
 									if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0 && strcmp(entry->d_name, "ugit") != 0 &&strcmp(entry->d_name, ".ugit") != 0) {
 										char file_add_directory[1024];

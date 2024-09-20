@@ -1,0 +1,151 @@
+\doxysection{src/busqueda.c File Reference}
+\hypertarget{busqueda_8c}{}\label{busqueda_8c}\index{src/busqueda.c@{src/busqueda.c}}
+
+
+Funciones relacionadas a tablas hash.  
+
+
+{\ttfamily \#include "{}busqueda.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{busqueda_8c_aac0e4071b93021a3454f4d61d277b519}{jenkins\+\_\+hash}} (char \texorpdfstring{$\ast$}{*}key)
+\begin{DoxyCompactList}\small\item\em Función hash para carácteres estáticos. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{busqueda_8c_acea26051f859115de97c9c8f355408e3}{Dinamic\+\_\+jenkins}} (unsigned char \texorpdfstring{$\ast$}{*}key, size\+\_\+t lenght)
+\begin{DoxyCompactList}\small\item\em Función hash para carácteres dinámicos. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{busqueda_8c_aa0fd4cd0b254cc3956df8e78d1c84b29}{hash\+File}} (const char \texorpdfstring{$\ast$}{*}filename)
+\begin{DoxyCompactList}\small\item\em Función hash para el contenido de un archivo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{busqueda_8c_a486db035c34287e349aaddfcbf23cd6c}{init\+\_\+table}} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable)
+\begin{DoxyCompactList}\small\item\em Inicializa una tabla hash internamente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{busqueda_8c_abd81886c7c597f583d90b19638486f4e}{insert\+\_\+hash}} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, char \texorpdfstring{$\ast$}{*}key, int value, int \texorpdfstring{$\ast$}{*}columns)
+\begin{DoxyCompactList}\small\item\em Insertar hash en una tabla hash. \end{DoxyCompactList}\item 
+\Hypertarget{busqueda_8c_a98669dc5bf8c4024e86eaec3a921ffc3}\label{busqueda_8c_a98669dc5bf8c4024e86eaec3a921ffc3} 
+void {\bfseries insert\+\_\+hashfile} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, const char \texorpdfstring{$\ast$}{*}filename, int value, int \texorpdfstring{$\ast$}{*}columns)
+\item 
+\Hypertarget{busqueda_8c_a6eb71ed4677cf7de93ef5f6ff2c4e666}\label{busqueda_8c_a6eb71ed4677cf7de93ef5f6ff2c4e666} 
+int {\bfseries search\+\_\+table} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, char \texorpdfstring{$\ast$}{*}key)
+\item 
+\Hypertarget{busqueda_8c_af6f79910c3839fec8ac6d2072c11d956}\label{busqueda_8c_af6f79910c3839fec8ac6d2072c11d956} 
+int {\bfseries search\+\_\+tablefile} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, const char \texorpdfstring{$\ast$}{*}filename)
+\item 
+\Hypertarget{busqueda_8c_a2e50f204938326b0f068e3ea0c1f5480}\label{busqueda_8c_a2e50f204938326b0f068e3ea0c1f5480} 
+void {\bfseries delete\+\_\+element} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, char \texorpdfstring{$\ast$}{*}key)
+\item 
+\Hypertarget{busqueda_8c_a30f7e06d15014233fc6f526f14d5d055}\label{busqueda_8c_a30f7e06d15014233fc6f526f14d5d055} 
+void {\bfseries delete\+\_\+elementfile} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, const char \texorpdfstring{$\ast$}{*}filename)
+\item 
+\Hypertarget{busqueda_8c_a555dc2f13506f0786849db5b77977bcb}\label{busqueda_8c_a555dc2f13506f0786849db5b77977bcb} 
+void {\bfseries print\+\_\+table} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable)
+\item 
+\Hypertarget{busqueda_8c_a22a38f6641bcc2e9961e489a63947218}\label{busqueda_8c_a22a38f6641bcc2e9961e489a63947218} 
+void {\bfseries print\+\_\+tablefile} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, const char \texorpdfstring{$\ast$}{*}filename)
+\item 
+\Hypertarget{busqueda_8c_ac6d12db55ed6bc33468e246b129a7fd4}\label{busqueda_8c_ac6d12db55ed6bc33468e246b129a7fd4} 
+void {\bfseries save\+\_\+table} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, const char \texorpdfstring{$\ast$}{*}filename)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Funciones relacionadas a tablas hash. 
+
+\begin{DoxyAuthor}{Author}
+Mansilla-\/\+Morrison 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{busqueda_8c_acea26051f859115de97c9c8f355408e3}\label{busqueda_8c_acea26051f859115de97c9c8f355408e3} 
+\index{busqueda.c@{busqueda.c}!Dinamic\_jenkins@{Dinamic\_jenkins}}
+\index{Dinamic\_jenkins@{Dinamic\_jenkins}!busqueda.c@{busqueda.c}}
+\doxysubsubsection{\texorpdfstring{Dinamic\_jenkins()}{Dinamic\_jenkins()}}
+{\footnotesize\ttfamily unsigned int Dinamic\+\_\+jenkins (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{key,  }\item[{size\+\_\+t}]{lenght }\end{DoxyParamCaption})}
+
+
+
+Función hash para carácteres dinámicos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & Texto \\
+\hline
+{\em lenght} & Tamaño \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+\Hypertarget{busqueda_8c_aa0fd4cd0b254cc3956df8e78d1c84b29}\label{busqueda_8c_aa0fd4cd0b254cc3956df8e78d1c84b29} 
+\index{busqueda.c@{busqueda.c}!hashFile@{hashFile}}
+\index{hashFile@{hashFile}!busqueda.c@{busqueda.c}}
+\doxysubsubsection{\texorpdfstring{hashFile()}{hashFile()}}
+{\footnotesize\ttfamily unsigned int hash\+File (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+
+
+Función hash para el contenido de un archivo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Ruta del archivo \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+\Hypertarget{busqueda_8c_a486db035c34287e349aaddfcbf23cd6c}\label{busqueda_8c_a486db035c34287e349aaddfcbf23cd6c} 
+\index{busqueda.c@{busqueda.c}!init\_table@{init\_table}}
+\index{init\_table@{init\_table}!busqueda.c@{busqueda.c}}
+\doxysubsubsection{\texorpdfstring{init\_table()}{init\_table()}}
+{\footnotesize\ttfamily void init\+\_\+table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}}]{hashtable }\end{DoxyParamCaption})}
+
+
+
+Inicializa una tabla hash internamente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hashtable} & Tabla hash \\
+\hline
+\end{DoxyParams}
+\Hypertarget{busqueda_8c_abd81886c7c597f583d90b19638486f4e}\label{busqueda_8c_abd81886c7c597f583d90b19638486f4e} 
+\index{busqueda.c@{busqueda.c}!insert\_hash@{insert\_hash}}
+\index{insert\_hash@{insert\_hash}!busqueda.c@{busqueda.c}}
+\doxysubsubsection{\texorpdfstring{insert\_hash()}{insert\_hash()}}
+{\footnotesize\ttfamily void insert\+\_\+hash (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}}]{hashtable,  }\item[{char \texorpdfstring{$\ast$}{*}}]{key,  }\item[{int}]{value,  }\item[{int \texorpdfstring{$\ast$}{*}}]{columns }\end{DoxyParamCaption})}
+
+
+
+Insertar hash en una tabla hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hashtable} & Tabla hash \\
+\hline
+{\em key} & Texto a realizar hash \\
+\hline
+{\em value} & \\
+\hline
+{\em columns} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{busqueda_8c_aac0e4071b93021a3454f4d61d277b519}\label{busqueda_8c_aac0e4071b93021a3454f4d61d277b519} 
+\index{busqueda.c@{busqueda.c}!jenkins\_hash@{jenkins\_hash}}
+\index{jenkins\_hash@{jenkins\_hash}!busqueda.c@{busqueda.c}}
+\doxysubsubsection{\texorpdfstring{jenkins\_hash()}{jenkins\_hash()}}
+{\footnotesize\ttfamily unsigned int jenkins\+\_\+hash (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{key }\end{DoxyParamCaption})}
+
+
+
+Función hash para carácteres estáticos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & Texto a realizar hash \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}

@@ -1,12 +1,25 @@
+/**
+ * @file busqueda.c
+ * @author Mansilla-Morrison
+ * @brief Funciones relacionadas a tablas hash
+ * @version 1.0
+ * 
+ */
 #include "busqueda.h"
 
 
 
-//FUNCION HASH PARA CARACTERES ESTATICOS
+
+/**
+ * @brief Función hash para carácteres estáticos
+ * 
+ * @param key Texto a realizar hash
+ * @return unsigned int 
+ */
 unsigned int jenkins_hash(char* key)
 {
    unsigned int hash = 0;
-   
+
    while (*key){
       hash += (unsigned char)(*key);
       hash += (hash << 10);     
@@ -22,7 +35,14 @@ unsigned int jenkins_hash(char* key)
    return hash % TABLE_SIZE;
 }
 
-/*FUNCION HASH PARA CARACTERES DINAMICOS*/
+
+/**
+ * @brief Función hash para carácteres dinámicos
+ * 
+ * @param key Texto
+ * @param lenght Tamaño
+ * @return unsigned int 
+ */
 unsigned int Dinamic_jenkins (unsigned char *key, size_t lenght)
 {
     unsigned int hash = 0;
@@ -40,7 +60,12 @@ unsigned int Dinamic_jenkins (unsigned char *key, size_t lenght)
     return hash;
 }
 
-// FUNCION HASH PARA EL CONTENIDO DE UN ARCHIVO
+/**
+ * @brief Función hash para el contenido de un archivo
+ * 
+ * @param filename Ruta del archivo
+ * @return unsigned int 
+ */
 unsigned int hashFile(const char *filename)
 {
 
@@ -77,15 +102,17 @@ unsigned int hashFile(const char *filename)
     return hash;    
 }
 
-// FUNCION PARA INICIALIZAR LA TABLA HASH
+/**
+ * @brief Inicializa una tabla hash internamente
+ * 
+ * @param hashtable Tabla hash
+ */
 void init_table(HashTable *hashtable)
 {
 
-    for (int i = 0; i < TABLE_SIZE; i++)
-    {
+    for (int i = 0; i < TABLE_SIZE; i++){
         
-        for (int j = 0; j < COLITION_SIZE; j++)
-        {
+        for (int j = 0; j < COLITION_SIZE; j++){
           
             hashtable->table[i][j].is_occupied = false;
             hashtable->table[i][j].value = 0;
@@ -97,7 +124,14 @@ void init_table(HashTable *hashtable)
     
 }
 
-// FUNCION PARA INSERTAR UN HASH DENTRO DE UNA TABLA
+/**
+ * @brief Insertar hash en una tabla hash
+ * 
+ * @param hashtable Tabla hash
+ * @param key Texto a realizar hash
+ * @param value 
+ * @param columns 
+ */
 void insert_hash(HashTable * hashtable, char* key, int value, int * columns)
 {
 

@@ -1,0 +1,79 @@
+\doxysection{incs/archivos.h File Reference}
+\hypertarget{archivos_8h}{}\label{archivos_8h}\index{incs/archivos.h@{incs/archivos.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{archivos_8h_adffa5ae39c0c3d8fefcbedb7e859b980}{is\+\_\+initialized}} (char file\+\_\+name\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Verifica si un archivo o directorio existe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{archivos_8h_a1d8e80dbc2aa91de13f84442f154c177}{copy\+\_\+and\+\_\+paste}} (char \texorpdfstring{$\ast$}{*}file\+\_\+name, char \texorpdfstring{$\ast$}{*}destination)
+\begin{DoxyCompactList}\small\item\em Copia y pega un archivo en otro directorio. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{archivos_8h_a4ab4b8a44d7ff686eb7be2ccbf923b1f}{is\+\_\+folder\+\_\+empty}} (char \texorpdfstring{$\ast$}{*}folder)
+\begin{DoxyCompactList}\small\item\em Verifica si una carpeta se encuentra vacía. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{archivos_8h_a1d8e80dbc2aa91de13f84442f154c177}\label{archivos_8h_a1d8e80dbc2aa91de13f84442f154c177} 
+\index{archivos.h@{archivos.h}!copy\_and\_paste@{copy\_and\_paste}}
+\index{copy\_and\_paste@{copy\_and\_paste}!archivos.h@{archivos.h}}
+\doxysubsubsection{\texorpdfstring{copy\_and\_paste()}{copy\_and\_paste()}}
+{\footnotesize\ttfamily void copy\+\_\+and\+\_\+paste (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{file\+\_\+name,  }\item[{char \texorpdfstring{$\ast$}{*}}]{destination }\end{DoxyParamCaption})}
+
+
+
+Copia y pega un archivo en otro directorio. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+name} & Archivo \\
+\hline
+{\em destination} & Ruta de destino\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+La función no funciona si se quiere copiar y pegar un directorio 
+\end{DoxyNote}
+\Hypertarget{archivos_8h_a4ab4b8a44d7ff686eb7be2ccbf923b1f}\label{archivos_8h_a4ab4b8a44d7ff686eb7be2ccbf923b1f} 
+\index{archivos.h@{archivos.h}!is\_folder\_empty@{is\_folder\_empty}}
+\index{is\_folder\_empty@{is\_folder\_empty}!archivos.h@{archivos.h}}
+\doxysubsubsection{\texorpdfstring{is\_folder\_empty()}{is\_folder\_empty()}}
+{\footnotesize\ttfamily bool is\+\_\+folder\+\_\+empty (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{folder }\end{DoxyParamCaption})}
+
+
+
+Verifica si una carpeta se encuentra vacía. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em folder} & Ruta de la carpeta \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\Hypertarget{archivos_8h_adffa5ae39c0c3d8fefcbedb7e859b980}\label{archivos_8h_adffa5ae39c0c3d8fefcbedb7e859b980} 
+\index{archivos.h@{archivos.h}!is\_initialized@{is\_initialized}}
+\index{is\_initialized@{is\_initialized}!archivos.h@{archivos.h}}
+\doxysubsubsection{\texorpdfstring{is\_initialized()}{is\_initialized()}}
+{\footnotesize\ttfamily bool is\+\_\+initialized (\begin{DoxyParamCaption}\item[{char}]{file\+\_\+name\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Verifica si un archivo o directorio existe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+name} & Nombre de la ruta del archivo\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
