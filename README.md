@@ -18,6 +18,7 @@ Todos los comandos deben ejecutarse con el sintax `./ugit [comando] [argumento]`
 - `help`: Para ver el listado de comandos
 - `init`: Para inicializar el repositorio
 - `add [archivo1] [archivo2] ...`: Para agregar archivos en el *staging area*
+  - `add .`: Agrega todos los archivos en el directorio
 - `rm [archivo1] [archivo2] ...`: Para eliminar archivos del *staging area*
 - `commit [mensaje]`: Para crear un commit
 - `log`: Para ver el historial de commits
