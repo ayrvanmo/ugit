@@ -27,8 +27,8 @@
 *  @brief Estructura que representa 1 elemento de la tabla hash
 */
 typedef struct{
-    char key[MAX_CHAR]; /*!< Nombre del elemento */
-    int value; /*!< Valor hash*/
+    char key[MAX_CHAR]; /*!< Caracteres asociados al hash */
+    int value; /*!< Elemento ingresado*/
     bool is_occupied; /*!< Indica si la celda está ocupada o no*/
 } HashEntry;
 

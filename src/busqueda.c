@@ -2,7 +2,7 @@
  * @file busqueda.c
  * @author Mansilla-Morrison
  * @brief Funciones relacionadas a tablas hash
- * @version 1.0
+ * @version 1.5
  * 
  */
 #include "busqueda.h"
@@ -11,10 +11,10 @@
 
 
 /**
- * @brief Función hash para carácteres estáticos
+ * @brief Función hash para carácteres conocidos
  * 
  * @param key Texto a realizar hash
- * @return unsigned int 
+ * @return unsigned int Devuelve el hash
  */
 unsigned int jenkins_hash(char* key)
 {
@@ -35,13 +35,14 @@ unsigned int jenkins_hash(char* key)
    return hash % TABLE_SIZE;
 }
 
-
 /**
- * @brief Función hash para carácteres dinámicos
+ * @brief Función hash para carácteres desconocidos
  * 
- * @param key Texto
- * @param lenght Tamaño
- * @return unsigned int 
+ * @param key Caracteres
+ * @param lenght Tamaño de los caracteres
+ * @return unsigned int Devuelve el hash
+ * 
+ * @note Funcion ideal para contenido de archivos
  */
 unsigned int Dinamic_jenkins (unsigned char *key, size_t lenght)
 {
@@ -64,7 +65,7 @@ unsigned int Dinamic_jenkins (unsigned char *key, size_t lenght)
  * @brief Función hash para el contenido de un archivo
  * 
  * @param filename Ruta del archivo
- * @return unsigned int 
+ * @return unsigned int Devuelve el hash
  */
 unsigned int hashFile(const char *filename)
 {
@@ -128,9 +129,9 @@ void init_table(HashTable *hashtable)
  * @brief Insertar hash en una tabla hash
  * 
  * @param hashtable Tabla hash
- * @param key Texto a realizar hash
- * @param value 
- * @param columns 
+ * @param key Caracteres a realizar hash
+ * @param value Elemento a ingresar
+ * @param columns Numero de columna en caso de colision
  */
 void insert_hash(HashTable * hashtable, char* key, int value, int * columns)
 {
@@ -163,13 +164,11 @@ void insert_hash(HashTable * hashtable, char* key, int value, int * columns)
         }
         //EN EL CASO DE QUE EXISTA UNA COLICION
         else {
-
             int j = i;
+
             while (hashtable->table[index][j].is_occupied == true && j < COLITION_SIZE){
-
                 j++;
-                *columns = *columns + 1;
-
+                (*columns)++;               
             }
 
             if (hashtable->table[index][j].is_occupied == false) { 
@@ -189,10 +188,18 @@ void insert_hash(HashTable * hashtable, char* key, int value, int * columns)
 
 }
 
-//FUNCION PARA INSERTAR EL HASH DE UN ARCHIVO
+
+/** 
+ * @brief Insertar el hash del contenido de un achivo en una tabla hash
+ * 
+ * @param hashtable Tabla hash
+ * @param filename Nombre del archivo
+ * @param value ELemento a ingresar
+ * @param columns Numero de columna en caso de colision
+ */
 void insert_hashfile(HashTable * hashtable, const char * filename, int value, int * columns){
 
-    unsigned int index = hashFile(filename);
+    unsigned int index = hashFile(filename)%TABLE_SIZE;
     *columns = 0;
 
     for (int i = 0; i < COLITION_SIZE; i++){
@@ -247,7 +254,13 @@ void insert_hashfile(HashTable * hashtable, const char * filename, int value, in
 
 }
 
-//FUCNION PARA BUSCAR UN VALOR EN LA TABLA
+/**
+ * @brief Buscar un elemeno dentro de la tabla
+ * 
+ * @param hashtable Tabla hash
+ * @param key Caracteres a realizar hash
+ * @return int Devuelve el elemento
+ */
 int search_table(HashTable * hashtable, char * key){
 
     unsigned int index = jenkins_hash(key);
@@ -286,7 +299,13 @@ int search_table(HashTable * hashtable, char * key){
 
 }
 
-//FUNCION PARA BUSCAR UN VALOR EN LA TABLA PERO DESDE UN ARCHIVO
+/**
+ * @brief Buscar un elemento proveniente del hash de un archivo dentro de una tabla
+ * 
+ * @param hashtable Tabla hash
+ * @param filename Nombre del archivo
+ * @return int Devuelve el elemento
+ */
 int search_tablefile(HashTable * hashtable, const char * filename){
 
     unsigned int index = hashFile(filename);
@@ -327,7 +346,13 @@ int search_tablefile(HashTable * hashtable, const char * filename){
 
 }
 
-//FUNCION PARA BORRAR UN ELEMENTO
+
+/**
+ * @brief Borra un elemento dentro de una tabla hash
+ * 
+ * @param hashtable Tabla hash
+ * @param key Caracater realcionado al elemento
+ */
 void delete_element(HashTable * hashtable, char * key){
 
     unsigned int index = jenkins_hash(key);
@@ -372,7 +397,12 @@ void delete_element(HashTable * hashtable, char * key){
 
 }
 
-//FUNCION PARA BORRAR UN ELEMENTO DESDE ARCHIVO
+/**
+ * @brief Borra un elemento proveniente de un archivo dentro de una tabla hash
+ * 
+ * @param hashtable Tabla hash
+ * @param filename Nombre del archivo
+ */
 void delete_elementfile(HashTable * hashtable, const char * filename){
 
     unsigned int index = hashFile(filename);
@@ -417,7 +447,12 @@ void delete_elementfile(HashTable * hashtable, const char * filename){
 
 }
 
-//FUNCION PARA IMPRIMIR LA TABLA
+/**
+ * @brief Imprime una tabla hash en pantalla
+ * 
+ * 
+ * @param hashtable Tabla hash
+ */
 void print_table(HashTable* hashtable) {
 
     for (int i = 0; i < TABLE_SIZE ; i++) {
@@ -436,7 +471,13 @@ void print_table(HashTable* hashtable) {
     }
 }
 
-//FUNCION PARA IMPRIMRI UNA TABLA HASH EN UN ARCHIVO
+/**
+ * @brief Imprime y guarda una tabla hash dentro de un archivo
+ * 
+ * @param hashtable Tabla hash
+ * @param filename Nombre del archivo
+ * 
+ */
 void print_tablefile(HashTable* hashtable, const char * filename) {
 
     FILE * file = fopen ( filename , "w");
@@ -460,7 +501,14 @@ void print_tablefile(HashTable* hashtable, const char * filename) {
 
 }
 
-//FUNCION PARA GUARDAR UNA TABLA HASH DESDE UN ARCHIVO
+/**
+ * @brief Escanea una tabla hash proveniente de un archivo y lo guarda en el programa
+ * 
+ * @param hashtable Tabla hash
+ * @param filename Nombre del archivo
+ * 
+ * @note El archivo debe estar en el formato que consigue con la funcion anterior
+ */
 void save_table(HashTable* hashtable, const char * filename) {
 
     FILE * file = fopen ( filename , "r");

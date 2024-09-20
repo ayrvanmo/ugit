@@ -2,7 +2,7 @@
  * @file archivos.c
  * @author Mansilla-Morrison
  * @brief Funciones relacionadas a archivos
- * @version 1.0
+ * @version 1.5
  * 
  * 
  */
@@ -79,4 +79,22 @@ bool is_folder_empty(char* folder)
 
     printf("ERROR:  No se pudo abrir el directorio '%s'\n", folder);
     exit(1);
+}
+/**
+ * @brief Verifica si un elemento de una carpeta es un archivo importante
+ * 
+ * @param entry El elemento a verificar
+ * @return true 
+ * @return false 
+ */
+bool is_core_file(struct dirent *entry)
+{  
+    if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0 && strcmp(entry->d_name, "ugit") != 0 &&strcmp(entry->d_name, ".ugit") != 0) {
+        return false;
+	}
+
+    else{
+        return true;
+    }
+
 }

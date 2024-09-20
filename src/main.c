@@ -2,7 +2,7 @@
  * @file main.c
  * @author Mansilla-Morrison
  * @brief Código principal del programa
- * @version 1.0
+ * @version 1.5
  * 
  * 
  */
@@ -111,7 +111,7 @@ int main(int argc, char** argv){
 
 							if (dir != NULL) { //si se pudo abrir el directorio
 								while ((entry = readdir(dir)) != NULL) {
-									if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0 && strcmp(entry->d_name, "ugit") != 0 &&strcmp(entry->d_name, ".ugit") != 0) {
+									if (!is_core_file(entry)) {
 										char file_add_directory[1024];
 										snprintf(file_add_directory, sizeof(file_add_directory), ".ugit/index/%s", entry->d_name);
 										// copiar archivo en carpeta index (staging area)
@@ -236,7 +236,7 @@ int main(int argc, char** argv){
 
 									while((file_for_commit=readdir(staging_area))!=NULL){
 
-										if(strcmp(file_for_commit->d_name,".")&&strcmp(file_for_commit->d_name,"..")){
+										if(!is_core_file(file_for_commit)){
 
 											// colocar el nombre y hash del contenido del archivo en su commit
 											sprintf(auxchar,".ugit/index/%s",file_for_commit->d_name);
@@ -369,7 +369,7 @@ int main(int argc, char** argv){
         						if (root_directory) {
    									while ((directory_files = readdir(root_directory)) != NULL) {
         								// Excluir .ugit y ugit
-        								if (strcmp(directory_files->d_name, ".ugit") !=0 && strcmp(directory_files->d_name, "ugit")!=0&&strcmp(directory_files->d_name, ".")!=0&&strcmp(directory_files->d_name, "..")!=0) {
+        								if (!is_core_file(directory_files)) {
 											sprintf(command,"rm %s",directory_files->d_name);
 											system(command);
         								}
