@@ -8,5 +8,6 @@ var searchData=
   ['is_5fcore_5ffile_5',['is_core_file',['../archivos_8h.html#ac51ff1c82bb8bb3e4edf5b375bd2d049',1,'is_core_file(struct dirent *entry):&#160;archivos.c'],['../archivos_8c.html#ac51ff1c82bb8bb3e4edf5b375bd2d049',1,'is_core_file(struct dirent *entry):&#160;archivos.c']]],
   ['is_5ffolder_5fempty_6',['is_folder_empty',['../archivos_8h.html#a4ab4b8a44d7ff686eb7be2ccbf923b1f',1,'is_folder_empty(char *folder):&#160;archivos.c'],['../archivos_8c.html#a4ab4b8a44d7ff686eb7be2ccbf923b1f',1,'is_folder_empty(char *folder):&#160;archivos.c']]],
   ['is_5finitialized_7',['is_initialized',['../archivos_8h.html#adffa5ae39c0c3d8fefcbedb7e859b980',1,'is_initialized(char file_name[]):&#160;archivos.c'],['../archivos_8c.html#adffa5ae39c0c3d8fefcbedb7e859b980',1,'is_initialized(char file_name[]):&#160;archivos.c']]],
-  ['is_5foccupied_8',['is_occupied',['../structHashEntry.html#ac896858e7a456ded239ea4267bdc69cb',1,'HashEntry']]]
+  ['is_5foccupied_8',['is_occupied',['../structHashEntry.html#ac896858e7a456ded239ea4267bdc69cb',1,'HashEntry']]],
+  ['is_5fvalid_5fcommand_9',['is_valid_command',['../archivos_8h.html#a449b12be285ca350052bf3f06c899d63',1,'is_valid_command(char *command):&#160;archivos.c'],['../archivos_8c.html#a449b12be285ca350052bf3f06c899d63',1,'is_valid_command(char *command):&#160;archivos.c']]]
 ];

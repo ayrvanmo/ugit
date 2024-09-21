@@ -111,11 +111,14 @@ Functions</h2></td></tr>
 <tr class="memdesc:a1d8e80dbc2aa91de13f84442f154c177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copia y pega un archivo en otro directorio.  <br /></td></tr>
 <tr class="separator:a1d8e80dbc2aa91de13f84442f154c177"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ab4b8a44d7ff686eb7be2ccbf923b1f" id="r_a4ab4b8a44d7ff686eb7be2ccbf923b1f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ab4b8a44d7ff686eb7be2ccbf923b1f">is_folder_empty</a> (char *folder)</td></tr>
-<tr class="memdesc:a4ab4b8a44d7ff686eb7be2ccbf923b1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica si una carpeta se encuentra vacía.  <br /></td></tr>
+<tr class="memdesc:a4ab4b8a44d7ff686eb7be2ccbf923b1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica si una carpeta se encuentra vacia.  <br /></td></tr>
 <tr class="separator:a4ab4b8a44d7ff686eb7be2ccbf923b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac51ff1c82bb8bb3e4edf5b375bd2d049" id="r_ac51ff1c82bb8bb3e4edf5b375bd2d049"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac51ff1c82bb8bb3e4edf5b375bd2d049">is_core_file</a> (struct dirent *entry)</td></tr>
 <tr class="memdesc:ac51ff1c82bb8bb3e4edf5b375bd2d049"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica si un elemento de una carpeta es un archivo importante.  <br /></td></tr>
 <tr class="separator:ac51ff1c82bb8bb3e4edf5b375bd2d049"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a449b12be285ca350052bf3f06c899d63" id="r_a449b12be285ca350052bf3f06c899d63"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a449b12be285ca350052bf3f06c899d63">is_valid_command</a> (char *command)</td></tr>
+<tr class="memdesc:a449b12be285ca350052bf3f06c899d63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica si se ingreso un comando valido.  <br /></td></tr>
+<tr class="separator:a449b12be285ca350052bf3f06c899d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Funciones relacionadas a archivos. </p>
@@ -149,7 +152,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>La función no funciona si se quiere copiar y pegar un directorio </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>La funcion no funciona si se quiere copiar y pegar un directorio </dd></dl>
 
 </div>
 </div>
@@ -196,7 +199,7 @@ false </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Verifica si una carpeta se encuentra vacía. </p>
+<p>Verifica si una carpeta se encuentra vacia. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">folder</td><td>Ruta de la carpeta </td></tr>
@@ -228,6 +231,34 @@ false </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">file_name</td><td>Nombre de la ruta del archivo</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+
+</div>
+</div>
+<a id="a449b12be285ca350052bf3f06c899d63" name="a449b12be285ca350052bf3f06c899d63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a449b12be285ca350052bf3f06c899d63">&#9670;&#160;</a></span>is_valid_command()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool is_valid_command </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verifica si se ingreso un comando valido. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">command</td><td>El comando ingesado </td></tr>
   </table>
   </dd>
 </dl>

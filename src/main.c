@@ -1,7 +1,7 @@
 /**
  * @file main.c
  * @author Mansilla-Morrison
- * @brief Código principal del programa
+ * @brief Codigo principal del programa
  * @version 1.0
  */
 
@@ -13,20 +13,20 @@
 
 /**
  * 
- * @brief  Función principal del programa
+ * @brief  Funcion principal del programa
  * 
  * Punto de inicio del programa,  donde se ejecutan las diferentes funciones
- * @param argc Número de argumentos ingresados en el terminal
+ * @param argc Numero de argumentos ingresados en el terminal
  * @param argv Argumentos ingresados en el terminal
  * 
- * @note Esta función requiere de argumentos ingresados, por lo que es importante ejecutarla desde el terminal
+ * @note Esta funcion requiere de argumentos ingresados, por lo que es importante ejecutarla desde el terminal
  * 
  */
 
 int main(int argc, char** argv){
 
 
-	/* EN EL CASO DE QUE SE INGRESE UN COMANDO*/
+	/* EN EL CASO DE QUE SE INGRESE UN COMANDO */
     if(argc>1){ 
 
 		// COMANDO PARA MOSTRAR LOS COMANDOS DISPONIBLES
@@ -34,10 +34,9 @@ int main(int argc, char** argv){
 			printf("Comandos comunes de uGit:\n\n");
 			printf("Para inicializar un area de trabajo\n   init       Crear un repositorio vacio\n\nTrabajar y realizar cambios actuales\n   add        Agregar contenido al staging area\n   rm         Borrar archivos del staging area\n\nHistorial comun\n   commit     Grabar los cambios del repositorio\n   log         Ver historial de commits   checkout    Volver a commit anterior\n\n\nPara colaborar\n   push       Actualizar las referencias remotas con sus objetos asociados\n\n");
       	}	 	
-		
+		/*END*/		
 
-
-      /*>COMANDO PARA INICIALIZAR REPOSITORIO*/
+    	/*COMANDO PARA INICIALIZAR REPOSITORIO*/
 		else if(!strcmp(argv[1],"init")){
 			
 			// EN EL CASO DE ESTAR INICIALIZADO AVISAR QUE YA LO ESTA
@@ -50,7 +49,7 @@ int main(int argc, char** argv){
 				system("mkdir .ugit .ugit/commits .ugit/objects .ugit/index");
 				system("touch .ugit/log .ugit/userinfo .ugit/commits/commits_table");
 				
-				// Si la inicialización es exitosa
+				// Si la inicializacion es exitosa
 				if(is_initialized(".ugit")){
 					// inicializar tabla hash de los commits
 					HashTable commits_table;
@@ -67,21 +66,16 @@ int main(int argc, char** argv){
         }
 		/*END*/
 
-
-
-
-		/*SIGUIENTES COMANDOS SOLO PUEDEN SER EJECUTADOS SI EL REPOSITORIO ESTÁ INICIADO*/
+		/*SIGUIENTES COMANDOS SOLO PUEDEN SER EJECUTADOS SI EL REPOSITORIO ESTA INICIADO*/
 		if(is_initialized(".ugit")){
-
 
 			/*ESTABLECER AUTOR DE LOS COMMITS*/
 			if(!strcmp(argv[1], "set.name")){
 
 				if(argc != 3)
-					printf("ERROR: Uso 'ugit set.name [argumento]'");
+					printf("ERROR: Uso 'ugit set.name [argumento]'\n");
 				
 				else{
-
 					FILE* userinfo;
 					userinfo = fopen(".ugit/userinfo","w");
 					fprintf(userinfo,"%s",argv[2]);
@@ -92,16 +86,15 @@ int main(int argc, char** argv){
 			}
 			/*END*/
 
-
 			/*AGREGAR ARCHIVOS AL STAGING AREA*/
-			if(!strcmp(argv[1],"add")){
+			else if(!strcmp(argv[1],"add")){
 				// verificar si se colocaron argumentos
 				if(argc>2){ 	
 
 					/*RECORRER ARGUMENTOS PUESTOS*/				
 					for(int i=2;i<argc;i++){
 
-						//Si el argumento es '.' se añadirá todo lo que esté en el directorio
+						//Si el argumento es '.' se anhadira todo lo que este en el directorio
 						if(strcmp(argv[i], ".") == 0 ){ 
 
 							DIR *dir;
@@ -126,12 +119,10 @@ int main(int argc, char** argv){
 						//Si se colocan los nombres de los archivos directamente
 						//Verificar si tal archivo existe		
 						else if(is_initialized(argv[i])){
-
 							char file_add_directory[1024]; //  crear un string para el path del archivo
 							snprintf(file_add_directory,sizeof(file_add_directory),".ugit/index/%s",argv[i]);
 							// copiar archivo en carpeta index (staging area)
 							copy_and_paste(argv[i],file_add_directory);
-
 						}
 						//Si el archivo no existe
 						else{
@@ -146,11 +137,10 @@ int main(int argc, char** argv){
 			}
 			/*END*/
 
-
 			/*COMANDO PARA ELIMINAR ARCHIVOS DEL STAGING AREA*/
 			else if(!strcmp(argv[1],"rm")){
 
-				if(argc>2){ // verificar si se colocaron más argumentos
+				if(argc>2){ // verificar si se colocaron mas argumentos
 
 					char file_rm_directory[1024]; // string auxiliar para path del archivo
 
@@ -177,7 +167,7 @@ int main(int argc, char** argv){
 						}
 					}
 					//FIN RECORRIDO ARGUMENTOS PUESTOS
-				//si no se colocaron más argumentos
+				//si no se colocaron mas argumentos
 				}
 				else{
 					printf("ERROR: No se especifico el(los) archivo(s) a eliminar. Uso: 'ugit rm [archivo1] [archivo2]...'\n");
@@ -185,11 +175,10 @@ int main(int argc, char** argv){
 			}
 			/*END*/
 
-
 			/*COMANDO PARA CREAR COMMITS*/
 			else if(!strcmp(argv[1],"commit")){
 
-				//verificar si se colocó el mensaje de commit
+				//verificar si se coloco el mensaje de commit
 				if(argc==3){
 
 					//verificar si existe la carpeta objects, commits e index
@@ -198,12 +187,12 @@ int main(int argc, char** argv){
 						// verifica si hay archivos en el staging area
 						if(!is_folder_empty(".ugit/index")){
 
-							//variable auxiliar para comandos dinámicos
+							//variable auxiliar para comandos dinamicos
 							char command[1024];
 
 							/*ARCHIVO DEL COMMIT*/
 
-							//crear hash del commit con el tiempo de la máquina
+							//crear hash del commit con el tiempo de la maquina
 							time_t user_time=time(NULL);
 							char *user_time_str=ctime(&user_time);
 							unsigned int commit_hash=jenkins_hash(user_time_str);
@@ -215,7 +204,7 @@ int main(int argc, char** argv){
 							int columns=0;
 
 							//insertar el commit en la tabla hash
-							insert_hash(&commits_table,user_time_str,(int)commit_hash, &columns);
+							insert_hash(&commits_table,user_time_str, commit_hash, &columns);
 							print_tablefile(&commits_table,".ugit/commits/commits_table");
 
 
@@ -228,7 +217,7 @@ int main(int argc, char** argv){
 
 							/*ARCHIVOS EN EL STAGING AREA*/
 
-							//lectura y conversión de los archivos del staging area a la carpeta objects
+							//lectura y conversion de los archivos del staging area a la carpeta objects
 							DIR *staging_area;
 							staging_area=opendir(".ugit/index");
 							struct dirent *file_for_commit;
@@ -289,7 +278,7 @@ int main(int argc, char** argv){
 									fclose(log_file);
 
 
-									/*CONFIRMACIÓN DE PROCESO EXITOSO*/
+									/*CONFIRMACIoN DE PROCESO EXITOSO*/
 									printf("Se ha creado un commit con el mensaje: '%s'\n",argv[2]);
 								}
 								//Si falla la lectura de index
@@ -311,7 +300,7 @@ int main(int argc, char** argv){
 
 					}
 
-					// si se colocaron más argumentos de los correctos, mostrar error
+					// si se colocaron mas argumentos de los correctos, mostrar error
 					else if(argc>3){
 
 						printf("ERROR: ");
@@ -321,14 +310,13 @@ int main(int argc, char** argv){
 						printf("no son argumentos validos. Uso: 'ugit commit '[mensaje]' '\n ");
 					}
 
-					//  si no se colocó el mensaje de commit, mostrar error
+					//  si no se coloco el mensaje de commit, mostrar error
 					else {
-						printf("ERROR: No se especificó el mensaje del commit. Uso: 'ugit commit [mensaje]'\n");
+						printf("ERROR: No se especifico el mensaje del commit. Uso: 'ugit commit [mensaje]'\n");
 					}		
 
 			}
 			/*END*/
-
 
 			/*REVISAR EL HISTORIAL DE COMMITS*/
 			else if(!strcmp(argv[1],"log")){
@@ -348,24 +336,22 @@ int main(int argc, char** argv){
 			}
 			/*END*/
 
-
-
 			/*COMANDO PARA VOLVER A VERSIONES ANTERIORES*/
 			else if(!strcmp(argv[1],"checkout")){
 					
 					if(is_initialized(".ugit/commits")){
 
-						//verificar que se colocó la cantidad de argumentos adecuada
+						//verificar que se coloco la cantidad de argumentos adecuada
 						if(argc==3){
 
-							char command[1024]; //variable auxiliar para comandos dinámicos
+							char command[1024]; //variable auxiliar para comandos dinamicos
 
 							//verificar si el commit ingresado existe
 							sprintf(command,".ugit/commits/%s",argv[2]);
 							if(is_initialized(command)){
 								//borrar los archivos en la carpeta principal (excepto .ugit y ugit)
 								DIR *root_directory;
-								root_directory = opendir("."); //abrir carpeta donde ugit está siendo ejecutado
+								root_directory = opendir("."); //abrir carpeta donde ugit esta siendo ejecutado
 								struct dirent *directory_files;
 
         						if (root_directory) {
@@ -419,17 +405,21 @@ int main(int argc, char** argv){
 						printf("ERROR: No se pudo encontrar la carpeta commits\n");
 					}
 				}
-				/*END*/
+			/*END*/
 
-				else if(strcmp(argv[1],"help")!=0&&strcmp(argv[1],"init")!=0){
+			/*
+			else if(strcmp(argv[1],"add")!=0&&strcmp(argv[1],"rm")!=0&&strcmp(argv[1],"commit")!=0&&strcmp(argv[1],"log")!=0&&strcmp(argv[1],"checkout")!=0&&strcmp(argv[1],"set.name")!=0&&strcmp(argv[1],"help")!=0) 
 					printf("ERROR: Comando invalido. Utilice 'ugit help' para ver la lista de comandos");
-				}
-				
-			
-		} // si no está inicializado el repositorio
+			*/
+			else if(!is_valid_command(argv[1])){
+				printf("ERROR: Comando invalido. Utilice 'ugit help' para ver la lista de comandos");
+			}
+	
+		} // si no esta inicializado el repositorio
+
 		else {
 			//avisar que el comando no existe si es asi
-			if(strcmp(argv[1],"add")!=0&&strcmp(argv[1],"rm")!=0&&strcmp(argv[1],"commit")!=0&&strcmp(argv[1],"log")!=0&&strcmp(argv[1],"checkout")!=0&&strcmp(argv[1],"set.name")!=0&&strcmp(argv[1],"help")!=0) 
+			if(!is_valid_command(argv[1])) 
 					printf("ERROR: Comando invalido. Utilice 'ugit help' para ver la lista de comandos");
 			
 			//sino, avisar que no se puede ejecutar ese comando
@@ -439,11 +429,10 @@ int main(int argc, char** argv){
 		}
 
 	}
-		//EN EL CASO DE QUE UGIT SEA EJECUTADO SIN NINGUN ARGUMENTO
-    else  
+	//EN EL CASO DE QUE UGIT SEA EJECUTADO SIN NINGUN ARGUMENTO
+    else { 
 		printf("No se ingreso ningun comando \n'ugit help' para ver la lista de comandos disponibles\n");		
-    
-
+	}
   	return 0;
 }
 

@@ -16,22 +16,22 @@ struct \mbox{\hyperlink{structHashTable}{Hash\+Table}}
 \item 
 \Hypertarget{busqueda_8h_a032503e76d6f69bc67e99e909c8125da}\label{busqueda_8h_a032503e76d6f69bc67e99e909c8125da} 
 \#define {\bfseries TABLE\+\_\+\+SIZE}~100
-\begin{DoxyCompactList}\small\item\em Tamaño vertical máximo de las tablas hash. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Tamanho vertical maximo de las tablas hash. \end{DoxyCompactList}\item 
 \Hypertarget{busqueda_8h_a85e9e9ac1ece956cf4c21c110f1b829e}\label{busqueda_8h_a85e9e9ac1ece956cf4c21c110f1b829e} 
 \#define {\bfseries COLITION\+\_\+\+SIZE}~10
-\begin{DoxyCompactList}\small\item\em Tamaño horizontal máximo de las tablas hash, hecho para evitar colisiones. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Tamanho horizontal maximo de las tablas hash, hecho para evitar colisiones. \end{DoxyCompactList}\item 
 \Hypertarget{busqueda_8h_a82acb32225c05e9aa4c524c40bc5852a}\label{busqueda_8h_a82acb32225c05e9aa4c524c40bc5852a} 
 \#define {\bfseries MAX\+\_\+\+CHAR}~255
-\begin{DoxyCompactList}\small\item\em Tamaño máximo de caractéres para algunos strings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Tamanho maximo de caracteres para algunos strings. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 unsigned int \mbox{\hyperlink{busqueda_8h_aac0e4071b93021a3454f4d61d277b519}{jenkins\+\_\+hash}} (char \texorpdfstring{$\ast$}{*}key)
-\begin{DoxyCompactList}\small\item\em Función hash para carácteres conocidos. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Funcion hash para caracteres conocidos. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{busqueda_8h_aa0fd4cd0b254cc3956df8e78d1c84b29}{hash\+File}} (const char \texorpdfstring{$\ast$}{*}filename)
-\begin{DoxyCompactList}\small\item\em Función hash para el contenido de un archivo. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Funcion hash para el contenido de un archivo. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{busqueda_8h_acea26051f859115de97c9c8f355408e3}{Dinamic\+\_\+jenkins}} (unsigned char \texorpdfstring{$\ast$}{*}key, size\+\_\+t lenght)
-\begin{DoxyCompactList}\small\item\em Función hash para carácteres desconocidos. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Funcion hash para caracteres desconocidos. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{busqueda_8h_a486db035c34287e349aaddfcbf23cd6c}{init\+\_\+table}} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable)
 \begin{DoxyCompactList}\small\item\em Inicializa una tabla hash internamente. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{busqueda_8h_abd81886c7c597f583d90b19638486f4e}{insert\+\_\+hash}} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, char \texorpdfstring{$\ast$}{*}key, int value, int \texorpdfstring{$\ast$}{*}columns)
@@ -69,11 +69,7 @@ Borra un elemento dentro de una tabla hash.
 \begin{DoxyParams}{Parameters}
 {\em hashtable} & Tabla hash \\
 \hline
-<<<<<<< HEAD
-{\em key} & Carácter relacionado al elemento \\
-=======
-{\em key} & Caracater realcionado al elemento \\
->>>>>>> 731557b792d41cd119d2c558646a64581be7ca40
+{\em key} & Caracter relacionado al elemento \\
 \hline
 \end{DoxyParams}
 \Hypertarget{busqueda_8h_a30f7e06d15014233fc6f526f14d5d055}\label{busqueda_8h_a30f7e06d15014233fc6f526f14d5d055} 
@@ -101,13 +97,13 @@ Borra un elemento proveniente de un archivo dentro de una tabla hash.
 
 
 
-Función hash para carácteres desconocidos. 
+Funcion hash para caracteres desconocidos. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em key} & Caracteres \\
 \hline
-{\em lenght} & Tamaño de los caracteres \\
+{\em lenght} & Tamanho de los caracteres \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -124,7 +120,7 @@ Funcion ideal para contenido de archivos
 
 
 
-Función hash para el contenido de un archivo. 
+Funcion hash para el contenido de un archivo. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -199,7 +195,7 @@ Insertar el hash del contenido de un achivo en una tabla hash.
 
 
 
-Función hash para carácteres conocidos. 
+Funcion hash para caracteres conocidos. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -259,11 +255,7 @@ Escanea una tabla hash proveniente de un archivo y lo guarda en el programa.
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-<<<<<<< HEAD
-El archivo debe estar en el formato que consigue con la funcion anterior 
-=======
 El archivo debe estar en el formato que consigue con la funcion "{}print\+\_\+tablefile"{} 
->>>>>>> 731557b792d41cd119d2c558646a64581be7ca40
 \end{DoxyNote}
 \Hypertarget{busqueda_8h_a6eb71ed4677cf7de93ef5f6ff2c4e666}\label{busqueda_8h_a6eb71ed4677cf7de93ef5f6ff2c4e666} 
 \index{busqueda.h@{busqueda.h}!search\_table@{search\_table}}

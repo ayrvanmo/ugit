@@ -25,11 +25,10 @@ bool is_initialized(char file_name[])
         fclose(file);
         return true;
     }
-    else{
-        return false;
-    }
-}
 
+    return false;
+    
+}
 
 /**
  * @brief Copia y pega un archivo en otro directorio
@@ -37,7 +36,7 @@ bool is_initialized(char file_name[])
  * @param file_name Archivo
  * @param destination Ruta de destino
  * 
- * @note La función no funciona si se quiere copiar y pegar un directorio
+ * @note La funcion no funciona si se quiere copiar y pegar un directorio
  */
 
 void copy_and_paste (char* file_name, char* destination)
@@ -50,9 +49,8 @@ void copy_and_paste (char* file_name, char* destination)
         perror("ERROR: No se pudo mover el archivo");
 }
 
-
 /**
- * @brief Verifica si una carpeta se encuentra vacía
+ * @brief Verifica si una carpeta se encuentra vacia
  * 
  * @param folder Ruta  de la carpeta
  * @return true 
@@ -63,18 +61,17 @@ bool is_folder_empty(char* folder)
     DIR* folder_dir;
     folder_dir = opendir(folder);
     struct dirent *file_on_folder;
-    int count;
 
 	if(folder_dir){
         while ((file_on_folder = readdir(folder_dir)) != NULL) {
-            if (file_on_folder->d_name[0] != '.')
-            count++;
+            if (strcmp(file_on_folder->d_name, ".") != 0 && strcmp(file_on_folder->d_name, "..") != 0){
+                closedir(folder_dir);
+                return false;
+            }
         }
-
-        if(count)
-            return false;
+        closedir(folder_dir);
+        return true;   
         
-        return true;
 	}
 
     printf("ERROR:  No se pudo abrir el directorio '%s'\n", folder);
@@ -97,4 +94,17 @@ bool is_core_file(struct dirent *entry)
         return true;
     }
 
+}
+/**
+ * @brief Verifica si se ingreso un comando valido
+ * 
+ * @param command El comando ingesado
+ * @return true 
+ * @return false 
+ */
+bool is_valid_command(char* command){
+    if(strcmp(command, "add") == 0 || strcmp(command, "rm") == 0 || strcmp(command, "commit") == 0 || strcmp(command, "log") == 0 || strcmp(command, "checkout") == 0 || strcmp(command, "set.name") == 0 || strcmp(command, "help") == 0){
+        return true;
+    }
+    return false;
 }

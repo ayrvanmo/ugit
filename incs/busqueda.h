@@ -10,15 +10,15 @@
 
 
 /*! @def TABLE_SIZE
-*  @brief Tamaño vertical máximo de las tablas hash
+*  @brief Tamanho vertical maximo de las tablas hash
 */
 #define TABLE_SIZE 100
 /*! @def COLITION_SIZE
-*  @brief Tamaño horizontal máximo de las tablas hash, hecho para evitar colisiones
+*  @brief Tamanho horizontal maximo de las tablas hash, hecho para evitar colisiones
 */
 #define COLITION_SIZE 10
 /*! @def MAX_CHAR
-*  @brief Tamaño máximo de caractéres para algunos strings
+*  @brief Tamanho maximo de caracteres para algunos strings
 */
 #define MAX_CHAR 255
 
@@ -29,7 +29,7 @@
 typedef struct{
     char key[MAX_CHAR]; /*!< Caracteres asociados al hash */
     int value; /*!< Elemento ingresado*/
-    bool is_occupied; /*!< Indica si la celda está ocupada o no*/
+    bool is_occupied; /*!< Indica si la celda esta ocupada o no*/
 } HashEntry;
 
 /*! \struct HashTable

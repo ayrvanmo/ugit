@@ -13,9 +13,11 @@ bool \mbox{\hyperlink{archivos_8h_adffa5ae39c0c3d8fefcbedb7e859b980}{is\+\_\+ini
 void \mbox{\hyperlink{archivos_8h_a1d8e80dbc2aa91de13f84442f154c177}{copy\+\_\+and\+\_\+paste}} (char \texorpdfstring{$\ast$}{*}file\+\_\+name, char \texorpdfstring{$\ast$}{*}destination)
 \begin{DoxyCompactList}\small\item\em Copia y pega un archivo en otro directorio. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{archivos_8h_a4ab4b8a44d7ff686eb7be2ccbf923b1f}{is\+\_\+folder\+\_\+empty}} (char \texorpdfstring{$\ast$}{*}folder)
-\begin{DoxyCompactList}\small\item\em Verifica si una carpeta se encuentra vacía. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Verifica si una carpeta se encuentra vacia. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{archivos_8h_ac51ff1c82bb8bb3e4edf5b375bd2d049}{is\+\_\+core\+\_\+file}} (struct dirent \texorpdfstring{$\ast$}{*}entry)
-\begin{DoxyCompactList}\small\item\em Verifica si un elemento de una carpeta es un archivo importante. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Verifica si un elemento de una carpeta es un archivo importante. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{archivos_8h_a449b12be285ca350052bf3f06c899d63}{is\+\_\+valid\+\_\+command}} (char \texorpdfstring{$\ast$}{*}command)
+\begin{DoxyCompactList}\small\item\em Verifica si se ingreso un comando valido. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -37,7 +39,7 @@ Copia y pega un archivo en otro directorio.
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-La función no funciona si se quiere copiar y pegar un directorio 
+La funcion no funciona si se quiere copiar y pegar un directorio 
 \end{DoxyNote}
 \Hypertarget{archivos_8h_ac51ff1c82bb8bb3e4edf5b375bd2d049}\label{archivos_8h_ac51ff1c82bb8bb3e4edf5b375bd2d049} 
 \index{archivos.h@{archivos.h}!is\_core\_file@{is\_core\_file}}
@@ -67,7 +69,7 @@ false
 
 
 
-Verifica si una carpeta se encuentra vacía. 
+Verifica si una carpeta se encuentra vacia. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -92,6 +94,26 @@ Verifica si un archivo o directorio existe.
 
 \begin{DoxyParams}{Parameters}
 {\em file\+\_\+name} & Nombre de la ruta del archivo\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\Hypertarget{archivos_8h_a449b12be285ca350052bf3f06c899d63}\label{archivos_8h_a449b12be285ca350052bf3f06c899d63} 
+\index{archivos.h@{archivos.h}!is\_valid\_command@{is\_valid\_command}}
+\index{is\_valid\_command@{is\_valid\_command}!archivos.h@{archivos.h}}
+\doxysubsubsection{\texorpdfstring{is\_valid\_command()}{is\_valid\_command()}}
+{\footnotesize\ttfamily bool is\+\_\+valid\+\_\+command (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{command }\end{DoxyParamCaption})}
+
+
+
+Verifica si se ingreso un comando valido. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & El comando ingesado \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

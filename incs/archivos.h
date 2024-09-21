@@ -13,3 +13,4 @@ bool is_initialized(char file_name[]);
 void copy_and_paste (char* file_name, char* destination);
 bool is_folder_empty(char* folder);
 bool is_core_file(struct dirent *entry);
+bool is_valid_command(char* command);
