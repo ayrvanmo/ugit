@@ -507,7 +507,7 @@ void print_tablefile(HashTable* hashtable, const char * filename) {
  * @param hashtable Tabla hash
  * @param filename Nombre del archivo
  * 
- * @note El archivo debe estar en el formato que consigue con la funcion anterior
+ * @note El archivo debe estar en el formato que consigue con la funcion "print_tablefile"
  */
 void save_table(HashTable* hashtable, const char * filename) {
 
