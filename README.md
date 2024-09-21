@@ -30,6 +30,6 @@ Todos los comandos deben ejecutarse con el sintax `./ugit [comando] [argumento]`
 - μGit NO funciona correctamente con carpetas, solo con archivos que estén en el mismo directorio
 
 
-## Créditos
+## Autores
 Iván Mansilla y Ayrton Morrison.
 
