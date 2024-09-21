@@ -2,7 +2,7 @@
  * @file main.c
  * @author Mansilla-Morrison
  * @brief Código principal del programa
- * @version 1.5
+ * @version 1.0
  * 
  * 
  */
@@ -34,7 +34,7 @@ int main(int argc, char** argv){
 		// COMANDO PARA MOSTRAR LOS COMANDOS DISPONIBLES
 		if(!strcmp(argv[1],"help")){ 
 			printf("Comandos comunes de uGit:\n\n");
-			printf("Para inicializar un area de trabajo\n   init       Crear un repositorio vacio\n\nTrabajar y realizar cambios actuales\n   add        Agregar contenido al staging area\n   rm         Borrar archivos del staging area\n\nHistorial comun\n   commit     Grabar los cambios del repositorio\n   log         Ver historial de commits   checkout    Volver a commit anterior\n\n\nPara colaborar\n   pull       Realiza una descarga de objetos y referencias de otro repositorio y lo integra al actual o al de la rama actual\n   push       Actualizar las referencias remotas con sus objetos asociados\n\n");
+			printf("Para inicializar un area de trabajo\n   init       Crear un repositorio vacio\n\nTrabajar y realizar cambios actuales\n   add        Agregar contenido al staging area\n   rm         Borrar archivos del staging area\n\nHistorial comun\n   commit     Grabar los cambios del repositorio\n   log         Ver historial de commits   checkout    Volver a commit anterior\n\n\nPara colaborar\n   push       Actualizar las referencias remotas con sus objetos asociados\n\n");
       	}	 	
 		
 
@@ -123,7 +123,7 @@ int main(int argc, char** argv){
 							else{
 								perror("ERROR: No se pudo abrir el directorio 'build'");
 							}
-						}
+						}			
 						else if(is_initialized(argv[i])){ // Si no, verificar si el archivo existe
 							char file_add_directory[1024]; //  crear un string para el path del archivo
 							snprintf(file_add_directory,sizeof(file_add_directory),".ugit/index/%s",argv[i]);
@@ -427,11 +427,11 @@ int main(int argc, char** argv){
 		} // si no está inicializado el repositorio
 		else {
 			//avisar que el comando no existe si es asi
-			if(strcmp(argv[1],"add")!=0&&strcmp(argv[1],"rm")!=0&&strcmp(argv[1],"commit")!=0&&strcmp(argv[1],"log")!=0&&strcmp(argv[1],"checkout")!=0&&strcmp(argv[1],"set.name")!=0)
+			if(strcmp(argv[1],"add")!=0&&strcmp(argv[1],"rm")!=0&&strcmp(argv[1],"commit")!=0&&strcmp(argv[1],"log")!=0&&strcmp(argv[1],"checkout")!=0&&strcmp(argv[1],"set.name")!=0&&strcmp(argv[1],"help")!=0) 
 					printf("ERROR: Comando invalido. Utilice 'ugit help' para ver la lista de comandos");
 			
 			//sino, avisar que no se puede ejecutar ese comando
-			else {
+			else if(strcmp(argv[1],"help")!=0){
 			printf("ERROR: No es un repositorio de git, ni un derivado de este.\nUtilice 'ugit init' para inicializar un repositorio\n");
 			}
 		}
