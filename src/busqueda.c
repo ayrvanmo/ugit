@@ -351,7 +351,7 @@ int search_tablefile(HashTable * hashtable, const char * filename){
  * @brief Borra un elemento dentro de una tabla hash
  * 
  * @param hashtable Tabla hash
- * @param key Caracater realcionado al elemento
+ * @param key Carácter relacionado al elemento
  */
 void delete_element(HashTable * hashtable, char * key){
 

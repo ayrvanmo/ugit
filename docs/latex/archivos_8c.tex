@@ -14,7 +14,9 @@ bool \mbox{\hyperlink{archivos_8c_adffa5ae39c0c3d8fefcbedb7e859b980}{is\+\_\+ini
 void \mbox{\hyperlink{archivos_8c_a1d8e80dbc2aa91de13f84442f154c177}{copy\+\_\+and\+\_\+paste}} (char \texorpdfstring{$\ast$}{*}file\+\_\+name, char \texorpdfstring{$\ast$}{*}destination)
 \begin{DoxyCompactList}\small\item\em Copia y pega un archivo en otro directorio. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{archivos_8c_a4ab4b8a44d7ff686eb7be2ccbf923b1f}{is\+\_\+folder\+\_\+empty}} (char \texorpdfstring{$\ast$}{*}folder)
-\begin{DoxyCompactList}\small\item\em Verifica si una carpeta se encuentra vacía. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Verifica si una carpeta se encuentra vacía. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{archivos_8c_ac51ff1c82bb8bb3e4edf5b375bd2d049}{is\+\_\+core\+\_\+file}} (struct dirent \texorpdfstring{$\ast$}{*}entry)
+\begin{DoxyCompactList}\small\item\em Verifica si un elemento de una carpeta es un archivo importante. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -24,7 +26,7 @@ Funciones relacionadas a archivos.
 Mansilla-\/\+Morrison 
 \end{DoxyAuthor}
 \begin{DoxyVersion}{Version}
-1.\+0 
+1.\+5 
 \end{DoxyVersion}
 
 
@@ -49,6 +51,26 @@ Copia y pega un archivo en otro directorio.
 \begin{DoxyNote}{Note}
 La función no funciona si se quiere copiar y pegar un directorio 
 \end{DoxyNote}
+\Hypertarget{archivos_8c_ac51ff1c82bb8bb3e4edf5b375bd2d049}\label{archivos_8c_ac51ff1c82bb8bb3e4edf5b375bd2d049} 
+\index{archivos.c@{archivos.c}!is\_core\_file@{is\_core\_file}}
+\index{is\_core\_file@{is\_core\_file}!archivos.c@{archivos.c}}
+\doxysubsubsection{\texorpdfstring{is\_core\_file()}{is\_core\_file()}}
+{\footnotesize\ttfamily bool is\+\_\+core\+\_\+file (\begin{DoxyParamCaption}\item[{struct dirent \texorpdfstring{$\ast$}{*}}]{entry }\end{DoxyParamCaption})}
+
+
+
+Verifica si un elemento de una carpeta es un archivo importante. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entry} & El elemento a verificar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
 \Hypertarget{archivos_8c_a4ab4b8a44d7ff686eb7be2ccbf923b1f}\label{archivos_8c_a4ab4b8a44d7ff686eb7be2ccbf923b1f} 
 \index{archivos.c@{archivos.c}!is\_folder\_empty@{is\_folder\_empty}}
 \index{is\_folder\_empty@{is\_folder\_empty}!archivos.c@{archivos.c}}
