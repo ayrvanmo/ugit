@@ -32,7 +32,7 @@ int main(int argc, char** argv){
 		// COMANDO PARA MOSTRAR LOS COMANDOS DISPONIBLES
 		if(!strcmp(argv[1],"help")){ 
 			printf("Comandos comunes de uGit:\n\n");
-			printf("Para inicializar un area de trabajo\n   init       Crear un repositorio vacio\n\nTrabajar y realizar cambios actuales\n   add        Agregar contenido al staging area\n   rm         Borrar archivos del staging area\n\nHistorial comun\n   commit     Grabar los cambios del repositorio\n   log         Ver historial de commits   checkout    Volver a commit anterior\n\n\nPara colaborar\n   push       Actualizar las referencias remotas con sus objetos asociados\n\n");
+			printf("Para inicializar un area de trabajo\n   init       Crear un repositorio vacio\n\nTrabajar y realizar cambios actuales\n   add        Agregar contenido al staging area\n   rm         Borrar archivos del staging area\n\nHistorial comun\n   commit     Grabar los cambios del repositorio\n   log        Ver historial de commits\n   checkout   Volver a commit anterior\n\nConfiguracion\n   set.name   Establecer nombre de usuario\n\n");
       	}	 	
 		/*END*/		
 
@@ -47,7 +47,7 @@ int main(int argc, char** argv){
           	else{ 
 				// crear archivos  necesarios
 				system("mkdir .ugit .ugit/commits .ugit/objects .ugit/index");
-				system("touch .ugit/log .ugit/userinfo .ugit/commits/commits_table");
+				system("touch .ugit/log .ugit/userinfo .ugit/commits/commits_table .ugit/index/");
 				
 				// Si la inicializacion es exitosa
 				if(is_initialized(".ugit")){
@@ -234,7 +234,6 @@ int main(int argc, char** argv){
 									while((file_for_commit=readdir(staging_area))!=NULL){
 										//verificar que el archivo listado no es un archivo que no corresponde
 										if(!is_core_file(file_for_commit)){
-
 											// colocar el nombre y hash del contenido del archivo en su commit
 											sprintf(auxchar,".ugit/index/%s",file_for_commit->d_name);
 											fprintf(commit_file,"%s %u\n",file_for_commit->d_name,hashFile(auxchar));
@@ -356,7 +355,7 @@ int main(int argc, char** argv){
 
         						if (root_directory) {
    									while ((directory_files = readdir(root_directory)) != NULL) {
-        								// Excluir .ugit y ugit
+        								// Excluir ., .., ugit y .ugit
         								if (!is_core_file(directory_files)) {
 											sprintf(command,"rm %s",directory_files->d_name);
 											system(command);
@@ -365,17 +364,12 @@ int main(int argc, char** argv){
     								closedir(root_directory);
 								}
 								free(directory_files);
-
-
-
-							
+		
 								//leer el commit y mover los archivos correspondientes a este a la carpeta principal
 								sprintf(command,".ugit/commits/%s",argv[2]);
 								FILE *commit_file=fopen(command,"r");
-
-
-
-								for(int n_files_commit=0;n_files_commit<TABLE_SIZE * COLITION_SIZE;n_files_commit++){
+								
+								for(int n_files_commit=0;n_files_commit <TABLE_SIZE * COLITION_SIZE; n_files_commit++){
 									long file_hash;
 									char file_name[MAX_CHAR];
 
@@ -386,7 +380,6 @@ int main(int argc, char** argv){
 									sprintf(command,"cp .ugit/objects/%ld %s",file_hash,file_name);
 									system(command);			
 								}
-
 								fclose(commit_file);
 															
 							}
