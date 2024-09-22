@@ -369,7 +369,7 @@ int main(int argc, char** argv){
 								sprintf(command,".ugit/commits/%s",argv[2]);
 								FILE *commit_file=fopen(command,"r");
 								
-								for(int n_files_commit=0;n_files_commit <TABLE_SIZE * COLITION_SIZE; n_files_commit++){
+								while(1){
 									long file_hash;
 									char file_name[MAX_CHAR];
 

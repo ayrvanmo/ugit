@@ -86,14 +86,7 @@ bool is_folder_empty(char* folder)
  */
 bool is_core_file(struct dirent *entry)
 {  
-    if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0 && strcmp(entry->d_name, "ugit") != 0 &&strcmp(entry->d_name, ".ugit") != 0) {
-        return false;
-	}
-
-    else{
-        return true;
-    }
-
+    return(strcmp(entry->d_name, ".") == 0 ||  strcmp(entry->d_name, "..") == 0 || strcmp(entry->d_name, "ugit") == 0 || strcmp(entry->d_name, ".ugit") == 0);
 }
 /**
  * @brief Verifica si se ingreso un comando valido
@@ -103,8 +96,5 @@ bool is_core_file(struct dirent *entry)
  * @return false 
  */
 bool is_valid_command(char* command){
-    if(strcmp(command, "add") == 0 || strcmp(command, "rm") == 0 || strcmp(command, "commit") == 0 || strcmp(command, "log") == 0 || strcmp(command, "checkout") == 0 || strcmp(command, "set.name") == 0 || strcmp(command, "help") == 0 || strcmp(command, "init") == 0){
-        return true;
-    }
-    return false;
+    return(strcmp(command, "add") == 0 || strcmp(command, "rm") == 0 || strcmp(command, "commit") == 0 || strcmp(command, "log") == 0 || strcmp(command, "checkout") == 0 || strcmp(command, "set.name") == 0 || strcmp(command, "help") == 0 || strcmp(command, "init") == 0);
 }
