@@ -116,13 +116,21 @@ int main(int argc, char** argv){
 								perror("ERROR: No se pudo abrir el directorio 'build'");
 							}
 						}
+						
 						//Si se colocan los nombres de los archivos directamente
+
 						//Verificar si tal archivo existe		
 						else if(is_initialized(argv[i])){
-							char file_add_directory[1024]; //  crear un string para el path del archivo
-							snprintf(file_add_directory,sizeof(file_add_directory),".ugit/index/%s",argv[i]);
-							// copiar archivo en carpeta index (staging area)
-							copy_and_paste(argv[i],file_add_directory);
+							//verificar que no sea un archivo importante
+							if(strcmp(argv[i],"ugit")){
+								char file_add_directory[1024]; //  crear un string para el path del archivo
+								snprintf(file_add_directory,sizeof(file_add_directory),".ugit/index/%s",argv[i]);
+								// copiar archivo en carpeta index (staging area)
+								copy_and_paste(argv[i],file_add_directory);
+							}
+							else {
+								printf("ERROR: '%s' no es un archivo valido para ser agregado", argv[i]);
+							}
 						}
 						//Si el archivo no existe
 						else{
@@ -400,10 +408,6 @@ int main(int argc, char** argv){
 				}
 			/*END*/
 
-			/*
-			else if(strcmp(argv[1],"add")!=0&&strcmp(argv[1],"rm")!=0&&strcmp(argv[1],"commit")!=0&&strcmp(argv[1],"log")!=0&&strcmp(argv[1],"checkout")!=0&&strcmp(argv[1],"set.name")!=0&&strcmp(argv[1],"help")!=0) 
-					printf("ERROR: Comando invalido. Utilice 'ugit help' para ver la lista de comandos");
-			*/
 			else if(!is_valid_command(argv[1])){
 				printf("ERROR: Comando invalido. Utilice 'ugit help' para ver la lista de comandos");
 			}
