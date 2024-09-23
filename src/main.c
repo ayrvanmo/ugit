@@ -417,7 +417,7 @@ int main(int argc, char** argv){
 			
 			//sino, avisar que no se puede ejecutar ese comando
 			else if(strcmp(argv[1],"help")!=0){
-			printf("ERROR: No es un repositorio de git, ni un derivado de este.\nUtilice 'ugit init' para inicializar un repositorio\n");
+			printf("ERROR: No es un repositorio de ugit, ni un derivado de este.\nUtilice 'ugit init' para inicializar un repositorio\n");
 			}
 		}
 
