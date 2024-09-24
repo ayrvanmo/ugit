@@ -10,7 +10,5 @@ var busqueda_8c =
     [ "jenkins_hash", "busqueda_8c.html#aac0e4071b93021a3454f4d61d277b519", null ],
     [ "print_table", "busqueda_8c.html#a555dc2f13506f0786849db5b77977bcb", null ],
     [ "print_tablefile", "busqueda_8c.html#a22a38f6641bcc2e9961e489a63947218", null ],
-    [ "save_table", "busqueda_8c.html#ac6d12db55ed6bc33468e246b129a7fd4", null ],
-    [ "search_table", "busqueda_8c.html#a6eb71ed4677cf7de93ef5f6ff2c4e666", null ],
-    [ "search_tablefile", "busqueda_8c.html#af6f79910c3839fec8ac6d2072c11d956", null ]
+    [ "save_table", "busqueda_8c.html#ac6d12db55ed6bc33468e246b129a7fd4", null ]
 ];

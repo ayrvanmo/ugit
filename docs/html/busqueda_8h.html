@@ -118,7 +118,7 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a032503e76d6f69bc67e99e909c8125da" id="r_a032503e76d6f69bc67e99e909c8125da"><td class="memItemLeft" align="right" valign="top"><a id="a032503e76d6f69bc67e99e909c8125da" name="a032503e76d6f69bc67e99e909c8125da"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TABLE_SIZE</b>&#160;&#160;&#160;100</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TABLE_SIZE</b>&#160;&#160;&#160;1000</td></tr>
 <tr class="memdesc:a032503e76d6f69bc67e99e909c8125da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamanho vertical maximo de las tablas hash. <br /></td></tr>
 <tr class="separator:a032503e76d6f69bc67e99e909c8125da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85e9e9ac1ece956cf4c21c110f1b829e" id="r_a85e9e9ac1ece956cf4c21c110f1b829e"><td class="memItemLeft" align="right" valign="top"><a id="a85e9e9ac1ece956cf4c21c110f1b829e" name="a85e9e9ac1ece956cf4c21c110f1b829e"></a>
@@ -129,6 +129,9 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_CHAR</b>&#160;&#160;&#160;255</td></tr>
 <tr class="memdesc:a82acb32225c05e9aa4c524c40bc5852a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamanho maximo de caracteres para algunos strings. <br /></td></tr>
 <tr class="separator:a82acb32225c05e9aa4c524c40bc5852a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0d87e07831e7e4943caef187872123e" id="r_ab0d87e07831e7e4943caef187872123e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0d87e07831e7e4943caef187872123e">COMMAND</a>&#160;&#160;&#160;1060</td></tr>
+<tr class="memdesc:ab0d87e07831e7e4943caef187872123e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamanho maximo de caracteres para comando.  <br /></td></tr>
+<tr class="separator:ab0d87e07831e7e4943caef187872123e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -150,11 +153,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a98669dc5bf8c4024e86eaec3a921ffc3" id="r_a98669dc5bf8c4024e86eaec3a921ffc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98669dc5bf8c4024e86eaec3a921ffc3">insert_hashfile</a> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, const char *filename, int value, int *columns)</td></tr>
 <tr class="memdesc:a98669dc5bf8c4024e86eaec3a921ffc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insertar el hash del contenido de un achivo en una tabla hash.  <br /></td></tr>
 <tr class="separator:a98669dc5bf8c4024e86eaec3a921ffc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6eb71ed4677cf7de93ef5f6ff2c4e666" id="r_a6eb71ed4677cf7de93ef5f6ff2c4e666"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6eb71ed4677cf7de93ef5f6ff2c4e666">search_table</a> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, char *key)</td></tr>
-<tr class="memdesc:a6eb71ed4677cf7de93ef5f6ff2c4e666"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buscar un elemeno dentro de la tabla.  <br /></td></tr>
+<tr class="memitem:a6eb71ed4677cf7de93ef5f6ff2c4e666" id="r_a6eb71ed4677cf7de93ef5f6ff2c4e666"><td class="memItemLeft" align="right" valign="top"><a id="a6eb71ed4677cf7de93ef5f6ff2c4e666" name="a6eb71ed4677cf7de93ef5f6ff2c4e666"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>search_table</b> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, char *key)</td></tr>
 <tr class="separator:a6eb71ed4677cf7de93ef5f6ff2c4e666"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6f79910c3839fec8ac6d2072c11d956" id="r_af6f79910c3839fec8ac6d2072c11d956"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6f79910c3839fec8ac6d2072c11d956">search_tablefile</a> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, const char *filename)</td></tr>
-<tr class="memdesc:af6f79910c3839fec8ac6d2072c11d956"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buscar un elemento proveniente del hash de un archivo dentro de una tabla.  <br /></td></tr>
+<tr class="memitem:af6f79910c3839fec8ac6d2072c11d956" id="r_af6f79910c3839fec8ac6d2072c11d956"><td class="memItemLeft" align="right" valign="top"><a id="af6f79910c3839fec8ac6d2072c11d956" name="af6f79910c3839fec8ac6d2072c11d956"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>search_tablefile</b> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, const char *filename)</td></tr>
 <tr class="separator:af6f79910c3839fec8ac6d2072c11d956"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e50f204938326b0f068e3ea0c1f5480" id="r_a2e50f204938326b0f068e3ea0c1f5480"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e50f204938326b0f068e3ea0c1f5480">delete_element</a> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, char *key)</td></tr>
 <tr class="memdesc:a2e50f204938326b0f068e3ea0c1f5480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Borra un elemento dentro de una tabla hash.  <br /></td></tr>
@@ -172,6 +175,24 @@ Functions</h2></td></tr>
 <tr class="memdesc:ac6d12db55ed6bc33468e246b129a7fd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escanea una tabla hash proveniente de un archivo y lo guarda en el programa.  <br /></td></tr>
 <tr class="separator:ac6d12db55ed6bc33468e246b129a7fd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ab0d87e07831e7e4943caef187872123e" name="ab0d87e07831e7e4943caef187872123e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0d87e07831e7e4943caef187872123e">&#9670;&#160;</a></span>COMMAND</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COMMAND&#160;&#160;&#160;1060</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tamanho maximo de caracteres para comando. </p>
+<p>! </p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a2e50f204938326b0f068e3ea0c1f5480" name="a2e50f204938326b0f068e3ea0c1f5480"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2e50f204938326b0f068e3ea0c1f5480">&#9670;&#160;</a></span>delete_element()</h2>
@@ -509,68 +530,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>El archivo debe estar en el formato que consigue con la funcion "print_tablefile" </dd></dl>
-
-</div>
-</div>
-<a id="a6eb71ed4677cf7de93ef5f6ff2c4e666" name="a6eb71ed4677cf7de93ef5f6ff2c4e666"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6eb71ed4677cf7de93ef5f6ff2c4e666">&#9670;&#160;</a></span>search_table()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int search_table </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structHashTable.html">HashTable</a> *</td>          <td class="paramname"><span class="paramname"><em>hashtable</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Buscar un elemeno dentro de la tabla. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hashtable</td><td>Tabla hash </td></tr>
-    <tr><td class="paramname">key</td><td>Caracteres a realizar hash </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>int Devuelve el elemento </dd></dl>
-
-</div>
-</div>
-<a id="af6f79910c3839fec8ac6d2072c11d956" name="af6f79910c3839fec8ac6d2072c11d956"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af6f79910c3839fec8ac6d2072c11d956">&#9670;&#160;</a></span>search_tablefile()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int search_tablefile </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structHashTable.html">HashTable</a> *</td>          <td class="paramname"><span class="paramname"><em>hashtable</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>filename</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Buscar un elemento proveniente del hash de un archivo dentro de una tabla. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hashtable</td><td>Tabla hash </td></tr>
-    <tr><td class="paramname">filename</td><td>Nombre del archivo </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>int Devuelve el elemento </dd></dl>
 
 </div>
 </div>

@@ -12,7 +12,7 @@
 /*! @def TABLE_SIZE
 *  @brief Tamanho vertical maximo de las tablas hash
 */
-#define TABLE_SIZE 100
+#define TABLE_SIZE 1000
 /*! @def COLITION_SIZE
 *  @brief Tamanho horizontal maximo de las tablas hash, hecho para evitar colisiones
 */
@@ -21,6 +21,10 @@
 *  @brief Tamanho maximo de caracteres para algunos strings
 */
 #define MAX_CHAR 255
+/**!@def COMMAND
+ * @brief Tamanho maximo de caracteres para comando
+ */
+#define COMMAND 1060
 
 
 /*! \struct HashEntry

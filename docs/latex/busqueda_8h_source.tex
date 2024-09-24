@@ -9,35 +9,36 @@
 \DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string.h>}}
 \DoxyCodeLine{00010\ }
 \DoxyCodeLine{00011\ }
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ TABLE\_SIZE\ 100}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ TABLE\_SIZE\ 1000}}
 \DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ COLITION\_SIZE\ 10}}
 \DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ MAX\_CHAR\ 255}}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00029\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}\{}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{char}\ key[\mbox{\hyperlink{busqueda_8h_a82acb32225c05e9aa4c524c40bc5852a}{MAX\_CHAR}}];\ }
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structHashEntry_aa225f361520a57dbaf93e9d00bf69490}{value}};\ }
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structHashEntry_ac896858e7a456ded239ea4267bdc69cb}{is\_occupied}};\ }
-\DoxyCodeLine{00033\ \}\ \mbox{\hyperlink{structHashEntry}{HashEntry}};}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00038\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{\ \ \ \ }
-\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{structHashEntry}{HashEntry}}\ table[\mbox{\hyperlink{busqueda_8h_a032503e76d6f69bc67e99e909c8125da}{TABLE\_SIZE}}][\mbox{\hyperlink{busqueda_8h_a85e9e9ac1ece956cf4c21c110f1b829e}{COLITION\_SIZE}}];\ }
-\DoxyCodeLine{00040\ \}\ \mbox{\hyperlink{structHashTable}{HashTable}};}
-\DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{busqueda_8h_aac0e4071b93021a3454f4d61d277b519}{jenkins\_hash}}(\textcolor{keywordtype}{char}*\ key);}
-\DoxyCodeLine{00044\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{busqueda_8h_aa0fd4cd0b254cc3956df8e78d1c84b29}{hashFile}}\ (\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ filename\ );}
-\DoxyCodeLine{00045\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{busqueda_8h_acea26051f859115de97c9c8f355408e3}{Dinamic\_jenkins}}\ (\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *\ key\ ,\ \textcolor{keywordtype}{size\_t}\ lenght\ );}
-\DoxyCodeLine{00046\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_a486db035c34287e349aaddfcbf23cd6c}{init\_table}}(\mbox{\hyperlink{structHashTable}{HashTable}}\ *hashtable);}
-\DoxyCodeLine{00047\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_abd81886c7c597f583d90b19638486f4e}{insert\_hash}}(\mbox{\hyperlink{structHashTable}{HashTable}}\ *\ hashtable,\ \textcolor{keywordtype}{char}*\ key,\ \textcolor{keywordtype}{int}\ value,\ \textcolor{keywordtype}{int}\ *\ columns);}
-\DoxyCodeLine{00048\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_a98669dc5bf8c4024e86eaec3a921ffc3}{insert\_hashfile}}(\mbox{\hyperlink{structHashTable}{HashTable}}\ *\ hashtable,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ filename,\ \textcolor{keywordtype}{int}\ value,\ \textcolor{keywordtype}{int}\ *\ columns);}
-\DoxyCodeLine{00049\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{busqueda_8h_a6eb71ed4677cf7de93ef5f6ff2c4e666}{search\_table}}(\mbox{\hyperlink{structHashTable}{HashTable}}\ *\ hashtable,\ \textcolor{keywordtype}{char}\ *\ key);}
-\DoxyCodeLine{00050\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{busqueda_8h_af6f79910c3839fec8ac6d2072c11d956}{search\_tablefile}}(\mbox{\hyperlink{structHashTable}{HashTable}}\ *\ hashtable,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ filename);}
-\DoxyCodeLine{00051\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_a2e50f204938326b0f068e3ea0c1f5480}{delete\_element}}(\mbox{\hyperlink{structHashTable}{HashTable}}\ *\ hashtable,\ \textcolor{keywordtype}{char}\ *\ key);}
-\DoxyCodeLine{00052\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_a30f7e06d15014233fc6f526f14d5d055}{delete\_elementfile}}(\mbox{\hyperlink{structHashTable}{HashTable}}\ *\ hashtable,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ filename);}
-\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_a555dc2f13506f0786849db5b77977bcb}{print\_table}}(\mbox{\hyperlink{structHashTable}{HashTable}}*\ hashtable);}
-\DoxyCodeLine{00054\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_a22a38f6641bcc2e9961e489a63947218}{print\_tablefile}}(\mbox{\hyperlink{structHashTable}{HashTable}}*\ hashtable,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filename);}
-\DoxyCodeLine{00055\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_ac6d12db55ed6bc33468e246b129a7fd4}{save\_table}}(\mbox{\hyperlink{structHashTable}{HashTable}}*\ hashtable,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ filename);}
-\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ COMMAND\ 1060}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}\{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{char}\ key[\mbox{\hyperlink{busqueda_8h_a82acb32225c05e9aa4c524c40bc5852a}{MAX\_CHAR}}];\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structHashEntry_aa225f361520a57dbaf93e9d00bf69490}{value}};\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structHashEntry_ac896858e7a456ded239ea4267bdc69cb}{is\_occupied}};\ }
+\DoxyCodeLine{00037\ \}\ \mbox{\hyperlink{structHashEntry}{HashEntry}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{\ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{structHashEntry}{HashEntry}}\ table[\mbox{\hyperlink{busqueda_8h_a032503e76d6f69bc67e99e909c8125da}{TABLE\_SIZE}}][\mbox{\hyperlink{busqueda_8h_a85e9e9ac1ece956cf4c21c110f1b829e}{COLITION\_SIZE}}];\ }
+\DoxyCodeLine{00044\ \}\ \mbox{\hyperlink{structHashTable}{HashTable}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{busqueda_8h_aac0e4071b93021a3454f4d61d277b519}{jenkins\_hash}}(\textcolor{keywordtype}{char}*\ key);}
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{busqueda_8h_aa0fd4cd0b254cc3956df8e78d1c84b29}{hashFile}}\ (\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ filename\ );}
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{busqueda_8h_acea26051f859115de97c9c8f355408e3}{Dinamic\_jenkins}}\ (\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *\ key\ ,\ \textcolor{keywordtype}{size\_t}\ lenght\ );}
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_a486db035c34287e349aaddfcbf23cd6c}{init\_table}}(\mbox{\hyperlink{structHashTable}{HashTable}}\ *hashtable);}
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_abd81886c7c597f583d90b19638486f4e}{insert\_hash}}(\mbox{\hyperlink{structHashTable}{HashTable}}\ *\ hashtable,\ \textcolor{keywordtype}{char}*\ key,\ \textcolor{keywordtype}{int}\ value,\ \textcolor{keywordtype}{int}\ *\ columns);}
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_a98669dc5bf8c4024e86eaec3a921ffc3}{insert\_hashfile}}(\mbox{\hyperlink{structHashTable}{HashTable}}\ *\ hashtable,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ filename,\ \textcolor{keywordtype}{int}\ value,\ \textcolor{keywordtype}{int}\ *\ columns);}
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{int}\ search\_table(\mbox{\hyperlink{structHashTable}{HashTable}}\ *\ hashtable,\ \textcolor{keywordtype}{char}\ *\ key);}
+\DoxyCodeLine{00054\ \textcolor{keywordtype}{int}\ search\_tablefile(\mbox{\hyperlink{structHashTable}{HashTable}}\ *\ hashtable,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ filename);}
+\DoxyCodeLine{00055\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_a2e50f204938326b0f068e3ea0c1f5480}{delete\_element}}(\mbox{\hyperlink{structHashTable}{HashTable}}\ *\ hashtable,\ \textcolor{keywordtype}{char}\ *\ key);}
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_a30f7e06d15014233fc6f526f14d5d055}{delete\_elementfile}}(\mbox{\hyperlink{structHashTable}{HashTable}}\ *\ hashtable,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ filename);}
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_a555dc2f13506f0786849db5b77977bcb}{print\_table}}(\mbox{\hyperlink{structHashTable}{HashTable}}*\ hashtable);}
+\DoxyCodeLine{00058\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_a22a38f6641bcc2e9961e489a63947218}{print\_tablefile}}(\mbox{\hyperlink{structHashTable}{HashTable}}*\ hashtable,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filename);}
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{busqueda_8h_ac6d12db55ed6bc33468e246b129a7fd4}{save\_table}}(\mbox{\hyperlink{structHashTable}{HashTable}}*\ hashtable,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ filename);}
+\DoxyCodeLine{00060\ }
 
 \end{DoxyCode}

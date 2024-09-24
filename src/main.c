@@ -25,6 +25,10 @@
 
 int main(int argc, char** argv){
 
+	HashTable table_1;
+	init_table(&table_1);
+	print_tablefile(&table_1, ".ugit/commits/commits_table");
+
 
 	/* EN EL CASO DE QUE SE INGRESE UN COMANDO */
     if(argc>1){ 
@@ -129,7 +133,7 @@ int main(int argc, char** argv){
 								copy_and_paste(argv[i],file_add_directory);
 							}
 							else {
-								printf("ERROR: '%s' no es un archivo valido para ser agregado", argv[i]);
+								printf("ERROR: '%s' no es un archivo valido para ser agregado\n", argv[i]);
 							}
 						}
 						//Si el archivo no existe
@@ -196,7 +200,7 @@ int main(int argc, char** argv){
 						if(!is_folder_empty(".ugit/index")){
 
 							//variable auxiliar para comandos dinamicos
-							char command[1024];
+							char command[COMMAND];
 
 							/*ARCHIVO DEL COMMIT*/
 
@@ -247,7 +251,7 @@ int main(int argc, char** argv){
 											fprintf(commit_file,"%s %u\n",file_for_commit->d_name,hashFile(auxchar));
 
 											//mover archivo de index a objects con su hash
-											sprintf(command,"cp %s .ugit/objects/%u", auxchar, hashFile(auxchar));
+											sprintf(command, "cp %s .ugit/objects/%u", auxchar, hashFile(auxchar));
 											system(command);
 											//eliminar archivo del staging area
 											sprintf(command,"rm %s", auxchar);
@@ -269,7 +273,7 @@ int main(int argc, char** argv){
 									if(userinfo){
 										char username[255];
 										//imprimir log con nombre
-										if(fscanf(userinfo,"%s",&username)!=EOF){
+										if(fscanf(userinfo,"%s",username)!=EOF){
 										fprintf(log_file,"Hecho por: %s\n\n",username);
 										}
 										//imprimir log sin nombre
@@ -351,7 +355,7 @@ int main(int argc, char** argv){
 						//verificar que se coloco la cantidad de argumentos adecuada
 						if(argc==3){
 
-							char command[1024]; //variable auxiliar para comandos dinamicos
+							char command[COMMAND]; //variable auxiliar para comandos dinamicos
 
 							//verificar si el commit ingresado existe
 							sprintf(command,".ugit/commits/%s",argv[2]);
@@ -407,6 +411,38 @@ int main(int argc, char** argv){
 					}
 				}
 			/*END*/
+
+			else if (!strcmp(argv[1], "status")){
+				
+				if(is_initialized(".ugit/index")){
+
+					if(!is_folder_empty(".ugit/index")){
+
+						DIR *staging_area;
+						staging_area=opendir(".ugit/index");
+						struct dirent *stg_file;
+
+						while((stg_file=readdir(staging_area))!=NULL){
+							if(!is_core_file(stg_file)){
+							
+							}
+						}
+
+
+						
+
+					}
+
+					else{
+						printf("No se ha agragado ningun cambio al commit (use 'ugit add')\n");
+					}
+
+				}
+				else{
+					printf("ERROR: No se encontraron los archivos necesarios para que uGit funcione\n");
+				}
+
+			}
 
 			else if(!is_valid_command(argv[1])){
 				printf("ERROR: Comando invalido. Utilice 'ugit help' para ver la lista de comandos");

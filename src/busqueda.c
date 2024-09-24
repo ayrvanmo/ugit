@@ -221,70 +221,10 @@ void insert_hashfile(HashTable * hashtable, const char * filename, int value, in
                 return;
             }
         }
-        printf("No se ha encontrado espacio para insertar un nuevo elemento \n "); 
-    }
-}
-
-/**
- * @brief Buscar un elemeno dentro de la tabla
- * 
- * @param hashtable Tabla hash
- * @param key Caracteres a realizar hash
- * @return int Devuelve el elemento
- */
-int search_table(HashTable * hashtable, char * key){
-
-    unsigned int index = jenkins_hash(key);
-    for(int i = 0; i < COLITION_SIZE; i++){
-        if(hashtable->table[index][i].is_occupied == true)
-            return hashtable->table[index][i].value;
-
-         //EN EL CASO DE QUE EXISTA UNA COLICION
-        else{
-            int j = i;
-            while (hashtable->table[index][j].is_occupied == false && j < COLITION_SIZE ){
-                j++;
-            }
-
-            if (hashtable->table[index][j].is_occupied == true) 
-                return hashtable->table[index][i].value;
+        printf("No se ha encontrado espacio para este commit, considere utilizar 'ugit reset'\n "); 
         
-        }
     }
-
-    printf("No se ha encontrado el elemento\n");
-    return -1;
-
-}
-
-/**
- * @brief Buscar un elemento proveniente del hash de un archivo dentro de una tabla
- * 
- * @param hashtable Tabla hash
- * @param filename Nombre del archivo
- * @return int Devuelve el elemento
- */
-int search_tablefile(HashTable * hashtable, const char * filename){
-
-    unsigned int index = hashFile(filename);
-    for(int i = 0; i < COLITION_SIZE; i++){
-
-        if(hashtable->table[index][i].is_occupied == true)
-            return hashtable->table[index][i].value;
-        
-
-         //EN EL CASO DE QUE EXISTA UNA COLICION
-        else{
-            int j = i;
-            while (hashtable->table[index][j].is_occupied == false && j < COLITION_SIZE ){
-                j++;
-            }
-            if (hashtable->table[index][j].is_occupied == true)  
-                return hashtable->table[index][i].value;
-        }
-    }
-    printf("No se ha encontrado el elemento\n");
-    return -1;
+    
 }
 
 /**
