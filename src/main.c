@@ -36,7 +36,7 @@ int main(int argc, char** argv){
 		// COMANDO PARA MOSTRAR LOS COMANDOS DISPONIBLES
 		if(!strcmp(argv[1],"help")){ 
 			printf("Comandos comunes de uGit:\n\n");
-			printf("Para inicializar un area de trabajo\n   init       Crear un repositorio vacio\n\nTrabajar y realizar cambios actuales\n   add        Agregar contenido al staging area\n   rm         Borrar archivos del staging area\n\nHistorial comun\n   commit     Grabar los cambios del repositorio\n   log        Ver historial de commits\n   checkout   Volver a commit anterior\n\nConfiguracion\n   set.name   Establecer nombre de usuario\n\n");
+			printf("Para inicializar un area de trabajo\n   init       Crear un repositorio vacio\n\nTrabajar y realizar cambios actuales\n   add        Agregar contenido al staging area\n   rm         Borrar archivos del staging area\n\nHistorial comun\n   commit     Grabar los cambios del repositorio\n   log        Ver historial de commits\n   checkout   Volver a commit anterior\n   status     Revisar Staging area\n\nConfiguracion\n   set.name   Establecer nombre de usuario\n\n");
       	}	 	
 		/*END*/		
 
@@ -412,25 +412,22 @@ int main(int argc, char** argv){
 				}
 			/*END*/
 
-			else if (!strcmp(argv[1], "status")){
+			/*COMANDO PARA REVISAR EL STAGING AREA*/
+			else if(!strcmp(argv[1], "status")){
 				
 				if(is_initialized(".ugit/index")){
-
 					if(!is_folder_empty(".ugit/index")){
 
 						DIR *staging_area;
 						staging_area=opendir(".ugit/index");
 						struct dirent *stg_file;
-
+						printf("Los archivos por cambiar son\n\n");
 						while((stg_file=readdir(staging_area))!=NULL){
-							if(!is_core_file(stg_file)){
+							if(!is_core_file(stg_file))
+								printf("%s\n", stg_file->d_name);
 							
-							}
 						}
-
-
-						
-
+						free(stg_file);
 					}
 
 					else{
@@ -443,7 +440,9 @@ int main(int argc, char** argv){
 				}
 
 			}
+			/*END*/
 
+		
 			else if(!is_valid_command(argv[1])){
 				printf("ERROR: Comando invalido. Utilice 'ugit help' para ver la lista de comandos");
 			}

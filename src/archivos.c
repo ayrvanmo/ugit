@@ -96,5 +96,5 @@ bool is_core_file(struct dirent *entry)
  * @return false 
  */
 bool is_valid_command(char* command){
-    return(strcmp(command, "add") == 0 || strcmp(command, "rm") == 0 || strcmp(command, "commit") == 0 || strcmp(command, "log") == 0 || strcmp(command, "checkout") == 0 || strcmp(command, "set.name") == 0 || strcmp(command, "help") == 0 || strcmp(command, "init") == 0);
+    return(strcmp(command, "add") == 0 || strcmp(command, "rm") == 0 || strcmp(command, "commit") == 0 || strcmp(command, "log") == 0 || strcmp(command, "checkout") == 0 || strcmp(command, "set.name") == 0 || strcmp(command, "help") == 0 || strcmp(command, "init") == 0 || strcmp(command, "status") == 0 );
 }
