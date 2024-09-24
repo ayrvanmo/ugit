@@ -1,6 +1,6 @@
 /**
  * @file main.c
- * @author Mansilla-Morrison
+ * @author Iván Mansilla y Ayrton Morrison
  * @brief Codigo principal del programa
  * @version 1.0
  */
@@ -412,7 +412,7 @@ int main(int argc, char** argv){
 				}
 			/*END*/
 
-			/*COMANDO PARA REVISAR EL STAGING AREA*/
+			/*COMANDO PARA REVISAR ARCHIVOS EN EL STAGING AREA*/
 			else if(!strcmp(argv[1], "status")){
 				
 				if(is_initialized(".ugit/index")){
@@ -422,6 +422,7 @@ int main(int argc, char** argv){
 						staging_area=opendir(".ugit/index");
 						struct dirent *stg_file;
 						printf("Los archivos por cambiar son\n\n");
+
 						while((stg_file=readdir(staging_area))!=NULL){
 							if(!is_core_file(stg_file))
 								printf("%s\n", stg_file->d_name);
@@ -431,7 +432,7 @@ int main(int argc, char** argv){
 					}
 
 					else{
-						printf("No se ha agragado ningun cambio al commit (use 'ugit add')\n");
+						printf("No se ha agregado ningun cambio al commit. Use 'ugit add' [archivo]\n");
 					}
 
 				}

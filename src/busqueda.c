@@ -1,10 +1,11 @@
 /**
  * @file busqueda.c
- * @author Mansilla-Morrison
+ * @author Iván Mansilla y Ayrton Morrison
  * @brief Funciones relacionadas a tablas hash
  * @version 1.5
  * 
  */
+
 #include "busqueda.h"
 #include "archivos.h"
 

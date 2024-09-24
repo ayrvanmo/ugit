@@ -1,6 +1,6 @@
 /**
  * @file archivos.c
- * @author Mansilla-Morrison
+ * @author Iván Mansilla y Ayrton Morrison
  * @brief Funciones relacionadas a archivos
  * @version 1.5
  * 
