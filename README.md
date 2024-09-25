@@ -1,14 +1,21 @@
 <h1><p align="center">  μGit  </p></h1>
-<b><p align="center">Sistema de control de archivos local para GNU/Linux</p></b>
+<b><p align="center">Sistema de control de versiones local para GNU/Linux</p></b>
 <p align="center">Proyecto para el curso de Estructura de Datos 2024</p>
 
 ## Funciones
 * Gestionar versiones de archivos
 * Acceder a versiones anteriores
 * Historial de versiones
+  
+## Instalación
+1. Clone el repositorio
+2. Abra un terminal en la carpeta del repositorio, y ejecute `make`. Se creará la carpeta `build`, el cual contiene el ejecutable `ugit`
+3. Mueva el ejecutable `ugit` al directorio en donde quiera realizar el control de versiones y ejecute en el terminal `.\ugit init`
+4. Si se creó en el directorio la carpeta `.ugit`, ugit fue exitosamente instalado en la carpeta
+
 
 ## Comandos
-Todos los comandos deben ejecutarse con el sintax `./ugit [comando] [argumento]`
+Todos los comandos deben ejecutarse en el terminal con el sintax `./ugit [comando] [argumento]`
 - `help`: Para ver el listado de comandos
 - `init`: Para inicializar el repositorio
 - `add [archivo1] [archivo2] ...`: Para agregar archivos en el *staging area*
@@ -25,6 +32,6 @@ Todos los comandos deben ejecutarse con el sintax `./ugit [comando] [argumento]`
 - μGit NO funciona correctamente con carpetas, solo con archivos que estén en el mismo directorio
 
 
-## Autores
+## Créditos
 Iván Mansilla y Ayrton Morrison.
 
