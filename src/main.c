@@ -224,11 +224,18 @@ int main(int argc, char** argv){
 
 
 							//crear archivo del commit en la carpeta commits
-							sprintf(command, "touch .ugit/commits/%u%d",commit_hash, columns);
-							if(system(command)){
-								printf("ERROR: no se pudo crear el commit\n");
-								exit(1);
-							}
+                            sprintf(command, ".ugit/commits/%u%d",commit_hash, columns);
+                            if(!is_initialized(command)){
+                                sprintf(command, "touch .ugit/commits/%u%d",commit_hash, columns);
+                                if(system(command) !=0 ){
+                                    printf("ERROR: no se pudo crear el commit\n");
+                                    exit(1);
+                                }
+                            }
+                            else {
+                                printf("ERROR: No se pudo crear el commit, intente de nuevo\n");
+                                exit(1);
+                            }
 
 							/*ARCHIVOS EN EL STAGING AREA*/
 
