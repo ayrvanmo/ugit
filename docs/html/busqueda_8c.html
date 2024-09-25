@@ -123,15 +123,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a98669dc5bf8c4024e86eaec3a921ffc3" id="r_a98669dc5bf8c4024e86eaec3a921ffc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98669dc5bf8c4024e86eaec3a921ffc3">insert_hashfile</a> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, const char *filename, int value, int *columns)</td></tr>
 <tr class="memdesc:a98669dc5bf8c4024e86eaec3a921ffc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insertar el hash del contenido de un achivo en una tabla hash.  <br /></td></tr>
 <tr class="separator:a98669dc5bf8c4024e86eaec3a921ffc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e50f204938326b0f068e3ea0c1f5480" id="r_a2e50f204938326b0f068e3ea0c1f5480"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e50f204938326b0f068e3ea0c1f5480">delete_element</a> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, char *key)</td></tr>
-<tr class="memdesc:a2e50f204938326b0f068e3ea0c1f5480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Borra un elemento dentro de una tabla hash.  <br /></td></tr>
-<tr class="separator:a2e50f204938326b0f068e3ea0c1f5480"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30f7e06d15014233fc6f526f14d5d055" id="r_a30f7e06d15014233fc6f526f14d5d055"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30f7e06d15014233fc6f526f14d5d055">delete_elementfile</a> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, const char *filename)</td></tr>
-<tr class="memdesc:a30f7e06d15014233fc6f526f14d5d055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Borra un elemento proveniente de un archivo dentro de una tabla hash.  <br /></td></tr>
-<tr class="separator:a30f7e06d15014233fc6f526f14d5d055"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a555dc2f13506f0786849db5b77977bcb" id="r_a555dc2f13506f0786849db5b77977bcb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a555dc2f13506f0786849db5b77977bcb">print_table</a> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable)</td></tr>
-<tr class="memdesc:a555dc2f13506f0786849db5b77977bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imprime una tabla hash en pantalla.  <br /></td></tr>
-<tr class="separator:a555dc2f13506f0786849db5b77977bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22a38f6641bcc2e9961e489a63947218" id="r_a22a38f6641bcc2e9961e489a63947218"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22a38f6641bcc2e9961e489a63947218">print_tablefile</a> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, const char *filename)</td></tr>
 <tr class="memdesc:a22a38f6641bcc2e9961e489a63947218"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imprime y guarda una tabla hash dentro de un archivo.  <br /></td></tr>
 <tr class="separator:a22a38f6641bcc2e9961e489a63947218"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,66 +135,6 @@ Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Iván Mansilla y Ayrton Morrison </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.5 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a2e50f204938326b0f068e3ea0c1f5480" name="a2e50f204938326b0f068e3ea0c1f5480"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e50f204938326b0f068e3ea0c1f5480">&#9670;&#160;</a></span>delete_element()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void delete_element </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structHashTable.html">HashTable</a> *</td>          <td class="paramname"><span class="paramname"><em>hashtable</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Borra un elemento dentro de una tabla hash. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hashtable</td><td>Tabla hash </td></tr>
-    <tr><td class="paramname">key</td><td>Caracter relacionado al elemento </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a30f7e06d15014233fc6f526f14d5d055" name="a30f7e06d15014233fc6f526f14d5d055"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30f7e06d15014233fc6f526f14d5d055">&#9670;&#160;</a></span>delete_elementfile()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void delete_elementfile </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structHashTable.html">HashTable</a> *</td>          <td class="paramname"><span class="paramname"><em>hashtable</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>filename</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Borra un elemento proveniente de un archivo dentro de una tabla hash. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hashtable</td><td>Tabla hash </td></tr>
-    <tr><td class="paramname">filename</td><td>Nombre del archivo </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="acea26051f859115de97c9c8f355408e3" name="acea26051f859115de97c9c8f355408e3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acea26051f859115de97c9c8f355408e3">&#9670;&#160;</a></span>Dinamic_jenkins()</h2>
 
@@ -394,31 +325,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>unsigned int Devuelve el hash </dd></dl>
-
-</div>
-</div>
-<a id="a555dc2f13506f0786849db5b77977bcb" name="a555dc2f13506f0786849db5b77977bcb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a555dc2f13506f0786849db5b77977bcb">&#9670;&#160;</a></span>print_table()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void print_table </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structHashTable.html">HashTable</a> *</td>          <td class="paramname"><span class="paramname"><em>hashtable</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Imprime una tabla hash en pantalla. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hashtable</td><td>Tabla hash </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

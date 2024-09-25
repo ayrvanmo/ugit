@@ -22,12 +22,6 @@ void \mbox{\hyperlink{busqueda_8c_abd81886c7c597f583d90b19638486f4e}{insert\+\_\
 \begin{DoxyCompactList}\small\item\em Insertar hash en una tabla hash. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{busqueda_8c_a98669dc5bf8c4024e86eaec3a921ffc3}{insert\+\_\+hashfile}} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, const char \texorpdfstring{$\ast$}{*}filename, int value, int \texorpdfstring{$\ast$}{*}columns)
 \begin{DoxyCompactList}\small\item\em Insertar el hash del contenido de un achivo en una tabla hash. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{busqueda_8c_a2e50f204938326b0f068e3ea0c1f5480}{delete\+\_\+element}} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, char \texorpdfstring{$\ast$}{*}key)
-\begin{DoxyCompactList}\small\item\em Borra un elemento dentro de una tabla hash. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{busqueda_8c_a30f7e06d15014233fc6f526f14d5d055}{delete\+\_\+elementfile}} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, const char \texorpdfstring{$\ast$}{*}filename)
-\begin{DoxyCompactList}\small\item\em Borra un elemento proveniente de un archivo dentro de una tabla hash. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{busqueda_8c_a555dc2f13506f0786849db5b77977bcb}{print\+\_\+table}} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable)
-\begin{DoxyCompactList}\small\item\em Imprime una tabla hash en pantalla. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{busqueda_8c_a22a38f6641bcc2e9961e489a63947218}{print\+\_\+tablefile}} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, const char \texorpdfstring{$\ast$}{*}filename)
 \begin{DoxyCompactList}\small\item\em Imprime y guarda una tabla hash dentro de un archivo. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{busqueda_8c_ac6d12db55ed6bc33468e246b129a7fd4}{save\+\_\+table}} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, const char \texorpdfstring{$\ast$}{*}filename)
@@ -46,40 +40,6 @@ Iván Mansilla y Ayrton Morrison
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{busqueda_8c_a2e50f204938326b0f068e3ea0c1f5480}\label{busqueda_8c_a2e50f204938326b0f068e3ea0c1f5480} 
-\index{busqueda.c@{busqueda.c}!delete\_element@{delete\_element}}
-\index{delete\_element@{delete\_element}!busqueda.c@{busqueda.c}}
-\doxysubsubsection{\texorpdfstring{delete\_element()}{delete\_element()}}
-{\footnotesize\ttfamily void delete\+\_\+element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}}]{hashtable,  }\item[{char \texorpdfstring{$\ast$}{*}}]{key }\end{DoxyParamCaption})}
-
-
-
-Borra un elemento dentro de una tabla hash. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em hashtable} & Tabla hash \\
-\hline
-{\em key} & Caracter relacionado al elemento \\
-\hline
-\end{DoxyParams}
-\Hypertarget{busqueda_8c_a30f7e06d15014233fc6f526f14d5d055}\label{busqueda_8c_a30f7e06d15014233fc6f526f14d5d055} 
-\index{busqueda.c@{busqueda.c}!delete\_elementfile@{delete\_elementfile}}
-\index{delete\_elementfile@{delete\_elementfile}!busqueda.c@{busqueda.c}}
-\doxysubsubsection{\texorpdfstring{delete\_elementfile()}{delete\_elementfile()}}
-{\footnotesize\ttfamily void delete\+\_\+elementfile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}}]{hashtable,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
-
-
-
-Borra un elemento proveniente de un archivo dentro de una tabla hash. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em hashtable} & Tabla hash \\
-\hline
-{\em filename} & Nombre del archivo \\
-\hline
-\end{DoxyParams}
 \Hypertarget{busqueda_8c_acea26051f859115de97c9c8f355408e3}\label{busqueda_8c_acea26051f859115de97c9c8f355408e3} 
 \index{busqueda.c@{busqueda.c}!Dinamic\_jenkins@{Dinamic\_jenkins}}
 \index{Dinamic\_jenkins@{Dinamic\_jenkins}!busqueda.c@{busqueda.c}}
@@ -196,21 +156,6 @@ Funcion hash para caracteres conocidos.
 \begin{DoxyReturn}{Returns}
 unsigned int Devuelve el hash 
 \end{DoxyReturn}
-\Hypertarget{busqueda_8c_a555dc2f13506f0786849db5b77977bcb}\label{busqueda_8c_a555dc2f13506f0786849db5b77977bcb} 
-\index{busqueda.c@{busqueda.c}!print\_table@{print\_table}}
-\index{print\_table@{print\_table}!busqueda.c@{busqueda.c}}
-\doxysubsubsection{\texorpdfstring{print\_table()}{print\_table()}}
-{\footnotesize\ttfamily void print\+\_\+table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}}]{hashtable }\end{DoxyParamCaption})}
-
-
-
-Imprime una tabla hash en pantalla. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em hashtable} & Tabla hash \\
-\hline
-\end{DoxyParams}
 \Hypertarget{busqueda_8c_a22a38f6641bcc2e9961e489a63947218}\label{busqueda_8c_a22a38f6641bcc2e9961e489a63947218} 
 \index{busqueda.c@{busqueda.c}!print\_tablefile@{print\_tablefile}}
 \index{print\_tablefile@{print\_tablefile}!busqueda.c@{busqueda.c}}

@@ -228,22 +228,6 @@ void insert_hashfile(HashTable * hashtable, const char * filename, int value, in
     
 }
 
-/**
- * @brief Imprime una tabla hash en pantalla
- * 
- * @param hashtable Tabla hash
- */
-void print_table(HashTable* hashtable) {
-
-    for (int i = 0; i < TABLE_SIZE ; i++) {
-        printf("Index %d:", i);
-        for (int j = 0; j < COLITION_SIZE; j++) {
-            if (hashtable->table[i][j].is_occupied) 
-                printf("[%d][%d] Key: %s, Value: %d ", i, j, hashtable->table[i][j].key, hashtable->table[i][j].value);      
-        }
-        printf("\n");
-    }
-}
 
 /**
  * @brief Imprime y guarda una tabla hash dentro de un archivo

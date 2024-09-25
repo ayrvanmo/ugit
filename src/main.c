@@ -25,10 +25,6 @@
 
 int main(int argc, char** argv){
 
-	HashTable table_1;
-	init_table(&table_1);
-	print_tablefile(&table_1, ".ugit/commits/commits_table");
-
 
 	/* EN EL CASO DE QUE SE INGRESE UN COMANDO */
     if(argc>1){ 
@@ -214,9 +210,16 @@ int main(int argc, char** argv){
 							init_table(&commits_table);
 							save_table(&commits_table,".ugit/commits/commits_table");
 							int columns=0;
+							
+							//PARA BORRAR EL SALTO DE LINEA Y QUE SEA GUARDE SIN ESTE
+							size_t length_time = strlen(user_time_str);
+							if(length_time > 0 && user_time_str[length_time-1] == '\n'){
+								user_time_str[length_time - 1] = '\0';
+							}
 
 							//insertar el commit en la tabla hash
 							insert_hash(&commits_table,user_time_str, commit_hash, &columns);
+
 							print_tablefile(&commits_table,".ugit/commits/commits_table");
 
 
