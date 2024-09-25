@@ -222,7 +222,7 @@ void insert_hashfile(HashTable * hashtable, const char * filename, int value, in
                 return;
             }
         }
-        printf("No se ha encontrado espacio para este commit, considere utilizar 'ugit reset'\n "); 
+        printf("No se ha encontrado espacio para este commit\n "); 
         
     }
     
