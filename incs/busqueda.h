@@ -1,5 +1,5 @@
 /**
- * @file archivos.h
+ * @file busqueda.h
  * @author Iván Mansilla y Ayrton Morrison
  * 
  */

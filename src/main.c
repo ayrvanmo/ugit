@@ -225,14 +225,8 @@ int main(int argc, char** argv){
 
 							//crear archivo del commit en la carpeta commits
 							sprintf(command, "touch .ugit/commits/%u%d",commit_hash, columns);
-							if(!is_initialized(command)){
-								if(!system(command)){
-									printf("ERROR: no se pudo crear el commit\n");
-									exit(1);
-								}
-							}
-							else {
-								printf("ERROR FATAL: No se pudo crear el commit, intente de nuevo");
+							if(system(command)){
+								printf("ERROR: no se pudo crear el commit\n");
 								exit(1);
 							}
 
