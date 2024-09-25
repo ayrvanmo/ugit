@@ -1,6 +1,7 @@
 <h1><p align="center">  μGit  </p></h1>
 <b><p align="center">Sistema de control de versiones local para GNU/Linux</p></b>
 <p align="center">Proyecto para el curso de Estructura de Datos 2024</p>
+<p align="center"><a href="https://ayrvanmo.github.io/ugit/html/">Documentación</a></p>
 
 ## Funciones
 * Gestionar versiones de archivos
