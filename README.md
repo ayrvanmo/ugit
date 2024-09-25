@@ -17,6 +17,7 @@ Todos los comandos deben ejecutarse con el sintax `./ugit [comando] [argumento]`
 - `commit [mensaje]`: Para crear un commit
 - `log`: Para ver el historial de commits
 - `checkout [commit_hash]`: Para cambiar entre versiones
+- `status`: Para revisar el stagging area
   > Comando borra archivos que no son parte del commit! Guardar antes archivos importantes que esten en el directorio
 - `set.name [nombre]`: Para establecer un nombre de usuario
 
