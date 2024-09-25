@@ -203,6 +203,13 @@ int main(int argc, char** argv){
 							//crear hash del commit con el tiempo de la maquina
 							time_t user_time=time(NULL);
 							char *user_time_str=ctime(&user_time);
+
+							//PARA BORRAR EL SALTO DE LINEA Y QUE SEA GUARDE SIN ESTE
+							size_t length_time = strlen(user_time_str);
+							if(length_time > 0 && user_time_str[length_time-1] == '\n'){
+								user_time_str[length_time - 1] = '\0';
+							}
+
 							unsigned int commit_hash=jenkins_hash(user_time_str);
 
 							//leer tabla hash de commits
@@ -211,11 +218,7 @@ int main(int argc, char** argv){
 							save_table(&commits_table,".ugit/commits/commits_table");
 							int columns=0;
 							
-							//PARA BORRAR EL SALTO DE LINEA Y QUE SEA GUARDE SIN ESTE
-							size_t length_time = strlen(user_time_str);
-							if(length_time > 0 && user_time_str[length_time-1] == '\n'){
-								user_time_str[length_time - 1] = '\0';
-							}
+
 
 							//insertar el commit en la tabla hash
 							insert_hash(&commits_table,user_time_str, commit_hash, &columns);
