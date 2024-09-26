@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['save_5ftable_0',['save_table',['../busqueda_8h.html#ac6d12db55ed6bc33468e246b129a7fd4',1,'save_table(HashTable *hashtable, const char *filename):&#160;busqueda.c'],['../busqueda_8c.html#ac6d12db55ed6bc33468e246b129a7fd4',1,'save_table(HashTable *hashtable, const char *filename):&#160;busqueda.c']]]
+  ['table_0',['table',['../structHashTable.html#addaa66e84014ed4484f21ffcdc6d834b',1,'HashTable']]],
+  ['table_5fsize_1',['TABLE_SIZE',['../busqueda_8h.html#a032503e76d6f69bc67e99e909c8125da',1,'busqueda.h']]]
 ];
