@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main.c']]]
+  ['load_5ftable_0',['load_table',['../busqueda_8h.html#af50d0ecb9a68a359be552e739152f426',1,'load_table(HashTable *hashtable, const char *filename):&#160;busqueda.c'],['../busqueda_8c.html#af50d0ecb9a68a359be552e739152f426',1,'load_table(HashTable *hashtable, const char *filename):&#160;busqueda.c']]]
 ];

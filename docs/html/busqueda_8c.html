@@ -126,9 +126,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a22a38f6641bcc2e9961e489a63947218" id="r_a22a38f6641bcc2e9961e489a63947218"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22a38f6641bcc2e9961e489a63947218">print_tablefile</a> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, const char *filename)</td></tr>
 <tr class="memdesc:a22a38f6641bcc2e9961e489a63947218"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imprime y guarda una tabla hash dentro de un archivo.  <br /></td></tr>
 <tr class="separator:a22a38f6641bcc2e9961e489a63947218"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6d12db55ed6bc33468e246b129a7fd4" id="r_ac6d12db55ed6bc33468e246b129a7fd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6d12db55ed6bc33468e246b129a7fd4">save_table</a> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, const char *filename)</td></tr>
-<tr class="memdesc:ac6d12db55ed6bc33468e246b129a7fd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escanea una tabla hash proveniente de un archivo y lo guarda en el programa.  <br /></td></tr>
-<tr class="separator:ac6d12db55ed6bc33468e246b129a7fd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af50d0ecb9a68a359be552e739152f426" id="r_af50d0ecb9a68a359be552e739152f426"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af50d0ecb9a68a359be552e739152f426">load_table</a> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, const char *filename)</td></tr>
+<tr class="memdesc:af50d0ecb9a68a359be552e739152f426"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escanea una tabla hash proveniente de un archivo y lo guarda en el programa.  <br /></td></tr>
+<tr class="separator:af50d0ecb9a68a359be552e739152f426"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Funciones relacionadas a tablas hash. </p>
@@ -328,6 +328,37 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="af50d0ecb9a68a359be552e739152f426" name="af50d0ecb9a68a359be552e739152f426"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af50d0ecb9a68a359be552e739152f426">&#9670;&#160;</a></span>load_table()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void load_table </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structHashTable.html">HashTable</a> *</td>          <td class="paramname"><span class="paramname"><em>hashtable</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>filename</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Escanea una tabla hash proveniente de un archivo y lo guarda en el programa. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hashtable</td><td>Tabla hash </td></tr>
+    <tr><td class="paramname">filename</td><td>Nombre del archivo</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>El archivo debe estar en el formato que consigue con la funcion "print_tablefile" </dd></dl>
+
+</div>
+</div>
 <a id="a22a38f6641bcc2e9961e489a63947218" name="a22a38f6641bcc2e9961e489a63947218"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a22a38f6641bcc2e9961e489a63947218">&#9670;&#160;</a></span>print_tablefile()</h2>
 
@@ -355,37 +386,6 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="ac6d12db55ed6bc33468e246b129a7fd4" name="ac6d12db55ed6bc33468e246b129a7fd4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6d12db55ed6bc33468e246b129a7fd4">&#9670;&#160;</a></span>save_table()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void save_table </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structHashTable.html">HashTable</a> *</td>          <td class="paramname"><span class="paramname"><em>hashtable</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>filename</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Escanea una tabla hash proveniente de un archivo y lo guarda en el programa. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hashtable</td><td>Tabla hash </td></tr>
-    <tr><td class="paramname">filename</td><td>Nombre del archivo</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd>El archivo debe estar en el formato que consigue con la funcion "print_tablefile" </dd></dl>
 
 </div>
 </div>

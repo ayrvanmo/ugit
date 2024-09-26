@@ -12,6 +12,6 @@ var busqueda_8h =
     [ "insert_hash", "busqueda_8h.html#abd81886c7c597f583d90b19638486f4e", null ],
     [ "insert_hashfile", "busqueda_8h.html#a98669dc5bf8c4024e86eaec3a921ffc3", null ],
     [ "jenkins_hash", "busqueda_8h.html#aac0e4071b93021a3454f4d61d277b519", null ],
-    [ "print_tablefile", "busqueda_8h.html#a22a38f6641bcc2e9961e489a63947218", null ],
-    [ "save_table", "busqueda_8h.html#ac6d12db55ed6bc33468e246b129a7fd4", null ]
+    [ "load_table", "busqueda_8h.html#af50d0ecb9a68a359be552e739152f426", null ],
+    [ "print_tablefile", "busqueda_8h.html#a22a38f6641bcc2e9961e489a63947218", null ]
 ];

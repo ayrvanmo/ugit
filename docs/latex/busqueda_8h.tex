@@ -42,7 +42,7 @@ void \mbox{\hyperlink{busqueda_8h_a98669dc5bf8c4024e86eaec3a921ffc3}{insert\+\_\
 \begin{DoxyCompactList}\small\item\em Insertar el hash del contenido de un achivo en una tabla hash. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{busqueda_8h_a22a38f6641bcc2e9961e489a63947218}{print\+\_\+tablefile}} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, const char \texorpdfstring{$\ast$}{*}filename)
 \begin{DoxyCompactList}\small\item\em Imprime y guarda una tabla hash dentro de un archivo. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{busqueda_8h_ac6d12db55ed6bc33468e246b129a7fd4}{save\+\_\+table}} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, const char \texorpdfstring{$\ast$}{*}filename)
+void \mbox{\hyperlink{busqueda_8h_af50d0ecb9a68a359be552e739152f426}{load\+\_\+table}} (\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}hashtable, const char \texorpdfstring{$\ast$}{*}filename)
 \begin{DoxyCompactList}\small\item\em Escanea una tabla hash proveniente de un archivo y lo guarda en el programa. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -182,6 +182,26 @@ Funcion hash para caracteres conocidos.
 \begin{DoxyReturn}{Returns}
 unsigned int Devuelve el hash 
 \end{DoxyReturn}
+\Hypertarget{busqueda_8h_af50d0ecb9a68a359be552e739152f426}\label{busqueda_8h_af50d0ecb9a68a359be552e739152f426} 
+\index{busqueda.h@{busqueda.h}!load\_table@{load\_table}}
+\index{load\_table@{load\_table}!busqueda.h@{busqueda.h}}
+\doxysubsubsection{\texorpdfstring{load\_table()}{load\_table()}}
+{\footnotesize\ttfamily void load\+\_\+table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}}]{hashtable,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+
+
+Escanea una tabla hash proveniente de un archivo y lo guarda en el programa. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hashtable} & Tabla hash \\
+\hline
+{\em filename} & Nombre del archivo\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+El archivo debe estar en el formato que consigue con la funcion "{}print\+\_\+tablefile"{} 
+\end{DoxyNote}
 \Hypertarget{busqueda_8h_a22a38f6641bcc2e9961e489a63947218}\label{busqueda_8h_a22a38f6641bcc2e9961e489a63947218} 
 \index{busqueda.h@{busqueda.h}!print\_tablefile@{print\_tablefile}}
 \index{print\_tablefile@{print\_tablefile}!busqueda.h@{busqueda.h}}
@@ -199,23 +219,3 @@ Imprime y guarda una tabla hash dentro de un archivo.
 {\em filename} & Nombre del archivo \\
 \hline
 \end{DoxyParams}
-\Hypertarget{busqueda_8h_ac6d12db55ed6bc33468e246b129a7fd4}\label{busqueda_8h_ac6d12db55ed6bc33468e246b129a7fd4} 
-\index{busqueda.h@{busqueda.h}!save\_table@{save\_table}}
-\index{save\_table@{save\_table}!busqueda.h@{busqueda.h}}
-\doxysubsubsection{\texorpdfstring{save\_table()}{save\_table()}}
-{\footnotesize\ttfamily void save\+\_\+table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structHashTable}{Hash\+Table}} \texorpdfstring{$\ast$}{*}}]{hashtable,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
-
-
-
-Escanea una tabla hash proveniente de un archivo y lo guarda en el programa. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em hashtable} & Tabla hash \\
-\hline
-{\em filename} & Nombre del archivo\\
-\hline
-\end{DoxyParams}
-\begin{DoxyNote}{Note}
-El archivo debe estar en el formato que consigue con la funcion "{}print\+\_\+tablefile"{} 
-\end{DoxyNote}
