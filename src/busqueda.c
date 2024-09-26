@@ -168,45 +168,6 @@ void insert_hash(HashTable * hashtable, char* key, int value, int * columns)
     printf("No se ha encontrado espacio para este commit\n");
 
 }
-/** 
- * @brief Insertar el hash del contenido de un achivo en una tabla hash
- * 
- * @param hashtable Tabla hash
- * @param filename Nombre del archivo
- * @param value ELemento a ingresar
- * @param columns Numero de columna en caso de colision
- */
-void insert_hashfile(HashTable * hashtable, const char * filename, int value, int * columns){
-
-    unsigned int index = hashFile(filename)%TABLE_SIZE;
-
-    if(strlen(filename) > MAX_CHAR){
-        printf("La key es muy larga\n");
-        return;
-    }
-
-    for (int i = 0; i < COLITION_SIZE; i++){
-
-        //PARA INSERTAR EL VALOR
-        if(hashtable->table[index][i].is_occupied == false){
-            sprintf(hashtable->table[index][i].key, filename);
-            hashtable->table[index][i].value = value;
-            hashtable->table[index][i].is_occupied = true;   
-            return;
-        }
-        //EN EL CASO DE QUE LA KEY SEA LA MISMA, SE ACTUALIZARA EL VALOR
-        else if(strcmp(hashtable->table[index][i].key,filename) == 0){
-            hashtable->table[index][i].value = value;
-            return;
-        }
-        //EN EL CASO DE QUE EXISTA UNA COLICION
-        (*columns)++;  
-    }
-    printf("No se ha encontrado espacio para este commit\n ");
-     
-    
-}
-
 
 /**
  * @brief Imprime y guarda una tabla hash dentro de un archivo
@@ -215,8 +176,8 @@ void insert_hashfile(HashTable * hashtable, const char * filename, int value, in
  * @param filename Nombre del archivo
  * 
  */
-void print_tablefile(HashTable* hashtable, const char * filename) {
-
+void print_tablefile(HashTable* hashtable, const char * filename) 
+{
 
     FILE *file = fopen(filename, "w");
     if (!file) {
