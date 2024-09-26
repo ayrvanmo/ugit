@@ -151,7 +151,7 @@ void insert_hash(HashTable * hashtable, char* key, int value, int * columns)
         // PARA INSERTAR EL VALOR
         if (!hashtable->table[index][i].is_occupied) {
             strncpy(hashtable->table[index][i].key, key, MAX_CHAR - 1);
-            hashtable->table[index][i].key[MAX_CHAR - 1] = '\0'; // Asegurar terminación nula
+            hashtable->table[index][i].key[MAX_CHAR - 1] = '\0';
             hashtable->table[index][i].value = value;
             hashtable->table[index][i].is_occupied = true;
             return;
