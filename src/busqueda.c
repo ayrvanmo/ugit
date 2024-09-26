@@ -209,11 +209,6 @@ void print_tablefile(HashTable* hashtable, const char * filename)
  */
 void load_table(HashTable* hashtable, const char * filename) {
 
-    if (!hashtable) {
-        fprintf(stderr, "El puntero de la tabla hash es nulo\n");
-        return;
-    }
-
     FILE *file = fopen(filename, "r");
     if (!file) {
         perror("No se puede abrir el archivo");
