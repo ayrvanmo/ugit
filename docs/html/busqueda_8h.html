@@ -150,8 +150,8 @@ Functions</h2></td></tr>
 <tr class="memitem:abd81886c7c597f583d90b19638486f4e" id="r_abd81886c7c597f583d90b19638486f4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd81886c7c597f583d90b19638486f4e">insert_hash</a> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, char *key, int value, int *columns)</td></tr>
 <tr class="memdesc:abd81886c7c597f583d90b19638486f4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insertar hash en una tabla hash.  <br /></td></tr>
 <tr class="separator:abd81886c7c597f583d90b19638486f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98669dc5bf8c4024e86eaec3a921ffc3" id="r_a98669dc5bf8c4024e86eaec3a921ffc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98669dc5bf8c4024e86eaec3a921ffc3">insert_hashfile</a> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, const char *filename, int value, int *columns)</td></tr>
-<tr class="memdesc:a98669dc5bf8c4024e86eaec3a921ffc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insertar el hash del contenido de un achivo en una tabla hash.  <br /></td></tr>
+<tr class="memitem:a98669dc5bf8c4024e86eaec3a921ffc3" id="r_a98669dc5bf8c4024e86eaec3a921ffc3"><td class="memItemLeft" align="right" valign="top"><a id="a98669dc5bf8c4024e86eaec3a921ffc3" name="a98669dc5bf8c4024e86eaec3a921ffc3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_hashfile</b> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, const char *filename, int value, int *columns)</td></tr>
 <tr class="separator:a98669dc5bf8c4024e86eaec3a921ffc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22a38f6641bcc2e9961e489a63947218" id="r_a22a38f6641bcc2e9961e489a63947218"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22a38f6641bcc2e9961e489a63947218">print_tablefile</a> (<a class="el" href="structHashTable.html">HashTable</a> *hashtable, const char *filename)</td></tr>
 <tr class="memdesc:a22a38f6641bcc2e9961e489a63947218"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imprime y guarda una tabla hash dentro de un archivo.  <br /></td></tr>
@@ -299,48 +299,6 @@ Functions</h2></td></tr>
     <tr><td class="paramname">hashtable</td><td>Tabla hash </td></tr>
     <tr><td class="paramname">key</td><td>Caracteres a realizar hash </td></tr>
     <tr><td class="paramname">value</td><td>Elemento a ingresar </td></tr>
-    <tr><td class="paramname">columns</td><td>Numero de columna en caso de colision </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a98669dc5bf8c4024e86eaec3a921ffc3" name="a98669dc5bf8c4024e86eaec3a921ffc3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98669dc5bf8c4024e86eaec3a921ffc3">&#9670;&#160;</a></span>insert_hashfile()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void insert_hashfile </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structHashTable.html">HashTable</a> *</td>          <td class="paramname"><span class="paramname"><em>hashtable</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>filename</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>value</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>columns</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Insertar el hash del contenido de un achivo en una tabla hash. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hashtable</td><td>Tabla hash </td></tr>
-    <tr><td class="paramname">filename</td><td>Nombre del archivo </td></tr>
-    <tr><td class="paramname">value</td><td>ELemento a ingresar </td></tr>
     <tr><td class="paramname">columns</td><td>Numero de columna en caso de colision </td></tr>
   </table>
   </dd>
