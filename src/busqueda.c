@@ -114,10 +114,6 @@ void init_table(HashTable *hashtable)
         fprintf(stderr, "El puntero de la tabla hash es nulo\n");
         return;
     }
-    if (!hashtable) {
-        fprintf(stderr, "El puntero de la tabla hash es nulo\n");
-        return;
-    }
 
     for (int i = 0; i < TABLE_SIZE; i++){
         
@@ -125,8 +121,6 @@ void init_table(HashTable *hashtable)
           
             hashtable->table[i][j].is_occupied = false;
             hashtable->table[i][j].value = 0;
-            strncpy(hashtable->table[i][j].key, "VACIO", MAX_CHAR - 1);
-            hashtable->table[i][j].key[MAX_CHAR - 1] = '\0'; 
             strncpy(hashtable->table[i][j].key, "VACIO", MAX_CHAR - 1);
             hashtable->table[i][j].key[MAX_CHAR - 1] = '\0'; 
         }    
@@ -152,18 +146,12 @@ void insert_hash(HashTable * hashtable, char* key, int value, int * columns)
     }
 
     unsigned int index = jenkins_hash(key) % TABLE_SIZE;
-    if (strlen(key) >= MAX_CHAR) {
-        printf("La key es muy larga\n");
-        return;
-    }
-
-    unsigned int index = jenkins_hash(key) % TABLE_SIZE;
     *columns = 0;
     for (int i = 0; i < COLITION_SIZE; i++){
 
         //PARA INSERTAR EL VALOR
         if(hashtable->table[index][i].is_occupied == false){
-            sprintf(hashtable->table[index][i].key, filename);
+            sprintf(hashtable->table[index][i].key, key);
             hashtable->table[index][i].value = value;
             hashtable->table[index][i].is_occupied = true;
             return;
@@ -190,7 +178,6 @@ void insert_hash(HashTable * hashtable, char* key, int value, int * columns)
  */
 void print_tablefile(HashTable* hashtable, const char * filename) 
 {
-
     FILE *file = fopen(filename, "w");
     if (!file) {
         perror("No se puede abrir el archivo\n");
@@ -235,8 +222,7 @@ void load_table(HashTable* hashtable, const char * filename) {
             hashtable->table[i][j].is_occupied = (bool)is_occupied;
 
             if (!hashtable->table[i][j].is_occupied) {
-                strncpy(hashtable->table[i][j].key, "VACIO", MAX_CHAR - 1);
-                hashtable->table[i][j].key[MAX_CHAR - 1] = '\0'; 
+                sprintf( hashtable->table[i][j].key, "VACIO");
             }
         }
     }
