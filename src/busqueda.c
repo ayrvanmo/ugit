@@ -9,8 +9,6 @@
 #include "busqueda.h"
 #include "archivos.h"
 
-
-
 /**
  * @brief Funcion hash para caracteres conocidos
  * 
@@ -33,7 +31,7 @@ unsigned int jenkins_hash(char* key)
    hash ^= (hash >> 11);
    hash += (hash << 15);
    
-   return hash % TABLE_SIZE;
+   return hash;
 }
 
 /**
@@ -111,6 +109,10 @@ unsigned int hashFile(const char *filename)
  */
 void init_table(HashTable *hashtable)
 {
+    if (!hashtable) {
+        fprintf(stderr, "El puntero de la tabla hash es nulo\n");
+        return;
+    }
 
     for (int i = 0; i < TABLE_SIZE; i++){
         
@@ -118,8 +120,8 @@ void init_table(HashTable *hashtable)
           
             hashtable->table[i][j].is_occupied = false;
             hashtable->table[i][j].value = 0;
-            sprintf(hashtable->table[i][j].key, "VACIO");
-
+            strncpy(hashtable->table[i][j].key, "VACIO", MAX_CHAR - 1);
+            hashtable->table[i][j].key[MAX_CHAR - 1] = '\0'; 
         }    
 
     }
@@ -137,97 +139,35 @@ void init_table(HashTable *hashtable)
 void insert_hash(HashTable * hashtable, char* key, int value, int * columns)
 {
 
-    unsigned int index = jenkins_hash(key);
-    *columns = 0;
-    for (int i = 0; i < COLITION_SIZE; i++){
-        //PARA INSERTAR EL VALOR
-        if(hashtable->table[index][i].is_occupied == false && strlen(key) < MAX_CHAR){
-            sprintf(hashtable->table[index][i].key, key);
-            hashtable->table[index][i].value = value;
-            hashtable->table[index][i].is_occupied = true;            
-            return;
-        }
-        //EN EL CASO DE QUE LA KEY SEA LA MISMA, SE ACTUALIZARA EL VALOR
-        else if(strcmp(hashtable->table[index][i].key,key) == 0){
-            hashtable->table[index][i].value = value;
-            return;
-        }
-        //EN EL CASO DE QUE SEA MUY LARGO EL NOMBRE
-        else if(strlen(key) > MAX_CHAR){
-            printf("La key es muy larga\n");
-            return;
-        }
-        //EN EL CASO DE QUE EXISTA UNA COLICION
-        else {
-            int j = i;
-            while (hashtable->table[index][j].is_occupied == true && j < COLITION_SIZE){
-                j++;
-                (*columns)++;               
-            }
-            if (hashtable->table[index][j].is_occupied == false) { 
-                sprintf(hashtable->table[index][j].key, key);
-                hashtable->table[index][j].value = value;
-                hashtable->table[index][j].is_occupied = true;
-                return;
-            }     
-        }
-        printf("No se ha encontrado espacio para insertar un nuevo elemento\n"); 
+    if (strlen(key) >= MAX_CHAR) {
+        printf("La key es muy larga\n");
+        return;
     }
 
-}
-/** 
- * @brief Insertar el hash del contenido de un achivo en una tabla hash
- * 
- * @param hashtable Tabla hash
- * @param filename Nombre del archivo
- * @param value ELemento a ingresar
- * @param columns Numero de columna en caso de colision
- */
-void insert_hashfile(HashTable * hashtable, const char * filename, int value, int * columns){
-
-    unsigned int index = hashFile(filename)%TABLE_SIZE;
+    unsigned int index = jenkins_hash(key) % TABLE_SIZE;
     *columns = 0;
-    for (int i = 0; i < COLITION_SIZE; i++){
 
-        //PARA INSERTAR EL VALOR
-        if(hashtable->table[index][i].is_occupied == false){
-            sprintf(hashtable->table[index][i].key, filename);
+    for (int i = 0; i < COLITION_SIZE; i++) {
+        // PARA INSERTAR EL VALOR
+        if (!hashtable->table[index][i].is_occupied) {
+            strncpy(hashtable->table[index][i].key, key, MAX_CHAR - 1);
+            hashtable->table[index][i].key[MAX_CHAR - 1] = '\0';
             hashtable->table[index][i].value = value;
-            hashtable->table[index][i].is_occupied = true;   
+            hashtable->table[index][i].is_occupied = true;
             return;
         }
-        //EN EL CASO DE QUE LA KEY SEA LA MISMA, SE ACTUALIZARA EL VALOR
-        else if(strcmp(hashtable->table[index][i].key,filename) == 0){
+        // EN EL CASO DE QUE LA KEY SEA LA MISMA, SE ACTUALIZARA EL VALOR
+        else if (strcmp(hashtable->table[index][i].key, key) == 0) {
             hashtable->table[index][i].value = value;
             return;
         }
-         //EN EL CASO DE QUE SEA MUY LARGO EL NOMBRE
-        else if(strlen(filename) > MAX_CHAR){
-            printf("La key es muy larga\n");
-            return;
-        }
-        //EN EL CASO DE QUE EXISTA UNA COLICION
-        else{
-            int j = i;
-
-            while (hashtable->table[index][j].is_occupied == true && j < COLITION_SIZE){
-                j++;
-                *columns = *columns + 1;
-            }
-
-            if (hashtable->table[index][j].is_occupied == false) { 
-                sprintf(hashtable->table[index][j].key, filename);
-                hashtable->table[index][j].value = value;
-                hashtable->table[index][j].is_occupied = true; 
-                return;
-            }
-        }
-        printf("No se ha encontrado espacio para este commit\n "); 
-        
+        // EN EL CASO DE QUE EXISTA UNA COLICION
+        (*columns)++;
     }
-    
-}
 
+    printf("No se ha encontrado espacio para este commit\n");
+
+}
 
 /**
  * @brief Imprime y guarda una tabla hash dentro de un archivo
@@ -236,19 +176,26 @@ void insert_hashfile(HashTable * hashtable, const char * filename, int value, in
  * @param filename Nombre del archivo
  * 
  */
-void print_tablefile(HashTable* hashtable, const char * filename) {
+void print_tablefile(HashTable* hashtable, const char * filename) 
+{
 
-    FILE * file = fopen ( filename , "w");
+    FILE *file = fopen(filename, "w");
     if (!file) {
-        perror ("No se puede abrir el archivo");
-        exit (EXIT_FAILURE);
+        perror("No se puede abrir el archivo\n");
+        exit(EXIT_FAILURE);
     }
-    for (int i = 0; i < TABLE_SIZE ; i++) {
+
+    for (int i = 0; i < TABLE_SIZE; i++) {
         for (int j = 0; j < COLITION_SIZE; j++) {
-            fprintf(file, "%s %d %d ", hashtable->table[i][j].key, hashtable->table[i][j].value, hashtable->table[i][j].is_occupied);
+            if (hashtable->table[i][j].is_occupied) {
+                fprintf(file, "%d %d ", hashtable->table[i][j].value, hashtable->table[i][j].is_occupied);
+            } else {
+                fprintf(file, "0 0 ");
+            }
         }
         fprintf(file, "\n");
     }
+
     fclose(file);
 }
 
@@ -260,18 +207,32 @@ void print_tablefile(HashTable* hashtable, const char * filename) {
  * 
  * @note El archivo debe estar en el formato que consigue con la funcion "print_tablefile"
  */
-void save_table(HashTable* hashtable, const char * filename) {
+void load_table(HashTable* hashtable, const char * filename) {
 
-    FILE * file = fopen ( filename , "r");
+    if (!hashtable) {
+        fprintf(stderr, "El puntero de la tabla hash es nulo\n");
+        return;
+    }
 
+    FILE *file = fopen(filename, "r");
     if (!file) {
-        perror ("No se puede abrir el archivo");
+        perror("No se puede abrir el archivo");
         exit(EXIT_FAILURE);
-   }   
-    for(int i = 0 ; i < TABLE_SIZE; i++){
-        for (int j= 0; j < COLITION_SIZE; j++){
-            fscanf(file, "%s %d %d", hashtable->table[i][j].key, &hashtable->table[i][j].value, (int*)&hashtable->table[i][j].is_occupied);
+    }
+
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        for (int j = 0; j < COLITION_SIZE; j++) {
+            int is_occupied;
+            fscanf(file, "%d %d", &hashtable->table[i][j].value, &is_occupied); 
+            hashtable->table[i][j].is_occupied = (bool)is_occupied;
+
+            if (!hashtable->table[i][j].is_occupied) {
+                strncpy(hashtable->table[i][j].key, "VACIO", MAX_CHAR - 1);
+                hashtable->table[i][j].key[MAX_CHAR - 1] = '\0'; 
+            }
         }
     }
+
+    fclose(file);
 }
 

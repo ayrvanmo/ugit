@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uso_0',['Uso',['../comandos.html#usage_sec',1,'Ejemplos de Uso'],['../index.html#autotoc_md1',1,'Uso']]]
+  ['value_0',['value',['../structHashEntry.html#aa225f361520a57dbaf93e9d00bf69490',1,'HashEntry']]]
 ];

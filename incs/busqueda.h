@@ -52,5 +52,5 @@ void init_table(HashTable *hashtable);
 void insert_hash(HashTable * hashtable, char* key, int value, int * columns);
 void insert_hashfile(HashTable * hashtable, const char * filename, int value, int * columns);
 void print_tablefile(HashTable* hashtable, const char *filename);
-void save_table(HashTable* hashtable, const char * filename);
+void load_table(HashTable* hashtable, const char * filename);
 
